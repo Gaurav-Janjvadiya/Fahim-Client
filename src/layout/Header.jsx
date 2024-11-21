@@ -1,10 +1,13 @@
 import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { MdMoreVert } from "react-icons/md";
+import { useSelector } from "react-redux";
+import { Logout } from "../components";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
+  const isAuth = useSelector((state) => state.isAuth);
 
   // Function to handle clicks outside of the menu
   const handleClickOutside = (event) => {
@@ -51,10 +54,18 @@ function Header() {
       </div>
 
       <div className="flex items-center justify-betweeen">
-        <Link className="text-[#0d0d0d] mx-1 text-nowrap bg-gray-50 px-5 py-2 hover:bg-gray-200 rounded-2xl">
-          Sign up/in
-        </Link>
-
+        {!isAuth ? (
+          <>
+            <Link
+              to={"/signup"}
+              className="text-[#0d0d0d] mx-1 text-nowrap bg-gray-50 px-5 py-2 hover:bg-gray-200 rounded-2xl"
+            >
+              Sign up/in
+            </Link>
+          </>
+        ) : (
+          <Logout />
+        )}
         <div className="mx-1 py-1 cursor-pointer hover:bg-[#1b1b1b] rounded-full sm:hidden">
           <MdMoreVert onClick={toggleMenu} size={30} color="white" />
         </div>
