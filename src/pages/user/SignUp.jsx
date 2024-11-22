@@ -1,13 +1,17 @@
 import axios from "axios";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import Cookies from "js-cookie";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/store";
+import { useNavigate } from "react-router-dom";
 
 function SignUp() {
+  const [majors, setMajors] = useState([]);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const {
     handleSubmit,
     register,
@@ -30,15 +34,22 @@ function SignUp() {
         if (token) {
           dispatch(login());
           Cookies.set("jwt", token, { secure: true });
+          navigate("/home");
         }
-        console.log(message, token);
       })
       .catch((e) => {
         console.log(e.response?.data || e.message);
       });
-
-    console.log(data);
   };
+
+  useEffect(() => {
+    axios
+      .get(import.meta.env.VITE_SERVER_URL + "/api/majors")
+      .then((res) => {
+        setMajors(res.data);
+      })
+      .catch((e) => console.log(e));
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
@@ -59,7 +70,6 @@ function SignUp() {
               </p>
             )}
           </div>
-
           <div>
             <label className="block text-sm font-medium mb-1">Email</label>
             <input
@@ -75,6 +85,29 @@ function SignUp() {
             {errors.email && (
               <p className="text-red-500 text-sm mt-1">
                 {errors.email.message}
+              </p>
+            )}
+          </div>
+          {/* options */}
+          <div>
+            <label className="block text-sm font-medium mb-1">Major</label>
+            <select
+              key={"i"}
+              {...register("major", { required: "Please select a major" })}
+              className="w-full p-2 bg-gray-700 text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="" disabled>
+                Select your major
+              </option>
+              {majors.map((major) => (
+                <option key={major.id} value={major.name}>
+                  {major.name}
+                </option>
+              ))}
+            </select>
+            {errors.major && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.major.message}
               </p>
             )}
           </div>
@@ -98,7 +131,6 @@ function SignUp() {
               </p>
             )}
           </div>
-
           <div>
             <label className="block text-sm font-medium mb-1">
               Confirm Password
@@ -118,7 +150,6 @@ function SignUp() {
               </p>
             )}
           </div>
-
           <div>
             <button
               type="submit"

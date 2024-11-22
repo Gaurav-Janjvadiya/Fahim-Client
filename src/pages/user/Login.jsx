@@ -4,9 +4,11 @@ import { useForm } from "react-hook-form";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { login } from "../../redux/store";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {
     handleSubmit,
@@ -28,15 +30,15 @@ function Login() {
         if (token) {
           Cookies.set("jwt", token);
           dispatch(login());
+          navigate("/home");
+        } else {
+          navigate("/signup");
         }
-        console.log(token);
       })
       .catch((e) => {
         // You can add more error handling here if you get an error from the server
         console.log(e.response?.data || e.message);
       });
-
-    console.log(data);
   };
 
   return (

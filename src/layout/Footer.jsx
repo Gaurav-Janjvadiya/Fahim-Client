@@ -11,7 +11,7 @@ import {
 function Footer() {
   return (
     <>
-      <footer className="bg-[#2f2f2f] sm:flex-row flex-col flex bottom-0 items-center justify-between p-4 w-screen">
+      <footer className="bg-[#2f2f2f] sm:flex-row flex-col flex bottom-0 items-center justify-between p-4 w-full">
         <div className="flex flex-col sm:flex-row items-center justify-between">
           <h1 className="text-4xl font-bold">Fahim</h1>
           <div className="bg-[#424242] sm:ml-10 sm:h-16 sm:w-[3px]"></div>
@@ -73,7 +73,7 @@ function Footer() {
               <FaDiscord size={24} />
             </a>
           </div>
-          <p className="text-nowrap">support : fahim.suport@gmail.com</p>
+          <p className="text-nowrap">support : help.fahim@gmail.com</p>
         </div>
       </footer>
     </>

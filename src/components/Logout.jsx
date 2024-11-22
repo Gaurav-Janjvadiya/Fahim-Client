@@ -10,9 +10,12 @@ function Logout() {
     Cookies.remove("jwt");
   };
   return (
-    <div>
-      <button onClick={handleLogout}>Logout</button>
-    </div>
+    <button
+      onClick={handleLogout}
+      className="bg-white text-black py-2 px-4 rounded shadow hover:bg-gray-100"
+    >
+      Logout
+    </button>
   );
 }
 
