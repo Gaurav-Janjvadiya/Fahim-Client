@@ -6,13 +6,12 @@
 @tailwind components;
 @tailwind utilities;
 
-*{
+* {
   box-sizing: border-box;
 }
 
 body {
-  background-color: #0d0d0d;
+  background-color: #121212;
   width: 100%;
-  color: white;
-  /* background-color: #424242; */
+  color: #F2F2F2  ;
 }

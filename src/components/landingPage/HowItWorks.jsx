@@ -20,7 +20,7 @@ function HowItWorks() {
       {/* How its works section   */}
       <Element className="how-it-works">
         <div className="w-full min-h-screen flex flex-col justify-center items-center px-4 py-8">
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-white mb-10 text-center">
+          <h1 className="text-4xl sm:text-6xl font-extrabold text-[#F2F2F2] mb-10 text-center">
             How Fahim Works?
           </h1>
           <Timeline position={isMobile ? "left" : "alternate"}>

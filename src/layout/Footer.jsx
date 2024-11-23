@@ -5,16 +5,13 @@ import { FaInstagram, FaDiscord, FaWhatsapp } from "react-icons/fa";
 function Footer() {
   return (
     <>
-      <footer className="bg-[#2f2f2f] sm:flex-row flex-col flex bottom-0 items-center justify-between p-4 w-full">
+      <footer className="bg-[#1A1A1A] sm:flex-row flex-col flex bottom-0 items-center justify-between p-4 w-full">
         <div className="flex flex-col sm:flex-row items-center justify-between">
           <h1 className="text-4xl font-bold">Fahim</h1>
           <div className="bg-[#424242] sm:ml-10 sm:h-16 sm:w-[3px]"></div>
           <div className="ml-4 flex sm:items-start items-center justify-center flex-col">
             <div className="flex items-start my-2 justify-between">
-              <Link to="/about" className="mr-2 text-nowrap">
-                About us
-              </Link>
-              <Link to={"/join-us"} className="mx-2 text-nowrap">
+              <Link to={"/join-us"} className="text-nowrap hover:underline">
                 Join our team
               </Link>
             </div>

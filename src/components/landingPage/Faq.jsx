@@ -34,14 +34,14 @@ function Faq() {
             <div className="overflow-hidden rounded-lg">
               <Accordion
                 sx={{
-                  backgroundColor: "#121212",
-                  color: "white",
+                  backgroundColor: "#1A1A1A",
+                  color: "#F2F2F2",
                 }}
                 expanded={expanded === "panel1"}
                 onChange={handleChange("panel1")}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
+                  expandIcon={<ExpandMoreIcon sx={{ color: "#F2F2F2" }} />}
                 >
                   <Typography>What is Fahim?</Typography>
                 </AccordionSummary>
@@ -54,12 +54,12 @@ function Faq() {
                 </AccordionDetails>
               </Accordion>
               <Accordion
-                sx={{ backgroundColor: "#121212", color: "white" }}
+                sx={{ backgroundColor: "#1A1A1A", color: "#F2F2F2" }}
                 expanded={expanded === "panel2"}
                 onChange={handleChange("panel2")}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
+                  expandIcon={<ExpandMoreIcon sx={{ color: "#F2F2F2" }} />}
                 >
                   <Typography>
                     Is Fahim available for all universities?
@@ -76,12 +76,12 @@ function Faq() {
                 </AccordionDetails>
               </Accordion>
               <Accordion
-                sx={{ backgroundColor: "#121212", color: "white" }}
+                sx={{ backgroundColor: "#1A1A1A", color: "#F2F2F2" }}
                 expanded={expanded === "panel3"}
                 onChange={handleChange("panel3")}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
+                  expandIcon={<ExpandMoreIcon sx={{ color: "#F2F2F2" }} />}
                 >
                   <Typography>
                     Is Fahim only for students, or can educators use it too?
@@ -95,12 +95,12 @@ function Faq() {
                 </AccordionDetails>
               </Accordion>
               <Accordion
-                sx={{ backgroundColor: "#121212", color: "white" }}
+                sx={{ backgroundColor: "#1A1A1A", color: "#F2F2F2" }}
                 expanded={expanded === "panel4"}
                 onChange={handleChange("panel4")}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
+                  expandIcon={<ExpandMoreIcon sx={{ color: "#F2F2F2" }} />}
                 >
                   <Typography>
                     Can Fahim help students who are unsure what to take next
@@ -116,12 +116,12 @@ function Faq() {
                 </AccordionDetails>
               </Accordion>
               <Accordion
-                sx={{ backgroundColor: "#121212", color: "white" }}
+                sx={{ backgroundColor: "#1A1A1A", color: "#F2F2F2" }}
                 expanded={expanded === "panel5"}
                 onChange={handleChange("panel5")}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon sx={{ color: "white" }} />}
+                  expandIcon={<ExpandMoreIcon sx={{ color: "#F2F2F2" }} />}
                 >
                   <Typography>How can I join the Fahim team?</Typography>
                 </AccordionSummary>

@@ -27,7 +27,7 @@ function Home() {
       .catch((e) => console.log(e));
   }, []);
   return (
-    <div className="text-white">
+    <div className="text-[#F2F2F2]">
       <p>{userData.username}</p>
       <p>{userData.email}</p>
       <p>{userData.major}</p>

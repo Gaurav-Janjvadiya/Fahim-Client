@@ -45,7 +45,7 @@ function Login() {
   };
 
   return (
-    <div className="bg-black min-h-screen flex items-center justify-center text-white">
+    <div className="bg-black min-h-screen flex items-center justify-center text-[#F2F2F2]">
       <div className="relative w-full max-w-md">
         <div className="min-h-screen flex items-center justify-center">
           <img
@@ -53,7 +53,7 @@ function Login() {
             src={gif}
             alt="gif"
           />
-          <div className="backdrop-blur absolute sm:w-full max-w-md sm:p-10 p-5 border rounded-lg shadow-lg">
+          <div className="backdrop-blur bg-[#1010108d] absolute sm:w-full max-w-md sm:p-10 p-5 border rounded-lg shadow-lg">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium mb-1">Email</label>
@@ -65,7 +65,7 @@ function Login() {
                       message: "Invalid email address",
                     },
                   })}
-                  className="w-full p-2 border bg-transparent text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-2 border bg-transparent text-[#F2F2F2] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 {errors.email && (
                   <p className="text-red-500 text-sm mt-1">
@@ -87,7 +87,7 @@ function Login() {
                       message: "Password must be at least 6 characters",
                     },
                   })}
-                  className="w-full p-2 border bg-transparent text-white rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-2 border bg-transparent text-[#F2F2F2] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 {errors.password && (
                   <p className="text-red-500 text-sm mt-1">

@@ -105,7 +105,7 @@ function Header() {
         {!isAuth ? (
           <Link
             to="/signup"
-            className="text-[#0d0d0d] mx-1 bg-gray-50 px-5 py-2 rounded-2xl hover:bg-gray-200"
+            className="text-[#0d0d0d] mx-1 bg-gray-50 px-5 py-2 rounded-2xl hover:bg-gray-100"
           >
             Sign up/in
           </Link>
@@ -119,7 +119,7 @@ function Header() {
           onClick={toggleMenu}
           aria-label="Menu"
         >
-          <MdMoreVert size={30} color="white" />
+          <MdMoreVert size={30} color="#F2F2F2" />
         </div>
       </div>
 
@@ -127,7 +127,7 @@ function Header() {
       {isMenuOpen && (
         <div
           ref={menuRef}
-          className="absolute right-12 top-14 flex flex-col p-3 bg-[#0DFF15] rounded-2xl text-white shadow-lg"
+          className="absolute right-12 top-14 flex flex-col p-3 bg-[#0DFF15] rounded-2xl text-[#F2F2F2] shadow-lg"
         >
           {isAuth ? authLinks : unauthLinks}
         </div>
