@@ -32,16 +32,36 @@ function Header() {
   // Links for unauthenticated users
   const unauthLinks = (
     <>
-      <ScrollLink to="features" smooth={true} duration={500}>
+      <ScrollLink
+        className="pointer cursor-pointer"
+        to="features"
+        smooth={true}
+        duration={500}
+      >
         Features
       </ScrollLink>
-      <ScrollLink to="how-it-works" className="mx-2" smooth={true} duration={500}>
+      <ScrollLink
+        className="pointer cursor-pointer"
+        to="how-it-works"
+        smooth={true}
+        duration={500}
+      >
         How it Works?
       </ScrollLink>
-      <ScrollLink to="about-us" smooth={true} duration={500}>
+      <ScrollLink
+        className="pointer cursor-pointer"
+        to="about-us"
+        smooth={true}
+        duration={500}
+      >
         About
       </ScrollLink>
-      <ScrollLink to="faq" smooth={true} duration={500}>
+      <ScrollLink
+        className="pointer cursor-pointer"
+        to="faq"
+        smooth={true}
+        duration={500}
+      >
         Q&A
       </ScrollLink>
     </>

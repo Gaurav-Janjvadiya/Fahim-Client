@@ -9,14 +9,7 @@ function Logout() {
     dispatch(logout());
     Cookies.remove("jwt");
   };
-  return (
-    <button
-      onClick={handleLogout}
-      className="bg-white text-black py-2 px-4 rounded shadow hover:bg-gray-100"
-    >
-      Logout
-    </button>
-  );
+  return <Button onClick={handleLogout}>Logout</Button>;
 }
 
 export default Logout;

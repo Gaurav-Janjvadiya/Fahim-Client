@@ -6,11 +6,7 @@ import ProtectedRoute from "./utils/ProtectedRoute.jsx";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import {
-  About,
-  Features,
   Home,
-  HowItWorks,
-  Faq,
   SignUp,
   Login,
   LandingPage,
@@ -25,10 +21,6 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       { path: "/", element: <LandingPage /> },
-      { path: "/about", element: <About /> },
-      { path: "/faq", element: <Faq /> },
-      { path: "/features", element: <Features /> },
-      { path: "/how-it-works", element: <HowItWorks /> },
       { path: "/signup", element: <SignUp /> },
       { path: "/login", element: <Login /> },
 
