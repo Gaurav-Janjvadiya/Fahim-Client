@@ -1,12 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  FaFacebook,
-  FaDiscord,
-  FaTwitter,
-  FaInstagram,
-  FaLinkedin,
-} from "react-icons/fa";
+import { FaInstagram, FaDiscord, FaWhatsapp } from "react-icons/fa";
 
 function Footer() {
   return (
@@ -20,7 +14,9 @@ function Footer() {
               <Link to="/about" className="mr-2 text-nowrap">
                 About us
               </Link>
-              <Link className="mx-2 text-nowrap">Join out team</Link>
+              <Link to={"/join-us"} className="mx-2 text-nowrap">
+                Join our team
+              </Link>
             </div>
             <div>
               <p className="text-nowrap">
@@ -29,27 +25,19 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="flex sm:items-start items-center flex-col justify-between">
+        <div className="flex items-center flex-col justify-between">
           {/* Social Media Icons */}
           <div className="flex space-x-4 my-2">
             <a
-              href="https://www.facebook.com"
+              href="https://www.linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
               className=""
             >
-              <FaFacebook size={24} />
+              <FaDiscord size={24} />
             </a>
             <a
-              href="https://www.twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className=""
-            >
-              <FaTwitter size={24} />
-            </a>
-            <a
-              href="https://www.instagram.com"
+              href="https://www.linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
               className=""
@@ -62,15 +50,7 @@ function Footer() {
               rel="noopener noreferrer"
               className=""
             >
-              <FaLinkedin size={24} />
-            </a>
-            <a
-              href="https://www.linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className=""
-            >
-              <FaDiscord size={24} />
+              <FaWhatsapp size={24} />
             </a>
           </div>
           <p className="text-nowrap">support : help.fahim@gmail.com</p>

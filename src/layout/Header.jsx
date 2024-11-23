@@ -89,7 +89,7 @@ function Header() {
     <header className="w-full flex justify-between items-center p-5">
       {/* Logo */}
       <div className="py-2">
-        <Link className="font-bold" to="/">
+        <Link className="font-bold text-4xl" to="/">
           Fahim
         </Link>
       </div>

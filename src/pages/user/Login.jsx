@@ -53,7 +53,7 @@ function Login() {
             src={gif}
             alt="gif"
           />
-          <div className="backdrop-blur absolute w-full max-w-md p-6 border rounded-lg shadow-lg">
+          <div className="backdrop-blur absolute sm:w-full max-w-md sm:p-10 p-5 border rounded-lg shadow-lg">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium mb-1">Email</label>

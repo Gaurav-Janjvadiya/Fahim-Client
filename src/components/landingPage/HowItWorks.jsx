@@ -1,15 +1,20 @@
 import React from "react";
 import { Element } from "react-scroll";
-import Timeline from "@mui/lab/Timeline";
-import TimelineItem from "@mui/lab/TimelineItem";
-import TimelineSeparator from "@mui/lab/TimelineSeparator";
-import TimelineConnector from "@mui/lab/TimelineConnector";
-import TimelineContent from "@mui/lab/TimelineContent";
-import TimelineDot from "@mui/lab/TimelineDot";
+import {
+  Timeline,
+  TimelineItem,
+  TimelineSeparator,
+  TimelineConnector,
+  TimelineContent,
+  TimelineDot,
+} from "@mui/lab";
+import { useMediaQuery, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
-import {Button} from "../"
+import { Button } from "../";
 
 function HowItWorks() {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <>
       {/* How its works section   */}
@@ -18,15 +23,20 @@ function HowItWorks() {
           <h1 className="text-4xl sm:text-6xl font-extrabold text-white mb-10 text-center">
             How Fahim Works?
           </h1>
-          <Timeline position="alternate">
+          <Timeline position={isMobile ? "left" : "alternate"}>
             <TimelineItem>
               <TimelineSeparator>
-                <TimelineDot className="bg-indigo-500" />
+                <TimelineDot
+                  style={{ backgroundColor: "#0DFF15", color: "black" }}
+                  className="flex items-center justify-center w-8 h-8 font-bold"
+                >
+                  1
+                </TimelineDot>
                 <TimelineConnector className="bg-indigo-400" />
               </TimelineSeparator>
               <TimelineContent>
-                <div className="p-4 rounded-lg backdrop-blur-lg bg-opacity-20 border shadow-md">
-                  <h3 className="text-lg sm:text-xl font-semibold text-indigo-300">
+                <div className="p-4 w-[15rem] sm:w-auto rounded-lg backdrop-blur-lg bg-opacity-20 border shadow-md">
+                  <h3 className="text-lg sm:text-xl font-semibold text-[#0DFF15]">
                     Create Your Profile
                   </h3>
                   <ul className="mt-2 text-gray-300">
@@ -35,14 +45,20 @@ function HowItWorks() {
                 </div>
               </TimelineContent>
             </TimelineItem>
+
             <TimelineItem>
               <TimelineSeparator>
-                <TimelineDot className="bg-indigo-500" />
+                <TimelineDot
+                  style={{ backgroundColor: "#0DFF15", color: "black" }}
+                  className="flex items-center justify-center w-8 h-8 font-bold"
+                >
+                  2
+                </TimelineDot>{" "}
                 <TimelineConnector className="bg-indigo-400" />
               </TimelineSeparator>
               <TimelineContent>
-                <div className="p-4 rounded-lg backdrop-blur-lg bg-opacity-20 border shadow-md">
-                  <h3 className="text-lg sm:text-xl font-semibold text-indigo-300">
+                <div className="p-4 w-[15rem] sm:w-auto rounded-lg backdrop-blur-lg bg-opacity-20 border shadow-md">
+                  <h3 className="text-lg sm:text-xl font-semibold text-[#0DFF15]">
                     Log Your Courses
                   </h3>
                   <ul className="mt-2 text-gray-300">
@@ -56,12 +72,17 @@ function HowItWorks() {
             </TimelineItem>
             <TimelineItem>
               <TimelineSeparator>
-                <TimelineDot className="bg-indigo-500" />
+                <TimelineDot
+                  style={{ backgroundColor: "#0DFF15", color: "black" }}
+                  className="flex items-center justify-center w-8 h-8 font-bold"
+                >
+                  3
+                </TimelineDot>{" "}
                 <TimelineConnector className="bg-indigo-400" />
               </TimelineSeparator>
               <TimelineContent>
-                <div className="p-4 rounded-lg backdrop-blur-lg bg-opacity-20 border shadow-md">
-                  <h3 className="text-lg sm:text-xl font-semibold text-indigo-300">
+                <div className="p-4 w-[15rem] sm:w-auto rounded-lg backdrop-blur-lg bg-opacity-20 border shadow-md">
+                  <h3 className="text-lg sm:text-xl font-semibold text-[#0DFF15]">
                     Get Recommendations
                   </h3>
                   <ul className="mt-2 text-gray-300">
@@ -74,7 +95,7 @@ function HowItWorks() {
               </TimelineContent>
             </TimelineItem>
           </Timeline>
-          <Button>
+          <Button style={"mt-4"}>
             <Link to="/signup">Join Fahim Now</Link>
           </Button>
         </div>
