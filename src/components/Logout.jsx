@@ -2,6 +2,7 @@ import React from "react";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/store";
+import { Button } from "./";
 
 function Logout() {
   const dispatch = useDispatch();

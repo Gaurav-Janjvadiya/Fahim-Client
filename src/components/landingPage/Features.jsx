@@ -6,17 +6,17 @@ function Features() {
     <>
       {/* Why Choose Fahim Section */}
       <Element className="features">
-        <div className="relative flex items-center p-4">
+        <div className="relative flex items-center pt-2">
           {/* Background and Content */}
           <div className="w-full p-3 flex flex-col items-center justify-start">
             <div className="m-10">
-              <h1 className="text-4xl sm:text-6xl font-extrabold hover:bg-slate-900 mb-10 text-center">
+              <h1 className="text-6xl font-extrabold text-[#F2F2F2] mb-4 text-center">
                 Why Choose Fahim?
               </h1>
             </div>
             <div className="flex flex-wrap items-center justify-center">
               {/* Card 1 */}
-              <div className="border rounded-lg w-full min-h-fit sm:w-[45%] md:w-[30%] lg:w-[20%] mx-4 p-6 shadow-lg hover:scale-105 transition-all duration-300 mb-4 sm:mb-0">
+              <div className="border rounded sm:h-[10rem] min-h-fit sm:w-1/4 sm:p-3 p-8 m-4">
                 <h3 className="font-bold mb-3 text-xl">
                   Personalized Course Recommendations
                 </h3>
@@ -29,7 +29,7 @@ function Features() {
               </div>
 
               {/* Card 2 */}
-              <div className="border rounded-lg w-full min-h-fit sm:w-[45%] md:w-[30%] lg:w-[20%] mx-4 p-6 shadow-lg hover:scale-105 transition-all duration-300 mb-4 sm:mb-0">
+              <div className="border rounded sm:h-[10rem] min-h-fit sm:w-1/4 sm:p-3 p-8 m-4">
                 <h3 className="font-bold mb-3 text-xl">
                   Professor Ratings and Reviews
                 </h3>
@@ -42,7 +42,7 @@ function Features() {
               </div>
 
               {/* Card 3 */}
-              <div className="border rounded-lg w-full min-h-fit sm:w-[45%] md:w-[30%] lg:w-[20%] mx-4 p-6 shadow-lg hover:scale-105 transition-all duration-300 mb-4 sm:mb-0">
+              <div className="border rounded sm:h-[10rem] min-h-fit sm:w-1/4 sm:p-3 p-8 m-4">
                 <h3 className="font-bold mb-3 text-xl">Course Tracking</h3>
                 <ul className="list-disc ml-5">
                   <li>

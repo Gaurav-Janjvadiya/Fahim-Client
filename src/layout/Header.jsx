@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import { MdMoreVert } from "react-icons/md";
 import { Logout } from "../components";
@@ -70,23 +70,37 @@ function Header() {
   // Links for authenticated users
   const authLinks = (
     <>
-      <Link to="/home" className="mx-2">
-        Home
-      </Link>
-      <Link to="/courses" className="mx-2">
-        Courses
-      </Link>
-      <Link to="/professors" className="mx-2">
-        Professors
-      </Link>
-      <Link to="/join-us" className="mx-2">
-        Join us
-      </Link>
+      <NavLink to="/home" className="mx-2">
+        {({ isActive }) => (
+          <span className={isActive ? "font-bold" : "font-normal"}>Home</span>
+        )}
+      </NavLink>
+      <NavLink to="/courses" className="mx-2">
+        {({ isActive }) => (
+          <span className={isActive ? "font-bold" : "font-normal"}>
+            Courses
+          </span>
+        )}
+      </NavLink>
+      <NavLink to="/professors" className="mx-2">
+        {({ isActive }) => (
+          <span className={isActive ? "font-bold" : "font-normal"}>
+            Professors
+          </span>
+        )}
+      </NavLink>
+      <NavLink to="/join-us" className="mx-2">
+        {({ isActive }) => (
+          <span className={isActive ? "font-bold" : "font-normal"}>
+            Join us
+          </span>
+        )}
+      </NavLink>
     </>
   );
 
   return (
-    <header className="w-full flex justify-between items-center p-5">
+    <header className="w-full flex justify-between items-center p-3 sm:p-5">
       {/* Logo */}
       <div className="py-2">
         <Link className="font-bold text-4xl" to="/">
@@ -115,7 +129,7 @@ function Header() {
 
         {/* Kebab Menu for Smaller Screens */}
         <div
-          className="sm:hidden mx-1 p-2 rounded-full cursor-pointer hover:bg-gray-700"
+          className="sm:hidden mx-1 px-1 py-2 rounded-full cursor-pointer hover:bg-[#1A1A1A]"
           onClick={toggleMenu}
           aria-label="Menu"
         >

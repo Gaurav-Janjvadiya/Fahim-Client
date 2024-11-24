@@ -7,7 +7,7 @@ function About() {
       {/* About us section */}
       <Element className="about-us">
         <div className="p-4 flex justify-center items-center flex-col ">
-          <h1 className="text-4xl sm:text-6xl font-extrabold text-[#F2F2F2] mb-6 text-center">
+          <h1 className="text-6xl font-extrabold text-[#F2F2F2] mb-4 text-center">
             About Us
           </h1>
           <p className="text-lg sm:text-xl max-w-3xl text-center leading-relaxed">
