@@ -54,7 +54,7 @@ function SignUp() {
   }, []);
 
   return (
-    <div className="bg-black min-h-screen flex items-center justify-center text-[#F2F2F2]">
+    <div className="bg-black py-3 min-h-screen flex items-center justify-center text-[#F2F2F2]">
       <div className="relative w-full max-w-md">
         <div className="min-h-screen flex items-center justify-center">
           <img
@@ -195,10 +195,12 @@ function SignUp() {
               </div>
 
               <div>
-                <Button type="submit" style={"w-full"}>Sign Up</Button>
+                <Button type="submit" style={"w-full"}>
+                  Sign Up
+                </Button>
               </div>
             </form>
-            <p className="text-center text-sm">
+            <p className="text-center mt-2 text-sm">
               Already have an account?
               <Link
                 className="text-blue-400 hover:text-blue-300 ml-2 underline"
