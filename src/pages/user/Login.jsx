@@ -97,14 +97,14 @@ function Login() {
               </div>
 
               <div>
-                <Button type="submit">Login</Button>
+                <Button type="submit" style={"w-full"}>Login</Button>
               </div>
             </form>
 
             <p className="text-center text-sm mt-4">
               Don't have an account?
               <Link
-                className="text-blue-400 hover:text-blue-300 underline"
+                className="text-blue-400 hover:text-blue-300 ml-2 underline"
                 to="/signup"
               >
                 Sign up

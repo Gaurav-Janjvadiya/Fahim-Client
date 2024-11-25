@@ -54,7 +54,7 @@ function SignUp() {
   }, []);
 
   return (
-    <div className="bg-black p-3 min-h-screen flex items-center justify-center text-[#F2F2F2]">
+    <div className="bg-black min-h-screen flex items-center justify-center text-[#F2F2F2]">
       <div className="relative w-full max-w-md">
         <div className="min-h-screen flex items-center justify-center">
           <img
@@ -62,7 +62,7 @@ function SignUp() {
             src={gif}
             alt="gif"
           />
-          <div className="backdrop-blur absolute sm:w-full p-6 border rounded-lg shadow-lg">
+          <div className="backdrop-blur-sm absolute sm:w-full p-6 border rounded-lg shadow-lg">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium mb-1">
@@ -195,13 +195,13 @@ function SignUp() {
               </div>
 
               <div>
-                <Button type="submit">Sign Up</Button>
+                <Button type="submit" style={"w-full"}>Sign Up</Button>
               </div>
             </form>
             <p className="text-center text-sm">
               Already have an account?
               <Link
-                className="text-blue-400 hover:text-blue-300 underline"
+                className="text-blue-400 hover:text-blue-300 ml-2 underline"
                 to="/login"
               >
                 Login

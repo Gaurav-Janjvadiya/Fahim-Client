@@ -1,33 +1,20 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Link as ScrollLink } from "react-scroll";
 import { MdMoreVert } from "react-icons/md";
 import { Logout } from "../components";
 import { useSelector } from "react-redux";
+import {
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  IconButton,
+} from "@mui/material";
 
 function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const menuRef = useRef(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const isAuth = useSelector((state) => state.isAuth);
-
-  // Close the menu if a click occurs outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  // Toggle menu visibility
-  const toggleMenu = () => {
-    setIsMenuOpen((prev) => !prev);
-  };
 
   // Links for unauthenticated users
   const unauthLinks = (
@@ -99,6 +86,11 @@ function Header() {
     </>
   );
 
+  // Toggle sidebar visibility
+  const toggleSidebar = () => {
+    setIsSidebarOpen((prev) => !prev);
+  };
+
   return (
     <header className="w-full flex justify-between items-center p-3 sm:p-5">
       {/* Logo */}
@@ -127,27 +119,51 @@ function Header() {
           <Logout />
         )}
 
-        {/* Kebab Menu for Smaller Screens */}
-        <div
-          className="sm:hidden mx-1 px-1 py-2 rounded-full cursor-pointer hover:bg-[#1A1A1A]"
-          onClick={toggleMenu}
-          aria-label="Menu"
-        >
-          <MdMoreVert size={30} color="#F2F2F2" />
+        {/* Sidebar Toggle Button for Smaller Screens */}
+        <div className="sm:hidden block">
+          <IconButton onClick={toggleSidebar} aria-label="Menu">
+            <MdMoreVert size={30} color="#F2F2F2" />
+          </IconButton>
         </div>
       </div>
 
-      {/* Kebab Menu Dropdown */}
-      {isMenuOpen && (
-        <div
-          ref={menuRef}
-          className={`absolute right-0 rounded-l-xl rounded-r-none w-3/4 h-full top-16 flex flex-col p-8 space-y-3 bg-[#1A1A1A] rounded-2xl text-[#F2F2F2] shadow-lg transition-all duration-300 ease-in-out transform ${
-            isMenuOpen ? "opacity-100 scale-100" : "opacity-0 scale-95"
-          }`}
-        >
-          {isAuth ? authLinks : unauthLinks}
-        </div>
-      )}
+      {/* MUI Sidebar Drawer */}
+      <Drawer
+        anchor="right"
+        open={isSidebarOpen}
+        onClose={toggleSidebar}
+        PaperProps={{
+          sx: { width: "75%", backgroundColor: "#1A1A1A", color: "#F2F2F2" },
+        }}
+      >
+        <List>
+          {isAuth
+            ? authLinks.props.children.map((link) => (
+                <ListItem
+                  button
+                  component={NavLink}
+                  to={link.props.to}
+                  onClick={toggleSidebar}
+                  key={link.props.to}
+                >
+                  <ListItemText primary={link.props.children.props.children} />
+                </ListItem>
+              ))
+            : unauthLinks.props.children.map((link) => (
+                <ListItem
+                  button
+                  component={ScrollLink}
+                  to={link.props.to}
+                  smooth={true}
+                  duration={500}
+                  onClick={toggleSidebar}
+                  key={link.props.to}
+                >
+                  <ListItemText primary={link.props.children} />
+                </ListItem>
+              ))}
+        </List>
+      </Drawer>
     </header>
   );
 }
