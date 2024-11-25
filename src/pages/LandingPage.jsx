@@ -12,10 +12,10 @@ function LandingPage() {
       <div className="min-h-screen py-12">
         <HowItWorks />
       </div>
-      <div className="min-h-screen py-12">
+      <div className="min-h-fit py-12">
         <About />
       </div>
-      <div className="min-h-screen py-12">
+      <div className="min-h-fit py-12">
         <Faq />
       </div>
     </>
