@@ -19,8 +19,8 @@ function HowItWorks() {
     <>
       {/* How its works section   */}
       <Element className="how-it-works">
-        <div className="w-full min-h-screen flex flex-col justify-center items-center px-4 py-8">
-          <h1 className="text-6xl font-extrabold text-[#F2F2F2] mb-10 text-center">
+        <div className="w-full min-h-screen flex flex-col justify-center items-center px-4 sm:px-12">
+          <h1 className="text-6xl font-extrabold text-[#F2F2F2] mb-12 text-start sm:text-center">
             How Fahim Works?
           </h1>
           <Timeline position={isMobile ? "left" : "alternate"}>
@@ -35,7 +35,7 @@ function HowItWorks() {
                 <TimelineConnector className="bg-indigo-400" />
               </TimelineSeparator>
               <TimelineContent>
-                <div className="p-4 w-[15rem] sm:w-auto rounded-lg backdrop-blur-lg bg-opacity-20 border shadow-md">
+                <div className="p-4 w-[17rem] sm:w-auto rounded-lg backdrop-blur-lg bg-opacity-20 border shadow-md">
                   <h3 className="text-lg sm:text-xl font-semibold text-[#0DFF15]">
                     Create Your Profile
                   </h3>
@@ -57,7 +57,7 @@ function HowItWorks() {
                 <TimelineConnector className="bg-indigo-400" />
               </TimelineSeparator>
               <TimelineContent>
-                <div className="p-4 w-[15rem] sm:w-auto rounded-lg backdrop-blur-lg bg-opacity-20 border shadow-md">
+                <div className="p-4 w-[17rem] sm:w-auto rounded-lg backdrop-blur-lg bg-opacity-20 border shadow-md">
                   <h3 className="text-lg sm:text-xl font-semibold text-[#0DFF15]">
                     Log Your Courses
                   </h3>
@@ -81,7 +81,7 @@ function HowItWorks() {
                 <TimelineConnector className="bg-indigo-400" />
               </TimelineSeparator>
               <TimelineContent>
-                <div className="p-4 w-[15rem] sm:w-auto rounded-lg backdrop-blur-lg bg-opacity-20 border shadow-md">
+                <div className="p-4 w-[17rem] sm:w-auto rounded-lg backdrop-blur-lg bg-opacity-20 border shadow-md">
                   <h3 className="text-lg sm:text-xl font-semibold text-[#0DFF15]">
                     Get Recommendations
                   </h3>

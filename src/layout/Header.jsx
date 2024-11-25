@@ -33,7 +33,7 @@ function Header() {
   const unauthLinks = (
     <>
       <ScrollLink
-        className="pointer cursor-pointer"
+        className="pointer cursor-pointer hover:underline"
         to="features"
         smooth={true}
         duration={500}
@@ -41,7 +41,7 @@ function Header() {
         Features
       </ScrollLink>
       <ScrollLink
-        className="pointer cursor-pointer"
+        className="pointer cursor-pointer hover:underline"
         to="how-it-works"
         smooth={true}
         duration={500}
@@ -49,7 +49,7 @@ function Header() {
         How it Works?
       </ScrollLink>
       <ScrollLink
-        className="pointer cursor-pointer"
+        className="pointer cursor-pointer hover:underline"
         to="about-us"
         smooth={true}
         duration={500}
@@ -57,7 +57,7 @@ function Header() {
         About
       </ScrollLink>
       <ScrollLink
-        className="pointer cursor-pointer"
+        className="pointer cursor-pointer hover:underline"
         to="faq"
         smooth={true}
         duration={500}
@@ -70,26 +70,26 @@ function Header() {
   // Links for authenticated users
   const authLinks = (
     <>
-      <NavLink to="/home" className="mx-2">
+      <NavLink to="/home" className="mx-2 hover:underline">
         {({ isActive }) => (
           <span className={isActive ? "font-bold" : "font-normal"}>Home</span>
         )}
       </NavLink>
-      <NavLink to="/courses" className="mx-2">
+      <NavLink to="/courses" className="mx-2 hover:underline">
         {({ isActive }) => (
           <span className={isActive ? "font-bold" : "font-normal"}>
             Courses
           </span>
         )}
       </NavLink>
-      <NavLink to="/professors" className="mx-2">
+      <NavLink to="/professors" className="mx-2 hover:underline">
         {({ isActive }) => (
           <span className={isActive ? "font-bold" : "font-normal"}>
             Professors
           </span>
         )}
       </NavLink>
-      <NavLink to="/join-us" className="mx-2">
+      <NavLink to="/join-us" className="mx-2 hover:underline">
         {({ isActive }) => (
           <span className={isActive ? "font-bold" : "font-normal"}>
             Join us
@@ -141,7 +141,9 @@ function Header() {
       {isMenuOpen && (
         <div
           ref={menuRef}
-          className="absolute right-12 top-14 flex flex-col p-3 bg-[#0DFF15] rounded-2xl text-[#F2F2F2] shadow-lg"
+          className={`absolute right-0 rounded-l-xl rounded-r-none w-3/4 h-full top-16 flex flex-col p-8 space-y-3 bg-[#1A1A1A] rounded-2xl text-[#F2F2F2] shadow-lg transition-all duration-300 ease-in-out transform ${
+            isMenuOpen ? "opacity-100 scale-100" : "opacity-0 scale-95"
+          }`}
         >
           {isAuth ? authLinks : unauthLinks}
         </div>

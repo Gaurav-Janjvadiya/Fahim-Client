@@ -20,10 +20,10 @@ function Faq() {
     <>
       {/* Q&A */}
       <Element className="faq">
-        <div className="w-full flex p-8 pb-20 flex-col sm:flex-row space-y-8">
-          <div className="sm:w-1/2 flex justify-start items-start space-y-4 flex-col">
+        <div className="w-full flex flex-col sm:flex-row sm:space-y-0 space-y-8 px-4 sm:px-12">
+          <div className="sm:w-1/2 flex justify-start items-start space-y-8 flex-col">
             <h4 className="font-semibold text-[#0DFF15]">FAQs</h4>
-            <h1 className="font-semibold text-4xl">
+            <h1 className="font-semibold text-wrap text-4xl">
               Got Questions? We Have Answers!
             </h1>
             <Button>

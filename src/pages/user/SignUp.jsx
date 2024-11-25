@@ -169,6 +169,32 @@ function SignUp() {
               )}
 
               <div>
+                <div className="flex items-center">
+                  <input
+                    type="checkbox"
+                    {...register("terms", {
+                      required: "You must accept the terms and conditions",
+                    })}
+                    className="w-4 h-4 border bg-transparent rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <span className="ml-2 text-sm">
+                    I agree to the{" "}
+                    <Link
+                      className="text-blue-400 hover:text-blue-300 underline"
+                      to="/terms"
+                    >
+                      Terms and Conditions
+                    </Link>
+                  </span>
+                </div>
+                {errors.terms && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.terms.message}
+                  </p>
+                )}
+              </div>
+
+              <div>
                 <Button type="submit">Sign Up</Button>
               </div>
             </form>

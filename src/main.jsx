@@ -13,6 +13,7 @@ import {
   Courses,
   JoinUs,
   Professors,
+  TermsAndConditions
 } from "./pages";
 
 const router = createBrowserRouter([
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       { path: "/", element: <LandingPage /> },
       { path: "/signup", element: <SignUp /> },
       { path: "/login", element: <Login /> },
+      { path: "/terms", element: <TermsAndConditions /> },
 
       // Protecting all routes
       {

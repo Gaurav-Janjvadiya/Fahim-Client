@@ -3,19 +3,19 @@ import { HeroSection, Features, HowItWorks, About, Faq } from "../components";
 function LandingPage() {
   return (
     <>
-      <div className="mt-8">
+      <div className="min-h-screen py-12">
         <HeroSection />
       </div>
-      <div className="mt-16">
+      <div className="min-h-screen py-12">
         <Features />
       </div>
-      <div className="mt-16">
+      <div className="min-h-screen py-12">
         <HowItWorks />
       </div>
-      <div className="mt-16">
+      <div className="min-h-screen py-12">
         <About />
       </div>
-      <div className="mt-16">
+      <div className="min-h-screen py-12">
         <Faq />
       </div>
     </>
