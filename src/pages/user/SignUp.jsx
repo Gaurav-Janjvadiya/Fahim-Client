@@ -91,9 +91,9 @@ function SignUp() {
                   {...register("major", { required: "Please select a major" })}
                   className="w-full p-2 border bg-transparent text-[#F2F2F2] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
-                  <option value="">Select your major</option>
+                  <option className="font-black" value="">Select your major</option>
                   {majors.map((major) => (
-                    <option key={major.id} value={major.name}>
+                    <option className="font-black" key={major.id} value={major.name}>
                       {major.name}
                     </option>
                   ))}

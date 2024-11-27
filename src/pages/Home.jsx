@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
-import Cookies from "js-cookie";
+import { getCurrentUser } from "../api/authApi";
 
 function Home() {
   const [userData, setUserData] = useState({
@@ -8,29 +7,23 @@ function Home() {
     email: "",
     major: "",
   });
+  const [error, setError] = useState(null); // State to store error message
+
   useEffect(() => {
-    const token = Cookies.get("jwt");
-    axios
-      .get(import.meta.env.VITE_SERVER_URL + "/api/users/me", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((res) => {
-        setUserData({
-          username: res.data.username,
-          email: res.data.email,
-          major: res.data.major,
-        });
-        console.log(res.data);
-      })
-      .catch((e) => console.log(e));
+    getCurrentUser(setUserData, setError);
   }, []);
+
   return (
     <div className="text-[#F2F2F2]">
-      <p>{userData.username}</p>
-      <p>{userData.email}</p>
-      <p>{userData.major}</p>
+      {error ? (
+        <p className="text-red-500">{error}</p> // Display error message
+      ) : (
+        <>
+          <p>{userData.username}</p>
+          <p>{userData.email}</p>
+          <p>{userData.major}</p>
+        </>
+      )}
     </div>
   );
 }

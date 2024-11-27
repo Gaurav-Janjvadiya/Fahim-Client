@@ -17,74 +17,52 @@ function Header() {
   const isAuth = useSelector((state) => state.isAuth);
 
   // Links for unauthenticated users
-  const unauthLinks = (
-    <>
-      <ScrollLink
-        className="pointer cursor-pointer hover:underline"
-        to="features"
-        smooth={true}
-        duration={500}
-      >
-        Features
-      </ScrollLink>
-      <ScrollLink
-        className="pointer cursor-pointer hover:underline"
-        to="how-it-works"
-        smooth={true}
-        duration={500}
-      >
-        How it Works?
-      </ScrollLink>
-      <ScrollLink
-        className="pointer cursor-pointer hover:underline"
-        to="about-us"
-        smooth={true}
-        duration={500}
-      >
-        About
-      </ScrollLink>
-      <ScrollLink
-        className="pointer cursor-pointer hover:underline"
-        to="faq"
-        smooth={true}
-        duration={500}
-      >
-        Q&A
-      </ScrollLink>
-    </>
-  );
+  const unauthLinks = [
+    {
+      to: "features",
+      text: "Features",
+      type: ScrollLink,
+    },
+    {
+      to: "how-it-works",
+      text: "How it Works?",
+      type: ScrollLink,
+    },
+    {
+      to: "about-us",
+      text: "About",
+      type: ScrollLink,
+    },
+    {
+      to: "faq",
+      text: "Q&A",
+      type: ScrollLink,
+    },
+  ];
 
   // Links for authenticated users
-  const authLinks = (
-    <>
-      <NavLink to="/home" className="mx-2 hover:underline">
-        {({ isActive }) => (
-          <span className={isActive ? "font-bold" : "font-normal"}>Home</span>
-        )}
-      </NavLink>
-      <NavLink to="/courses" className="mx-2 hover:underline">
-        {({ isActive }) => (
-          <span className={isActive ? "font-bold" : "font-normal"}>
-            Courses
-          </span>
-        )}
-      </NavLink>
-      <NavLink to="/professors" className="mx-2 hover:underline">
-        {({ isActive }) => (
-          <span className={isActive ? "font-bold" : "font-normal"}>
-            Professors
-          </span>
-        )}
-      </NavLink>
-      <NavLink to="/join-us" className="mx-2 hover:underline">
-        {({ isActive }) => (
-          <span className={isActive ? "font-bold" : "font-normal"}>
-            Join us
-          </span>
-        )}
-      </NavLink>
-    </>
-  );
+  const authLinks = [
+    {
+      to: "/home",
+      text: "Home",
+      type: NavLink,
+    },
+    {
+      to: "/courses",
+      text: "Courses",
+      type: NavLink,
+    },
+    {
+      to: "/professors",
+      text: "Professors",
+      type: NavLink,
+    },
+    {
+      to: "/join-us",
+      text: "Join us",
+      type: NavLink,
+    },
+  ];
 
   // Toggle sidebar visibility
   const toggleSidebar = () => {
@@ -102,7 +80,25 @@ function Header() {
 
       {/* Navigation Links (Visible on larger screens) */}
       <nav className="hidden sm:flex items-center justify-between md:w-[35vw]">
-        {isAuth ? authLinks : unauthLinks}
+        {isAuth
+          ? authLinks.map((link) => (
+              <NavLink to={link.to} key={link.to} className="mx-2 hover:underline text-nowrap">
+                {({ isActive }) => (
+                  <span className={isActive ? "font-bold" : "font-normal"}>{link.text}</span>
+                )}
+              </NavLink>
+            ))
+          : unauthLinks.map((link) => (
+              <ScrollLink
+                key={link.to}
+                className="pointer cursor-pointer hover:underline"
+                to={link.to}
+                smooth={true}
+                duration={500}
+              >
+                {link.text}
+              </ScrollLink>
+            ))}
       </nav>
 
       {/* Right-side Actions */}
@@ -138,28 +134,28 @@ function Header() {
       >
         <List>
           {isAuth
-            ? authLinks.props.children.map((link) => (
+            ? authLinks.map((link) => (
                 <ListItem
                   button
                   component={NavLink}
-                  to={link.props.to}
+                  to={link.to}
                   onClick={toggleSidebar}
-                  key={link.props.to}
+                  key={link.to}
                 >
-                  <ListItemText primary={link.props.children.props.children} />
+                  <ListItemText primary={link.text} />
                 </ListItem>
               ))
-            : unauthLinks.props.children.map((link) => (
+            : unauthLinks.map((link) => (
                 <ListItem
                   button
                   component={ScrollLink}
-                  to={link.props.to}
+                  to={link.to}
                   smooth={true}
                   duration={500}
                   onClick={toggleSidebar}
-                  key={link.props.to}
+                  key={link.to}
                 >
-                  <ListItemText primary={link.props.children} />
+                  <ListItemText primary={link.text} />
                 </ListItem>
               ))}
         </List>
