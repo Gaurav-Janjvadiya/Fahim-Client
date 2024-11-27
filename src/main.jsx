@@ -13,7 +13,7 @@ import {
   Courses,
   JoinUs,
   Professors,
-  TermsAndConditions
+  TermsAndConditions,
 } from "./pages";
 
 const router = createBrowserRouter([

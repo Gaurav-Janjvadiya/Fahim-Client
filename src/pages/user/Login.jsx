@@ -1,5 +1,4 @@
 import axios from "axios";
-import React from "react";
 import { useForm } from "react-hook-form";
 import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
@@ -8,10 +7,13 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../../components";
 import gif from "../../assets/gifs/login.gif";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { login as userLogin } from "../../api/authApi";
 
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [serverError, setServerError] = useState(""); // State to store server error message
 
   const {
     handleSubmit,
@@ -25,23 +27,7 @@ function Login() {
   });
 
   const onSubmit = (data) => {
-    axios
-      .post(import.meta.env.VITE_SERVER_URL + "/api/users/signin", data)
-      .then((res) => {
-        const { token } = res.data;
-        // Handle the success response, e.g., redirect or store token
-        if (token) {
-          Cookies.set("jwt", token);
-          dispatch(login());
-          navigate("/home");
-        } else {
-          navigate("/signup");
-        }
-      })
-      .catch((e) => {
-        // You can add more error handling here if you get an error from the server
-        console.log(e.response?.data || e.message);
-      });
+    userLogin(data, navigate, dispatch, setServerError);
   };
 
   return (
@@ -97,9 +83,17 @@ function Login() {
               </div>
 
               <div>
-                <Button type="submit" style={"w-full"}>Login</Button>
+                <Button type="submit" style={"w-full"}>
+                  Login
+                </Button>
               </div>
             </form>
+
+            {serverError && (
+              <p className="text-red-500 text-sm text-center mt-4">
+                {serverError}
+              </p>
+            )}
 
             <p className="text-center text-sm mt-4">
               Don't have an account?

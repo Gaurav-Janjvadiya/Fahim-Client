@@ -29,7 +29,6 @@ function Footer() {
               href="https://www.linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              className=""
             >
               <FaDiscord size={24} />
             </a>
@@ -37,20 +36,23 @@ function Footer() {
               href="https://www.linkedin.com"
               target="_blank"
               rel="noopener noreferrer"
-              className=""
             >
               <FaInstagram size={24} />
             </a>
             <a
-              href="https://www.linkedin.com"
+              href="https://www.instagram.com/fahim_officia1/"
               target="_blank"
               rel="noopener noreferrer"
-              className=""
             >
               <FaWhatsapp size={24} />
             </a>
           </div>
-          <p className="text-nowrap">support : help.fahim@gmail.com</p>
+          <p className="text-nowrap">
+            Support:
+            <a href="mailto:contactfahimteam@gmail.com">
+              contactfahimteam@gmail.com
+            </a>
+          </p>
         </div>
       </footer>
     </>

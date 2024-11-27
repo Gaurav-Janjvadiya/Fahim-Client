@@ -1,12 +1,11 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import Cookies from "js-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/store";
 import { Button } from "../../components";
 import gif from "../../assets/gifs/signup.gif";
+import { signUp as userSignUp } from "../../api/authApi";
 
 function SignUp() {
   const [majors, setMajors] = useState([]);
@@ -29,21 +28,7 @@ function SignUp() {
   });
 
   const onSubmit = (data) => {
-    axios
-      .post(`${import.meta.env.VITE_SERVER_URL}/api/users/signup`, data)
-      .then((res) => {
-        const { message, token } = res.data;
-        if (token) {
-          dispatch(login());
-          Cookies.set("jwt", token, { secure: true });
-          navigate("/home");
-        }
-      })
-      .catch((e) => {
-        setServerError(
-          e.response?.data?.message || e.message || "An error occurred"
-        );
-      });
+    userSignUp(data, navigate, dispatch, setServerError);
   };
 
   useEffect(() => {
