@@ -82,9 +82,17 @@ function Header() {
       <nav className="hidden sm:flex items-center justify-between md:w-[35vw]">
         {isAuth
           ? authLinks.map((link) => (
-              <NavLink to={link.to} key={link.to} className="mx-2 hover:underline text-nowrap">
+              <NavLink to={link.to} key={link.to} className="mx-2 text-nowrap">
                 {({ isActive }) => (
-                  <span className={isActive ? "font-bold" : "font-normal"}>{link.text}</span>
+                  <span
+                    className={`${
+                      isActive
+                        ? "font-bold hover:no-underline"
+                        : "font-normal hover:underline"
+                    }`}
+                  >
+                    {link.text}
+                  </span>
                 )}
               </NavLink>
             ))

@@ -14,6 +14,7 @@ import {
   JoinUs,
   Professors,
   TermsAndConditions,
+  Professor,
 } from "./pages";
 
 const router = createBrowserRouter([
@@ -56,6 +57,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Professors />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/professors/:professorId",
+        element: (
+          <ProtectedRoute>
+            <Professor />
           </ProtectedRoute>
         ),
       },

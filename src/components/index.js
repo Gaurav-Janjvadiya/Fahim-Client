@@ -6,7 +6,9 @@ import Features from "./landingPage/Features.jsx";
 import HowItWorks from "./landingPage/HowItWorks.jsx";
 import Button from "./Button.jsx";
 import SearchBar from "./professorsPage/SearchBar.jsx";
-import ProfessorInfo from "./professorsPage/ProfessorInfo";
+import ProfessorInfo from "./professorsPage/ProfessorInfo.jsx";
+import AllProfessors from "./professorsPage/AllProfessors.jsx";
+import SortBy from "./professorsPage/SoryBy.jsx"
 
 export {
   Logout,
@@ -17,5 +19,7 @@ export {
   HowItWorks,
   Button,
   SearchBar,
-  ProfessorInfo
+  ProfessorInfo,
+  AllProfessors,
+  SortBy
 };
