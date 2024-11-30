@@ -115,7 +115,7 @@ function Header() {
         {!isAuth ? (
           <Link
             to="/signup"
-            className="text-[#0d0d0d] mx-1 bg-gray-50 px-5 py-2 rounded-2xl hover:bg-gray-100"
+            className="text-[#0d0d0d] text-nowrap mx-1 bg-gray-50 px-5 py-2 rounded-2xl hover:bg-gray-100"
           >
             Sign up/in
           </Link>

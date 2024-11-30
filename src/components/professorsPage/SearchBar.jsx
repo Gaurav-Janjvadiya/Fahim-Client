@@ -1,54 +1,33 @@
-import React, { useState } from "react";
-import { TextField, InputAdornment } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
+import { TextField } from "@mui/material";
 
 function SearchBar() {
-  const [searchTerm, setSearchTerm] = useState("");
-
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
   return (
-    <div
-      style={{
-        backgroundColor: "#121212",
-        padding: "10px",
-        borderRadius: "8px",
-        width: "300px",
+    <TextField
+      id="outlined-basic"
+      label="Search"
+      variant="outlined"
+      sx={{
+        input: {
+          color: "#F2F2F2", // Input text color
+        },
+        label: {
+          color: "#F2F2F2", // Label color
+        },
+        fieldset: {
+          borderColor: "#F2F2F2", // Border color
+        },
+        "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
+          borderColor: "#0DFF15", // Border color on hover
+        },
+        "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
+          {
+            borderColor: "#0DFF15", // Border color on focus
+          },
+        "& .MuiInputLabel-root.Mui-focused": {
+          color: "#0DFF15", // Label color on focus
+        },
       }}
-    >
-      <TextField
-        value={searchTerm}
-        onChange={handleSearchChange}
-        variant="outlined"
-        placeholder="Search..."
-        fullWidth
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <SearchIcon style={{ color: "white" }} />
-            </InputAdornment>
-          ),
-        }}
-        sx={{
-          "& .MuiOutlinedInput-root": {
-            backgroundColor: "#333333",
-            color: "white",
-            borderRadius: "4px",
-          },
-          "& .MuiInputLabel-root": {
-            color: "white",
-          },
-          "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#555",
-          },
-          "&:hover .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#777",
-          },
-        }}
-      />
-    </div>
+    />
   );
 }
 

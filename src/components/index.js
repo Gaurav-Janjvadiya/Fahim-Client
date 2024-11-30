@@ -8,7 +8,8 @@ import Button from "./Button.jsx";
 import SearchBar from "./professorsPage/SearchBar.jsx";
 import ProfessorInfo from "./professorsPage/ProfessorInfo.jsx";
 import AllProfessors from "./professorsPage/AllProfessors.jsx";
-import SortBy from "./professorsPage/SoryBy.jsx"
+import SortBy from "./professorsPage/SortBy.jsx"
+import FilterBy from "./professorsPage/FilterBy"
 
 export {
   Logout,
@@ -21,5 +22,6 @@ export {
   SearchBar,
   ProfessorInfo,
   AllProfessors,
-  SortBy
+  SortBy,
+  FilterBy
 };

@@ -15,7 +15,7 @@ export const createMajor = async (majorData) => {
 export const getAllMajors = async () => {
   try {
     const { data } = await instance.get("/api/majors");
-    const { majors } = data;
+    return data;
   } catch (e) {
     console.log(e);
   }

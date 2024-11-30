@@ -1,14 +1,15 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query"
+import { useState } from "react"
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { Button } from "../../components";
 import gif from "../../assets/gifs/signup.gif";
 import { signUp as userSignUp } from "../../api/authApi";
+import { getAllMajors } from "../../api/majorApi"; // Import the query function
+import CircularProgress from "@mui/material/CircularProgress";
 
 function SignUp() {
-  const [majors, setMajors] = useState([]);
   const [serverError, setServerError] = useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,43 +28,49 @@ function SignUp() {
     },
   });
 
+  const { data: majors = [], error, isLoading } = useQuery({
+    queryKey: ['majors'],
+    queryFn: getAllMajors,
+    staleTime: 600000, // Data is fresh for 10 minutes
+    cacheTime: 900000, // Data stays in the cache for 15 minutes
+    refetchOnWindowFocus: true, // Refetch data when the window gains focus
+    retry: 3, // Retry failed queries 3 times before throwing an error
+    onError: (err) => {
+      console.error("Error fetching majors:", err);
+    },
+    onSuccess: (data) => {
+      console.log("Majors fetched successfully:", data);
+    },
+  });
+
   const onSubmit = (data) => {
     userSignUp(data, navigate, dispatch, setServerError);
   };
 
-  useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_SERVER_URL}/api/majors`)
-      .then((res) => setMajors(res.data))
-      .catch((e) => console.log(e));
-  }, []);
+  if (isLoading) {
+    return <div><CircularProgress /></div>; // You can show a loading spinner or message here
+  }
+
+  if (error) {
+    return <div>Error fetching majors. Please try again later.</div>; // Show error message if fetching fails
+  }
 
   return (
     <div className="bg-black py-3 min-h-screen flex items-center justify-center text-[#F2F2F2]">
       <div className="relative w-full max-w-md">
         <div className="min-h-screen flex items-center justify-center">
-          <img
-            className="relative w-full max-w-md h-full"
-            src={gif}
-            alt="gif"
-          />
+          <img className="relative w-full max-w-md h-full" src={gif} alt="gif" />
           <div className="backdrop-blur-sm absolute sm:w-full p-6 border rounded-lg shadow-lg">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-1">
-                  Username
-                </label>
+                <label className="block text-sm font-medium mb-1">Username</label>
                 <input
                   {...register("username", {
                     required: "Username is required",
                   })}
                   className="w-full p-2 border bg-transparent text-[#F2F2F2] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                {errors.username && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.username.message}
-                  </p>
-                )}
+                {errors.username && <p className="text-red-500 text-sm mt-1">{errors.username.message}</p>}
               </div>
 
               <div>
@@ -78,11 +85,7 @@ function SignUp() {
                   })}
                   className="w-full p-2 border bg-transparent text-[#F2F2F2] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                {errors.email && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.email.message}
-                  </p>
-                )}
+                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>}
               </div>
 
               <div>
@@ -91,24 +94,18 @@ function SignUp() {
                   {...register("major", { required: "Please select a major" })}
                   className="w-full p-2 border bg-transparent text-[#F2F2F2] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
-                  <option className="font-black" value="">Select your major</option>
+                  <option value="">Select your major</option>
                   {majors.map((major) => (
-                    <option className="font-black" key={major.id} value={major.name}>
+                    <option key={major.id} value={major.name}>
                       {major.name}
                     </option>
                   ))}
                 </select>
-                {errors.major && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.major.message}
-                  </p>
-                )}
+                {errors.major && <p className="text-red-500 text-sm mt-1">{errors.major.message}</p>}
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">
-                  Password
-                </label>
+                <label className="block text-sm font-medium mb-1">Password</label>
                 <input
                   type="password"
                   {...register("password", {
@@ -120,63 +117,39 @@ function SignUp() {
                   })}
                   className="w-full p-2 border bg-transparent text-[#F2F2F2] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                {errors.password && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.password.message}
-                  </p>
-                )}
+                {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>}
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">
-                  Confirm Password
-                </label>
+                <label className="block text-sm font-medium mb-1">Confirm Password</label>
                 <input
                   type="password"
                   {...register("confirmPassword", {
                     required: "Please confirm your password",
-                    validate: (value) =>
-                      value === watch("password") || "Passwords don't match",
+                    validate: (value) => value === watch("password") || "Passwords don't match",
                   })}
                   className="w-full p-2 border bg-transparent text-[#F2F2F2] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                {errors.confirmPassword && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.confirmPassword.message}
-                  </p>
-                )}
+                {errors.confirmPassword && <p className="text-red-500 text-sm mt-1">{errors.confirmPassword.message}</p>}
               </div>
 
-              {serverError && (
-                <p className="text-red-500 text-sm mt-4 text-center">
-                  {serverError}
-                </p>
-              )}
+              {serverError && <p className="text-red-500 text-sm mt-4 text-center">{serverError}</p>}
 
               <div>
                 <div className="flex items-center">
                   <input
                     type="checkbox"
-                    {...register("terms", {
-                      required: "You must accept the terms and conditions",
-                    })}
+                    {...register("terms", { required: "You must accept the terms and conditions" })}
                     className="w-4 h-4 border bg-transparent rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                   <span className="ml-2 text-sm">
                     I agree to the{" "}
-                    <Link
-                      className="text-blue-400 hover:text-blue-300 underline"
-                      to="/terms"
-                    >
+                    <Link className="text-blue-400 hover:text-blue-300 underline" to="/terms">
                       Terms and Conditions
                     </Link>
                   </span>
                 </div>
-                {errors.terms && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.terms.message}
-                  </p>
-                )}
+                {errors.terms && <p className="text-red-500 text-sm mt-1">{errors.terms.message}</p>}
               </div>
 
               <div>
@@ -187,10 +160,7 @@ function SignUp() {
             </form>
             <p className="text-center mt-2 text-sm">
               Already have an account?
-              <Link
-                className="text-blue-400 hover:text-blue-300 ml-2 underline"
-                to="/login"
-              >
+              <Link className="text-blue-400 hover:text-blue-300 ml-2 underline" to="/login">
                 Login
               </Link>
             </p>
