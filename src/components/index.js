@@ -10,6 +10,9 @@ import ProfessorInfo from "./professorsPage/ProfessorInfo.jsx";
 import AllProfessors from "./professorsPage/AllProfessors.jsx";
 import SortBy from "./professorsPage/SortBy.jsx"
 import FilterBy from "./professorsPage/FilterBy"
+import AllComments from "./professorPage/AllComments.jsx";
+import CommentBox from "./professorPage/CommentBox.jsx";
+import RateProfessor from "./professorPage/RateProfessor.jsx";
 
 export {
   Logout,
@@ -23,5 +26,8 @@ export {
   ProfessorInfo,
   AllProfessors,
   SortBy,
-  FilterBy
+  FilterBy,
+  AllComments,
+  RateProfessor,
+  CommentBox
 };

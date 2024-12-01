@@ -2,19 +2,25 @@ import instance from "./";
 import Cookies from "js-cookie";
 
 // Create a comment for a professor
-export const createProfessorComment = async (professorId, comment) => {
+export const createProfessorComment = async ({ professorId, comment }) => {
   const token = Cookies.get("jwt");
   try {
     const { data } = await instance.post(
-      `/api/comments/professor/${professorId}`,
-      comment,
-      { headers: { Authorization: `Bearer ${token}` } }
+      `/api/comments/professor/${professorId}`, // Route with "type" and "id"
+      { content:comment }, // Request body with comment content
+      {
+        headers: {
+          Authorization: `Bearer ${token}`, // Authentication token
+        },
+      }
     );
     return data;
   } catch (error) {
-    console.error(error);
+    console.error("Error creating professor comment:", error.response?.data || error);
+    throw error;
   }
 };
+
 
 // Get comments for a specific professor
 export const getProfessorComments = async (professorId) => {
@@ -24,7 +30,8 @@ export const getProfessorComments = async (professorId) => {
     );
     return data;
   } catch (error) {
-    console.error(error);
+    console.error("Error geting professor comments:", error.response?.data || error);
+    throw error;
   }
 };
 
@@ -34,7 +41,8 @@ export const deleteProfessorComment = async (commentId) => {
     const { data } = await instance.delete(`/api/comments/${commentId}`);
     return data;
   } catch (error) {
-    console.error(error);
+    console.error("Error deleting professor comment:", error.response?.data || error);
+    throw error;
   }
 };
 
@@ -44,6 +52,7 @@ export const replyToProfessorComment = async (commentId, reply) => {
     const { data } = await instance.post(`/api/comments/${commentId}`, reply);
     return data;
   } catch (error) {
-    console.error(error);
+    console.error("Error replying professor comment:", error.response?.data || error);
+    throw error;
   }
 };
