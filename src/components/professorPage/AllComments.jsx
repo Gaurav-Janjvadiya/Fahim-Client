@@ -32,6 +32,8 @@ function AllComments({ professorId }) {
         <div className="space-y-2">
           {isLoading ? (
             <CircularProgress />
+          ) : comments.length === 0 ? (
+            <p>No comments available.</p>
           ) : (
             comments.map((comment) => (
               <div

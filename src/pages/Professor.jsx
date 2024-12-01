@@ -4,7 +4,7 @@ import { getProfessorById } from "../api/professorApi";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Box } from "@mui/material";
 import Alert from "@mui/material/Alert";
-import { FaArrowLeft } from "react-icons/fa"; // Import the back arrow icon
+import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import { Button as MyButton } from "../components";
 import { CommentBox, AllComments, RateProfessor } from "../components";
 
@@ -39,21 +39,18 @@ function Professor() {
     );
   return (
     <>
-      <div className="min-h-screen max-h-fit sm:p-12 p-2 flex justify-center align-center">
-        <div className="w-1/2 bg-[#1a1a1a] max-h-fit rounded-lg border border-[#333] p-4 flex shadow-lg ">
-          <Link
-            className="h-fit rounded-lg mr-4 font-bold text-lg transition duration-200 ease-in-out"
-            to="/professors"
-          >
-            <MyButton style="rounded-full bg-[#1a1a1a] hover:bg-[#1a1a1a] hover:border-[#333] hover:border w-14 h-14 flex items-center justify-center">
-              <FaArrowLeft size={72} />
-            </MyButton>
-          </Link>
-
-          <div className="bg-[#1a1a1a] w-full px-6 py-12 rounded-lg flex flex-col space-y-6 text-[#eee]">
+      <div className="relative min-h-screen max-h-fit py-2 sm:px-12 px-4 flex justify-center items-center">
+        <Link
+          className="absolute top-0 left-0 m-4 border rounded-full p-2 sm:p-4 text-lg flex items-center justify-center hover:bg-[#1A1A1A] transition duration-200 ease-in-out"
+          to="/professors"
+        >
+          <ArrowBackRoundedIcon size={30} />
+        </Link>
+        <div className="bg-[#1A1A1A] max-h-fit w-full sm:w-10/12 md:w-8/12 lg:w-6/12 rounded-lg border border-[#333] p-4 flex flex-col shadow-lg">
+          <div className="px-4 sm:px-6 py-8 sm:py-12 rounded-lg flex flex-col space-y-6 text-[#eee]">
             {/* Professor Info */}
             <div className="flex flex-col items-start space-y-1">
-              <h3 className="text-[#0DFF15] text-2xl font-semibold">
+              <h3 className="text-[#0DFF15] text-xl sm:text-2xl font-semibold">
                 <span className="mr-2">{professor.title}</span>
                 {professor.name}
               </h3>

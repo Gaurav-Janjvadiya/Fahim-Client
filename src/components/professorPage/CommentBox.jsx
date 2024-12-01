@@ -34,7 +34,7 @@ function CommentBox({ professorId }) {
     <div className="w-full">
       <textarea
         placeholder="Share your thoughts here..."
-        className="w-full bg-[#1a1a1a] text-[#eee] border border-[#444] p-3 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-[#0DFF15]"
+        className="w-full bg-[#1e1e1e] text-[#eee] border border-[#444] p-3 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-[#0DFF15]"
         rows="4"
         value={comment}
         onChange={(e) => setComment(e.target.value)}

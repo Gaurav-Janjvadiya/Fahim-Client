@@ -2,21 +2,20 @@ import { useState } from "react";
 import { SearchBar, AllProfessors, SortBy, FilterBy } from "../components"; // Adjust the path accordingly
 import { useQuery } from "@tanstack/react-query";
 import {
-  fetchProfessorsByDepartment,
-  fetchProfessorsSortedByTitle,
   fetchLowestRatedProfessors,
   fetchMostRatedProfessors,
+  fetchProfessorsByDepartment,
+  fetchProfessorsByTitle,
 } from "../api/filterProffessors";
 import { getAllProfessors } from "../api/professorApi"; // Ensure this function returns a promise
 import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
 
 function Professors() {
-  // const [filter, setFilter] = useState({
-  //   title: '',
-  //   department: '',
-  // });
+  const [filterByTitle, setFilterByTitle] = useState({ title: "" });
+  const [filterByDepartment, setFilterByDepartment] = useState({ department: "" });
   const [sortOption, setSortOption] = useState("");
+
   // Use React Query's useQuery to fetch the professors with the object syntax
   const {
     data: professors,
@@ -24,21 +23,18 @@ function Professors() {
     isError,
     error,
   } = useQuery({
-    queryKey: ["professors", sortOption],
+    queryKey: ["professors", filterByTitle.title,filterByDepartment.department, sortOption],
     queryFn: () => {
-      // // // Handle filters first
-      // switch (true) {
-      //   case filter.title === "doctor":
-      //     console.log(filter.title);
-      //     return fetchProfessorsSortedByTitle("Dr.");
-
-      //   case filter.title === "engineer":
-      //     return fetchProfessorsSortedByTitle("Eng.");
-
-      //   case filter.department === "673f3140064450eb6c2530fa":
-      //     return fetchProfessorsByDepartment("673f3140064450eb6c2530fa");
-      // }
-
+      switch (filterByTitle.title) {
+        case "doctor":
+          return fetchProfessorsByTitle("Dr.");
+        case "engineer":
+          return fetchProfessorsByTitle("Eng.");
+      }
+      switch (filterByDepartment.department) {
+        case "673f3140064450eb6c2530fa":
+          return fetchProfessorsByDepartment("673f3140064450eb6c2530fa");
+      }
       // Handle sorting options
       switch (sortOption) {
         case "topProfessors":
@@ -52,6 +48,7 @@ function Professors() {
     cacheTime: 300000, // Cached for 5 minutes
     refetchOnWindowFocus: false, // Disable refetch on window focus
   });
+  console.log("Fetched Professors", professors);
 
   return (
     <div className="min-h-screen">
@@ -71,7 +68,7 @@ function Professors() {
           )}
         </div>
 
-        <FilterBy />
+        <FilterBy filterByTitle={filterByTitle} setFilterByTitle={setFilterByTitle} filterByDepartment={filterByDepartment} setFilterByDepartment={setFilterByDepartment} />
       </div>
 
       {isError && (
@@ -81,7 +78,6 @@ function Professors() {
       )}
     </div>
   );
-
 }
 
 export default Professors;
