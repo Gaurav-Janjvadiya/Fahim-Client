@@ -7,7 +7,6 @@ import {
 } from "@mui/material";
 
 const FilterByTitle = ({ filterByTitle, setFilterByTitle = () => {} }) => {
-
   const handleFilterChange = (event, filterType) => {
     setFilterByTitle((prev) => ({
       ...prev,
@@ -16,8 +15,21 @@ const FilterByTitle = ({ filterByTitle, setFilterByTitle = () => {} }) => {
   };
 
   return (
-    <FormControl component="fieldset" sx={{ position: "relative", zIndex: 1 }}>
-      <Typography variant="subtitle1" gutterBottom sx={{ color: "#fff" }}>
+    <FormControl
+      component="fieldset"
+      sx={{
+        position: "relative",
+        zIndex: 1,
+        marginTop: "1px",
+        width: "100%",
+        backgroundColor: "#1A1A1A",
+      }}
+    >
+      <Typography
+        variant="subtitle1"
+        gutterBottom
+        sx={{ color: "#fff", marginBottom: "1px" }}
+      >
         Title
       </Typography>
       <RadioGroup

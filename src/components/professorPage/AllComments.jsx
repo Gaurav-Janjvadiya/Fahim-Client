@@ -3,6 +3,9 @@ import React from "react";
 import { getProfessorComments } from "../../api/proffessorComments";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Alert } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import ReplyIcon from "@mui/icons-material/Reply";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function AllComments({ professorId }) {
   const {
@@ -18,6 +21,16 @@ function AllComments({ professorId }) {
     refetchOnWindowFocus: false,
   });
 
+  const handleReply = (commentId) => {
+    console.log(`Reply to comment with ID: ${commentId}`);
+    // Implement reply functionality here
+  };
+
+  const handleDelete = (commentId) => {
+    console.log(`Delete comment with ID: ${commentId}`);
+    // Implement delete functionality here
+  };
+
   if (isError)
     return (
       <div className="h-screen w-full flex justify-center items-center">
@@ -26,28 +39,44 @@ function AllComments({ professorId }) {
     );
 
   return (
-    <>
-      <div className="w-full">
-        <h4 className="font-medium mb-2">Comments</h4>
-        <div className="space-y-2">
-          {isLoading ? (
-            <CircularProgress />
-          ) : comments.length === 0 ? (
-            <p>No comments available.</p>
-          ) : (
-            comments.map((comment) => (
-              <div
-                className="text-sm flex justify-start items-center"
-                key={comment._id}
-              >
+    <div className="w-full">
+      <h4 className="font-medium mb-2">Comments</h4>
+      <div className="space-y-2">
+        {isLoading ? (
+          <CircularProgress />
+        ) : comments.length === 0 ? (
+          <p>No comments available.</p>
+        ) : (
+          comments.map((comment) => (
+            <div
+              className="text-sm flex justify-between items-center"
+              key={comment._id}
+            >
+              <div className="flex items-center">
                 <p className="font-medium mr-2">{comment.user.username}</p>
                 <p className="rounded-md">{comment.content}</p>
               </div>
-            ))
-          )}
-        </div>
+              <div className="flex items-center">
+                <IconButton
+                  color="primary"
+                  size="small"
+                  onClick={() => handleReply(comment._id)}
+                >
+                  <ReplyIcon />
+                </IconButton>
+                <IconButton
+                  color="secondary"
+                  size="small"
+                  onClick={() => handleDelete(comment._id)}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </div>
+            </div>
+          ))
+        )}
       </div>
-    </>
+    </div>
   );
 }
 

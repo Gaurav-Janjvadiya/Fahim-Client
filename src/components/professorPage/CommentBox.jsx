@@ -13,7 +13,7 @@ function CommentBox({ professorId }) {
     onSuccess: () => {
       queryClient.invalidateQueries(["comments", { professorId }]);
       setComment("");
-      setErrorMessage(""); // Clear any errors
+      setErrorMessage("");
     },
     onError: (error) => {
       setErrorMessage(error.response?.data?.message || "An error occurred");
@@ -23,7 +23,7 @@ function CommentBox({ professorId }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (comment.trim()) {
-      setErrorMessage(""); // Clear any previous error
+      setErrorMessage("");
       mutate({ professorId, comment });
     } else {
       setErrorMessage("Comment cannot be empty");

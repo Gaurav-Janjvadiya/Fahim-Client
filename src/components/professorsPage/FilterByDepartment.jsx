@@ -8,7 +8,6 @@ import {
 } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { getAllMajors } from "../../api/majorApi";
-import { useEffect, useState } from "react";
 
 const FilterByDepartment = ({
   filterByDepartment,
@@ -41,11 +40,20 @@ const FilterByDepartment = ({
   };
 
   return (
-    <FormControl component="fieldset" sx={{ position: "relative", zIndex: 1 }}>
+    <FormControl
+      component="fieldset"
+      sx={{
+        position: "relative",
+        zIndex: 1,
+        marginTop: "1px",
+        width: "100%",
+        backgroundColor: "#1A1A1A",
+      }}
+    >
       <Typography
         variant="subtitle1"
         gutterBottom
-        sx={{ color: "#fff", marginTop: "16px" }}
+        sx={{ color: "#fff", marginBottom: "1px" }}
       >
         Department
       </Typography>

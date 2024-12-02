@@ -13,7 +13,9 @@ import Alert from "@mui/material/Alert";
 
 function Professors() {
   const [filterByTitle, setFilterByTitle] = useState({ title: "" });
-  const [filterByDepartment, setFilterByDepartment] = useState({ department: "" });
+  const [filterByDepartment, setFilterByDepartment] = useState({
+    department: "",
+  });
   const [sortOption, setSortOption] = useState("");
 
   // Use React Query's useQuery to fetch the professors with the object syntax
@@ -23,7 +25,12 @@ function Professors() {
     isError,
     error,
   } = useQuery({
-    queryKey: ["professors", filterByTitle.title,filterByDepartment.department, sortOption],
+    queryKey: [
+      "professors",
+      filterByTitle.title,
+      filterByDepartment.department,
+      sortOption,
+    ],
     queryFn: () => {
       switch (filterByTitle.title) {
         case "doctor":
@@ -52,23 +59,25 @@ function Professors() {
 
   return (
     <div className="min-h-screen">
-      <div className="grid grid-cols-1 sm:grid-cols-2 grid-rows-1 gap-2 sm:p-8 p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:p-8 p-4">
         <SearchBar />
         <SortBy sortOption={sortOption} setSortOption={setSortOption} />
+        <FilterBy
+          filterByTitle={filterByTitle}
+          setFilterByTitle={setFilterByTitle}
+          filterByDepartment={filterByDepartment}
+          setFilterByDepartment={setFilterByDepartment}
+        />
       </div>
 
       <div className="flex justify-between items-start sm:p-8 p-4">
-        <div className="w-full sm:w-3/4">
-          {isLoading ? (
-            <div className="w-full h-[40vh] flex justify-center items-center">
-              <CircularProgress />
-            </div>
-          ) : (
-            <AllProfessors professors={professors} />
-          )}
-        </div>
-
-        <FilterBy filterByTitle={filterByTitle} setFilterByTitle={setFilterByTitle} filterByDepartment={filterByDepartment} setFilterByDepartment={setFilterByDepartment} />
+        {isLoading ? (
+          <div className="w-full h-[40vh] flex justify-center items-center">
+            <CircularProgress />
+          </div>
+        ) : (
+          <AllProfessors professors={professors} />
+        )}
       </div>
 
       {isError && (
