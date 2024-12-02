@@ -70,7 +70,7 @@ const router = createBrowserRouter([
       },
     ],
     errorElement: (
-      <h1 className="text-4xl font-bold text-center text-red-600">
+      <h1 className="text-4xl flex justify-center items-center font-bold text-center text-red-600">
         404 Not Found
       </h1>
     ),

@@ -41,7 +41,7 @@ function Professor() {
     <>
       <div className="relative min-h-screen max-h-fit py-2 sm:px-12 px-4 flex justify-center items-center">
         <Link
-          className="absolute top-0 left-0 m-4 border rounded-full p-2 sm:p-4 text-lg flex items-center justify-center hover:bg-[#1A1A1A] transition duration-200 ease-in-out"
+          className="absolute top-0 left-0 m-4 bg-[#242124] rounded-full p-2 sm:p-4 text-lg flex items-center justify-center hover:bg-[#1A1A1A] transition duration-200 ease-in-out"
           to="/professors"
         >
           <ArrowBackRoundedIcon size={30} />

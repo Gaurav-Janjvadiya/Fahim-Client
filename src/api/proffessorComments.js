@@ -7,7 +7,7 @@ export const createProfessorComment = async ({ professorId, comment }) => {
   try {
     const { data } = await instance.post(
       `/api/comments/professor/${professorId}`, // Route with "type" and "id"
-      { content:comment }, // Request body with comment content
+      { content: comment }, // Request body with comment content
       {
         headers: {
           Authorization: `Bearer ${token}`, // Authentication token
@@ -16,11 +16,13 @@ export const createProfessorComment = async ({ professorId, comment }) => {
     );
     return data;
   } catch (error) {
-    console.error("Error creating professor comment:", error.response?.data || error);
+    console.error(
+      "Error creating professor comment:",
+      error.response?.data || error
+    );
     throw error;
   }
 };
-
 
 // Get comments for a specific professor
 export const getProfessorComments = async (professorId) => {
@@ -30,7 +32,10 @@ export const getProfessorComments = async (professorId) => {
     );
     return data;
   } catch (error) {
-    console.error("Error geting professor comments:", error.response?.data || error);
+    console.error(
+      "Error geting professor comments:",
+      error.response?.data || error
+    );
     throw error;
   }
 };
@@ -41,18 +46,26 @@ export const deleteProfessorComment = async (commentId) => {
     const { data } = await instance.delete(`/api/comments/${commentId}`);
     return data;
   } catch (error) {
-    console.error("Error deleting professor comment:", error.response?.data || error);
+    console.error(
+      "Error deleting professor comment:",
+      error.response?.data || error
+    );
     throw error;
   }
 };
 
 // Reply to a professor's comment
-export const replyToProfessorComment = async (commentId, reply) => {
+export const replyToProfessorComment = async ({ commentId, reply }) => {
   try {
-    const { data } = await instance.post(`/api/comments/${commentId}`, reply);
+    const { data } = await instance.post(`/api/comments/${commentId}`, {
+      content: reply,
+    });
     return data;
   } catch (error) {
-    console.error("Error replying professor comment:", error.response?.data || error);
+    console.error(
+      "Error replying professor comment:",
+      error.response?.data || error
+    );
     throw error;
   }
 };
