@@ -21,7 +21,7 @@ function Features() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Card 1 */}
             <div className="border border-gray-200 rounded-lg  shadow-sm p-6 hover:shadow-md transition-shadow">
-              <h3 className="text-[#0DFF15] font-semibold text-xl mb-3">
+              <h3 className="text-[#0A74DA] font-semibold text-xl mb-3">
                 Personalized Course Recommendations
               </h3>
               <p className="">
@@ -32,7 +32,7 @@ function Features() {
 
             {/* Card 2 */}
             <div className="border border-gray-200 rounded-lg  shadow-sm p-6 hover:shadow-md transition-shadow">
-              <h3 className="text-[#0DFF15] font-semibold text-xl mb-3">
+              <h3 className="text-[#0A74DA] font-semibold text-xl mb-3">
                 Professor Ratings and Reviews
               </h3>
               <p className="">
@@ -43,7 +43,7 @@ function Features() {
 
             {/* Card 3 */}
             <div className="border border-gray-200 rounded-lg  shadow-sm p-6 hover:shadow-md transition-shadow">
-              <h3 className="text-[#0DFF15] font-semibold text-xl mb-3">
+              <h3 className="text-[#0A74DA] font-semibold text-xl mb-3">
                 Course Tracking
               </h3>
               <p className="">

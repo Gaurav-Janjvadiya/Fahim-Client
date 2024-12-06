@@ -8,23 +8,23 @@ function SearchBar() {
       variant="outlined"
       sx={{
         input: {
-          color: "#F2F2F2", // Input text color
+          color: "#F1F1F1", // Input text color
         },
         label: {
-          color: "#F2F2F2", // Label color
+          color: "#F1F1F1", // Label color
         },
         fieldset: {
-          borderColor: "#F2F2F2", // Border color
+          borderColor: "#F1F1F1", // Border color
         },
         "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-          borderColor: "#0DFF15", // Border color on hover
+          borderColor: "#0A74DA", // Border color on hover
         },
         "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
           {
-            borderColor: "#0DFF15", // Border color on focus
+            borderColor: "#0A74DA", // Border color on focus
           },
         "& .MuiInputLabel-root.Mui-focused": {
-          color: "#0DFF15", // Label color on focus
+          color: "#0A74DA", // Label color on focus
         },
       }}
     />

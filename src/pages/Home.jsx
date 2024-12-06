@@ -14,7 +14,7 @@ function Home() {
   }, []);
 
   return (
-    <div className="text-[#F2F2F2]">
+    <div className="text-[#F1F1F1]">
       {error ? (
         <p className="text-red-500">{error}</p> // Display error message
       ) : (

@@ -22,7 +22,7 @@ function Faq() {
       <Element className="faq">
         <div className="w-full flex flex-col sm:flex-row sm:space-y-0 space-y-8 px-4 sm:px-12">
           <div className="sm:w-1/2 flex justify-start items-start space-y-8 flex-col">
-            <h4 className="font-semibold text-[#0DFF15]">FAQs</h4>
+            <h4 className="font-semibold text-[#0A74DA]">FAQs</h4>
             <h1 className="font-semibold text-wrap text-4xl">
               Got Questions? We Have Answers!
             </h1>
@@ -35,13 +35,13 @@ function Faq() {
               <Accordion
                 sx={{
                   backgroundColor: "#1A1A1A",
-                  color: "#F2F2F2",
+                  color: "#F1F1F1",
                 }}
                 expanded={expanded === "panel1"}
                 onChange={handleChange("panel1")}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon sx={{ color: "#F2F2F2" }} />}
+                  expandIcon={<ExpandMoreIcon sx={{ color: "#F1F1F1" }} />}
                 >
                   <Typography>What is Fahim?</Typography>
                 </AccordionSummary>
@@ -54,12 +54,12 @@ function Faq() {
                 </AccordionDetails>
               </Accordion>
               <Accordion
-                sx={{ backgroundColor: "#1A1A1A", color: "#F2F2F2" }}
+                sx={{ backgroundColor: "#1A1A1A", color: "#F1F1F1" }}
                 expanded={expanded === "panel2"}
                 onChange={handleChange("panel2")}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon sx={{ color: "#F2F2F2" }} />}
+                  expandIcon={<ExpandMoreIcon sx={{ color: "#F1F1F1" }} />}
                 >
                   <Typography>
                     Is Fahim available for all universities?
@@ -76,12 +76,12 @@ function Faq() {
                 </AccordionDetails>
               </Accordion>
               <Accordion
-                sx={{ backgroundColor: "#1A1A1A", color: "#F2F2F2" }}
+                sx={{ backgroundColor: "#1A1A1A", color: "#F1F1F1" }}
                 expanded={expanded === "panel3"}
                 onChange={handleChange("panel3")}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon sx={{ color: "#F2F2F2" }} />}
+                  expandIcon={<ExpandMoreIcon sx={{ color: "#F1F1F1" }} />}
                 >
                   <Typography>
                     Is Fahim only for students, or can educators use it too?
@@ -95,12 +95,12 @@ function Faq() {
                 </AccordionDetails>
               </Accordion>
               <Accordion
-                sx={{ backgroundColor: "#1A1A1A", color: "#F2F2F2" }}
+                sx={{ backgroundColor: "#1A1A1A", color: "#F1F1F1" }}
                 expanded={expanded === "panel4"}
                 onChange={handleChange("panel4")}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon sx={{ color: "#F2F2F2" }} />}
+                  expandIcon={<ExpandMoreIcon sx={{ color: "#F1F1F1" }} />}
                 >
                   <Typography>
                     Can Fahim help students who are unsure what to take next
@@ -116,12 +116,12 @@ function Faq() {
                 </AccordionDetails>
               </Accordion>
               <Accordion
-                sx={{ backgroundColor: "#1A1A1A", color: "#F2F2F2" }}
+                sx={{ backgroundColor: "#1A1A1A", color: "#F1F1F1" }}
                 expanded={expanded === "panel5"}
                 onChange={handleChange("panel5")}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon sx={{ color: "#F2F2F2" }} />}
+                  expandIcon={<ExpandMoreIcon sx={{ color: "#F1F1F1" }} />}
                 >
                   <Typography>How can I join the Fahim team?</Typography>
                 </AccordionSummary>

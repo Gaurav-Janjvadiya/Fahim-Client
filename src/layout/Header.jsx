@@ -126,7 +126,7 @@ function Header() {
         {/* Sidebar Toggle Button for Smaller Screens */}
         <div className="sm:hidden block">
           <IconButton onClick={toggleSidebar} aria-label="Menu">
-            <MdMoreVert size={30} color="#F2F2F2" />
+            <MdMoreVert size={30} color="#F1F1F1" />
           </IconButton>
         </div>
       </div>
@@ -137,7 +137,7 @@ function Header() {
         open={isSidebarOpen}
         onClose={toggleSidebar}
         PaperProps={{
-          sx: { width: "75%", backgroundColor: "#1A1A1A", color: "#F2F2F2" },
+          sx: { width: "75%", backgroundColor: "#1A1A1A", color: "#F1F1F1" },
         }}
       >
         <List>

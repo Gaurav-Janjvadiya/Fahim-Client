@@ -56,7 +56,7 @@ function SignUp() {
   }
 
   return (
-    <div className="bg-black py-3 min-h-screen flex items-center justify-center text-[#F2F2F2]">
+    <div className="bg-black py-3 min-h-screen flex items-center justify-center text-[#F1F1F1]">
       <div className="relative w-full max-w-md">
         <div className="min-h-screen flex items-center justify-center">
           <img
@@ -74,7 +74,7 @@ function SignUp() {
                   {...register("username", {
                     required: "Username is required",
                   })}
-                  className="w-full p-2 border bg-transparent text-[#F2F2F2] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-2 border bg-transparent text-[#F1F1F1] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 {errors.username && (
                   <p className="text-red-500 text-sm mt-1">
@@ -93,7 +93,7 @@ function SignUp() {
                       message: "Invalid email address",
                     },
                   })}
-                  className="w-full p-2 border bg-transparent text-[#F2F2F2] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-2 border bg-transparent text-[#F1F1F1] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 {errors.email && (
                   <p className="text-red-500 text-sm mt-1">
@@ -106,9 +106,9 @@ function SignUp() {
                 <label className="block text-sm font-medium mb-1">Major</label>
                 <select
                   {...register("major", { required: "Please select a major" })}
-                  className="w-full p-2 border bg-transparent text-[#F2F2F2] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-2 border bg-transparent text-[#F1F1F1] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 >
-                  <option className="bg-[#1a1a1a] text-[#F2F2F2]" value="">
+                  <option className="bg-[#1a1a1a] text-[#F1F1F1]" value="">
                     Select your major
                   </option>
                   {isLoading ? (
@@ -118,7 +118,7 @@ function SignUp() {
                   ) : (
                     majors.map((major) => (
                       <option
-                        className="bg-[#1A1A1A] text-[#F2F2F2]"
+                        className="bg-[#1A1A1A] text-[#F1F1F1]"
                         key={major.id}
                         value={major.name}
                       >
@@ -147,7 +147,7 @@ function SignUp() {
                       message: "Password must be at least 6 characters",
                     },
                   })}
-                  className="w-full p-2 border bg-transparent text-[#F2F2F2] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-2 border bg-transparent text-[#F1F1F1] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 {errors.password && (
                   <p className="text-red-500 text-sm mt-1">
@@ -167,7 +167,7 @@ function SignUp() {
                     validate: (value) =>
                       value === watch("password") || "Passwords don't match",
                   })}
-                  className="w-full p-2 border bg-transparent text-[#F2F2F2] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-2 border bg-transparent text-[#F1F1F1] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 {errors.confirmPassword && (
                   <p className="text-red-500 text-sm mt-1">

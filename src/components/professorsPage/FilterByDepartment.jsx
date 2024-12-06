@@ -78,8 +78,8 @@ const FilterByDepartment = ({
               control={
                 <Radio
                   sx={{
-                    color: "#0DFF15",
-                    "&.Mui-checked": { color: "#0DFF15" },
+                    color: "#0A74DA",
+                    "&.Mui-checked": { color: "#0A74DA" },
                   }}
                 />
               }

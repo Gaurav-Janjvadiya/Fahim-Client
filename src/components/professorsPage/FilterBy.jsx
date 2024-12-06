@@ -21,7 +21,7 @@ const FilterBy = ({
   return (
     <Box
       onClick={toggleFilters}
-      className="cursor-pointer border py-1 sm:px-8 px-4 rounded flex flex-col justify-center relative"
+      className="cursor-pointer border py-1 sm:px-8 px-4 hover:border-[#0A74DA] rounded flex flex-col justify-center relative"
     >
       {/* Header Section */}
       <Box
@@ -44,9 +44,9 @@ const FilterBy = ({
         </Box>
         <IconButton>
           {isExpanded ? (
-            <ExpandLessIcon className="text-[#F2F2F2]" />
+            <ExpandLessIcon className="text-[#F1F1F1]" />
           ) : (
-            <ExpandMoreIcon className="text-[#F2F2F2]" />
+            <ExpandMoreIcon className="text-[#F1F1F1]" />
           )}
         </IconButton>
       </Box>

@@ -14,8 +14,8 @@ function ProfessorInfo({ professor = {} }) {
 
   return (
     <Link to={`/professors/${_id}`}>
-      <div className="p-4 cursor-pointer border hover:border-[#0DFF15] transition-all rounded min-w- space-y-3">
-        <p className="text-xl font-bold text-[#0DFF15]">
+      <div className="p-4 cursor-pointer border hover:border-[#0A74DA] transition-all rounded min-w- space-y-3">
+        <p className="text-xl font-bold text-[#0A74DA]">
           <span className="mr-1">{title}</span>
           {name}
         </p>
@@ -33,7 +33,7 @@ function ProfessorInfo({ professor = {} }) {
                 color: "gold", // Change filled star color
               },
               "& .MuiRating-iconEmpty": {
-                color: "#F2F2F2", // Change empty star color
+                color: "#F1F1F1", // Change empty star color
               },
               "& .MuiRating-iconHover": {
                 color: "orange", // Change hover color of stars

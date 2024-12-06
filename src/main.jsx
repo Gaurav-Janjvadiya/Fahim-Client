@@ -15,6 +15,7 @@ import {
   Professors,
   TermsAndConditions,
   Professor,
+  Course
 } from "./pages";
 
 const router = createBrowserRouter([
@@ -41,6 +42,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Courses />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/courses/:courseId",
+        element: (
+          <ProtectedRoute>
+            <Course />
           </ProtectedRoute>
         ),
       },

@@ -16,9 +16,9 @@ const SortBy = ({ setSortOption, sortOption }) => {
       <InputLabel
         id="sort-by-label"
         sx={{
-          color: "#F2F2F2",
+          color: "#F1F1F1",
           "&.Mui-focused": {
-            color: "#0DFF15", // Custom label color when focused (gold in this case)
+            color: "#0A74DA", // Custom label color when focused (gold in this case)
           }, // Light text color for dark background
         }}
       >
@@ -34,23 +34,23 @@ const SortBy = ({ setSortOption, sortOption }) => {
           PaperProps: {
             sx: {
               backgroundColor: "#1A1A1A", // Dropdown menu background
-              color: "#F2F2F2", // Dropdown text color
+              color: "#F1F1F1", // Dropdown text color
             },
           },
         }}
         sx={{
-          color: "#F2F2F2", // Text color
+          color: "#F1F1F1", // Text color
           "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#F2F2F2",
+            borderColor: "#F1F1F1",
           },
           "&:hover .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#0DFF15",
+            borderColor: "#0A74DA",
           },
           "& .MuiSelect-icon": {
-            color: "#F2F2F2", // Change the color of the dropdown arrow icon
+            color: "#F1F1F1", // Change the color of the dropdown arrow icon
           },
           "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#0DFF15", // Custom border color when focused (gold in this case)
+            borderColor: "#0A74DA", // Custom border color when focused (gold in this case)
           },
         }}
       >

@@ -31,7 +31,7 @@ function Login() {
   };
 
   return (
-    <div className="bg-black min-h-screen flex items-center justify-center text-[#F2F2F2]">
+    <div className="bg-black min-h-screen flex items-center justify-center text-[#F1F1F1]">
       <div className="relative w-full max-w-md">
         <div className="min-h-screen flex items-center justify-center">
           <img
@@ -51,7 +51,7 @@ function Login() {
                       message: "Invalid email address",
                     },
                   })}
-                  className="w-full p-2 border bg-transparent text-[#F2F2F2] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-2 border bg-transparent text-[#F1F1F1] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 {errors.email && (
                   <p className="text-red-500 text-sm mt-1">
@@ -73,7 +73,7 @@ function Login() {
                       message: "Password must be at least 6 characters",
                     },
                   })}
-                  className="w-full p-2 border bg-transparent text-[#F2F2F2] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-2 border bg-transparent text-[#F1F1F1] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 {errors.password && (
                   <p className="text-red-500 text-sm mt-1">

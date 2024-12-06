@@ -8,13 +8,18 @@ import Button from "./Button.jsx";
 import SearchBar from "./professorsPage/SearchBar.jsx";
 import ProfessorInfo from "./professorsPage/ProfessorInfo.jsx";
 import AllProfessors from "./professorsPage/AllProfessors.jsx";
-import SortBy from "./professorsPage/SortBy.jsx"
+import SortBy from "./professorsPage/SortBy.jsx";
 import AllComments from "./professorPage/AllComments.jsx";
 import CommentBox from "./professorPage/CommentBox.jsx";
 import RateProfessor from "./professorPage/RateProfessor.jsx";
 import FilterByDepartment from "./professorsPage/FilterByDepartment.jsx";
 import FilterBy from "./professorsPage/FilterBy.jsx";
 import FilterByTitle from "./professorsPage/FilterByTitle.jsx";
+import CourseList from "./coursesPage/CourseList.jsx";
+import CourseComments from "./coursePage/AllComments.jsx";
+import CourseCommentBox from "./coursePage/CommentBox.jsx";
+import AllReview from "./coursePage/AllReview.jsx";
+import ReviewBox from "./coursePage/ReviewBox.jsx";
 
 export {
   Logout,
@@ -33,5 +38,10 @@ export {
   CommentBox,
   FilterBy,
   FilterByTitle,
-  FilterByDepartment
+  FilterByDepartment,
+  CourseList,
+  CourseComments,
+  AllReview,
+  CourseCommentBox,
+  ReviewBox,
 };
