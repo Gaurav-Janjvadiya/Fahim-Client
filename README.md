@@ -11,6 +11,7 @@ A frontend interface for the Fahim course and professor recommendation website a
 6. [Resources](#resources)
 7. [Backend Repository](#backend-repository)
 8. [Website](#Website)
+9. [Contributing](#Contributing)
 ## Introduction 
 
 Fahim is a recommendation system designed to help students at Kuwait University's College of Engineering and Petroleum. The frontend provides an intuitive user interface for students to sign up, log in, explore courses and professors, view reviews, manage their profiles, and track their academic progress.
@@ -83,3 +84,6 @@ The backend for the Fahim project can be found in this repository:
 
 You can visit the Fahim website here:
 [Fahim Website](https://gaurav-and-hala-s-fahim.netlify.app/)
+
+## Contributing
+We welcome contributions! Feel free to fork the repository and submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
