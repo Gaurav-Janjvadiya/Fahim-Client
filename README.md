@@ -1,6 +1,5 @@
-# Fahim Frontend
-
-**Fahim Frontend** - A frontend interface for the Fahim course and professor recommendation website at Kuwait University's College of Engineering and Petroleum. Built using the MERN stack (MongoDB, Express, React, Node.js) for a seamless user experience.
+# Fahim Client
+A frontend interface for the Fahim course and professor recommendation website at Kuwait University's College of Engineering and Petroleum. Built using the MERN stack (MongoDB, Express, React, Node.js) for a seamless user experience.
 
 ## Table of Contents
 
@@ -79,3 +78,8 @@ npm run preview
 
 The backend for the Fahim project can be found in this repository:
 [Backend Repository Link](https://github.com/halacoded/FahimBK)
+
+## Website
+
+You can visit the Fahim website here:
+[Fahim Website](https://gaurav-and-hala-s-fahim.netlify.app/)
