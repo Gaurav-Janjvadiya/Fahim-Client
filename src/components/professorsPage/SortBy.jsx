@@ -18,7 +18,7 @@ const SortBy = ({ setSortOption, sortOption }) => {
         sx={{
           color: "#F1F1F1",
           "&.Mui-focused": {
-            color: "#0A74DA", // Custom label color when focused (gold in this case)
+            color: "#39FF14", // Custom label color when focused (gold in this case)
           }, // Light text color for dark background
         }}
       >
@@ -44,13 +44,13 @@ const SortBy = ({ setSortOption, sortOption }) => {
             borderColor: "#F1F1F1",
           },
           "&:hover .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#0A74DA",
+            borderColor: "#39FF14",
           },
           "& .MuiSelect-icon": {
             color: "#F1F1F1", // Change the color of the dropdown arrow icon
           },
           "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#0A74DA", // Custom border color when focused (gold in this case)
+            borderColor: "#39FF14", // Custom border color when focused (gold in this case)
           },
         }}
       >

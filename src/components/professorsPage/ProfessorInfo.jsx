@@ -10,12 +10,12 @@ function ProfessorInfo({ professor = {} }) {
     avgRating = null,
     title,
   } = professor;
-  // console.log(professor);
+  // (professor);
 
   return (
     <Link to={`/professors/${_id}`}>
-      <div className="p-4 cursor-pointer border hover:border-[#0A74DA] transition-all rounded min-w- space-y-3">
-        <p className="text-xl font-bold text-[#0A74DA]">
+      <div className="p-4 cursor-pointer border hover:border-[#39FF14] transition-all rounded space-y-3">
+        <p className="text-xl font-bold text-[#39FF14]">
           <span className="mr-1">{title}</span>
           {name}
         </p>

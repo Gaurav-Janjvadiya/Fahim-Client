@@ -47,7 +47,7 @@ const FilterByTitle = ({ filterByTitle, setFilterByTitle = () => {} }) => {
             value={title}
             control={
               <Radio
-                sx={{ color: "#0A74DA", "&.Mui-checked": { color: "#0A74DA" } }}
+                sx={{ color: "#39FF14", "&.Mui-checked": { color: "#39FF14" } }}
               />
             }
             label={title.charAt(0).toUpperCase() + title.slice(1)}

@@ -34,7 +34,7 @@ function CommentBox({ professorId }) {
     <div className="w-full">
       <textarea
         placeholder="Share your thoughts here..."
-        className="w-full bg-[#1e1e1e] text-[#eee] border border-[#444] p-3 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-[#0A74DA]"
+        className="w-full bg-[#1e1e1e] text-[#eee] border border-[#444] p-3 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-[#39FF14]"
         rows="4"
         value={comment}
         onChange={(e) => setComment(e.target.value)}
@@ -45,7 +45,7 @@ function CommentBox({ professorId }) {
       )}
       <button
         type="submit"
-        className="mt-3 bg-[#0A74DA] py-2 px-4 rounded-md font-medium hover:bg-[#0bda0a] transition duration-200 ease-in-out"
+        className="mt-3 bg-[#39FF14] py-2 px-4 rounded-md font-medium hover:bg-[#0bda0a] transition duration-200 ease-in-out"
         onClick={handleSubmit}
         disabled={isLoading}
       >

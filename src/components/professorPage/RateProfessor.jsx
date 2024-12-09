@@ -31,8 +31,7 @@ const RateProfessor = ({ professorId }) => {
         <Rating
           name="professor-rating"
           size="large"
-          precision={0.1}
-          defaultValue={4} // Consider dynamically setting this value
+          defaultValue={5} 
           onChange={handleRateChange}
           sx={{
             "& .MuiRating-iconEmpty": { color: "#555" },

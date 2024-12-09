@@ -27,7 +27,7 @@ function HowItWorks() {
             <TimelineItem>
               <TimelineSeparator>
                 <TimelineDot
-                  style={{ backgroundColor: "#0A74DA", color: "black" }}
+                  style={{ backgroundColor: "#39FF14", color: "black" }}
                   className="flex items-center justify-center w-8 h-8 font-bold"
                 >
                   1
@@ -36,7 +36,7 @@ function HowItWorks() {
               </TimelineSeparator>
               <TimelineContent>
                 <div className="p-4 w-[17rem] sm:w-auto rounded-lg backdrop-blur-lg bg-opacity-20 border shadow-md">
-                  <h3 className="text-lg sm:text-xl font-semibold text-[#0A74DA]">
+                  <h3 className="text-lg sm:text-xl font-semibold text-[#39FF14]">
                     Create Your Profile
                   </h3>
                   <ul className="mt-2 text-gray-300">
@@ -49,7 +49,7 @@ function HowItWorks() {
             <TimelineItem>
               <TimelineSeparator>
                 <TimelineDot
-                  style={{ backgroundColor: "#0A74DA", color: "black" }}
+                  style={{ backgroundColor: "#39FF14", color: "black" }}
                   className="flex items-center justify-center w-8 h-8 font-bold"
                 >
                   2
@@ -58,7 +58,7 @@ function HowItWorks() {
               </TimelineSeparator>
               <TimelineContent>
                 <div className="p-4 w-[17rem] sm:w-auto rounded-lg backdrop-blur-lg bg-opacity-20 border shadow-md">
-                  <h3 className="text-lg sm:text-xl font-semibold text-[#0A74DA]">
+                  <h3 className="text-lg sm:text-xl font-semibold text-[#39FF14]">
                     Log Your Courses
                   </h3>
                   <ul className="mt-2 text-gray-300">
@@ -73,7 +73,7 @@ function HowItWorks() {
             <TimelineItem>
               <TimelineSeparator>
                 <TimelineDot
-                  style={{ backgroundColor: "#0A74DA", color: "black" }}
+                  style={{ backgroundColor: "#39FF14", color: "black" }}
                   className="flex items-center justify-center w-8 h-8 font-bold"
                 >
                   3
@@ -82,7 +82,7 @@ function HowItWorks() {
               </TimelineSeparator>
               <TimelineContent>
                 <div className="p-4 w-[17rem] sm:w-auto rounded-lg backdrop-blur-lg bg-opacity-20 border shadow-md">
-                  <h3 className="text-lg sm:text-xl font-semibold text-[#0A74DA]">
+                  <h3 className="text-lg sm:text-xl font-semibold text-[#39FF14]">
                     Get Recommendations
                   </h3>
                   <ul className="mt-2 text-gray-300">

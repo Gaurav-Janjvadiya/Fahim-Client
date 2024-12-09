@@ -1,11 +1,11 @@
 import instance from "./";
 import Cookies from "js-cookie";
 
-export const createCourseComment = async ({ courseId, comment }) => {
+export const createCourseComment = async ({ courseReviewId: id, comment }) => {
   const token = Cookies.get("jwt");
   try {
     const { data } = await instance.post(
-      `/api/comments/course/${courseId}`,
+      `/api/comments/course/${id}`,
       { content: comment },
       { headers: { Authorization: `Bearer ${token}` } }
     );
@@ -20,9 +20,9 @@ export const createCourseComment = async ({ courseId, comment }) => {
   }
 };
 
-export const getCourseComments = async ({ courseId }) => {
+export const getCourseComments = async ({ id }) => {
   try {
-    const { data } = await instance.get(`/api/comments/course/${courseId}`);
+    const { data } = await instance.get(`/api/comments/course/${id}`);
     return data;
   } catch (error) {
     console.error("Error getting comments:", error.message);
@@ -34,7 +34,7 @@ export const getCourseComments = async ({ courseId }) => {
   }
 };
 
-export const deleteCourseComment = async ({ commentId }) => {
+export const deleteCourseComment = async (commentId ) => {
   const token = Cookies.get("jwt");
   try {
     const { data } = await instance.delete(`/api/comments/${commentId}`, {

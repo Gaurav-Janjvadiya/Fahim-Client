@@ -5,13 +5,13 @@ import { jwtDecode } from "jwt-decode";
 
 export const signUp = async (userData, navigate, dispatch, setServerError) => {
   try {
-    const response = await instance.post("/api/users/signup", userData); // Await API response
+    const response = await instance.post("/api/users/signup", userData);
     const { token } = response.data;
 
     if (token) {
-      dispatch(userLogin()); // Dispatch Redux action
-      Cookies.set("jwt", token, { secure: true }); // Store JWT securely
-      navigate("/home"); // Navigate to the home page
+      dispatch(userLogin());
+      Cookies.set("jwt", token, { secure: true, expires: 1 }); // Expires in 1 day
+      navigate("/home");
     }
   } catch (e) {
     setServerError(
@@ -23,16 +23,14 @@ export const signUp = async (userData, navigate, dispatch, setServerError) => {
 export const login = async (userData, navigate, dispatch, setServerError) => {
   try {
     const { data } = await instance.post("/api/users/signin", userData);
-    // Handle the success response, e.g., redirect or store token
     if (data.token) {
-      Cookies.set("jwt", data.token, { secure: true });
+      Cookies.set("jwt", data.token, { secure: true, expires: 1 }); // Expires in 1 day
       dispatch(userLogin());
       navigate("/home");
     } else {
       navigate("/signup");
     }
   } catch (e) {
-    // Update serverError state with the error message
     console.log(e);
     setServerError(
       e.response?.data?.message || e.message || "An unknown error occurred"

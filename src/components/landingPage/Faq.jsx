@@ -22,7 +22,7 @@ function Faq() {
       <Element className="faq">
         <div className="w-full flex flex-col sm:flex-row sm:space-y-0 space-y-8 px-4 sm:px-12">
           <div className="sm:w-1/2 flex justify-start items-start space-y-8 flex-col">
-            <h4 className="font-semibold text-[#0A74DA]">FAQs</h4>
+            <h4 className="font-semibold text-[#39FF14]">FAQs</h4>
             <h1 className="font-semibold text-wrap text-4xl">
               Got Questions? We Have Answers!
             </h1>

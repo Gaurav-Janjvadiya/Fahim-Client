@@ -35,10 +35,6 @@ function SignUp() {
   } = useQuery({
     queryKey: ["majors"],
     queryFn: getAllMajors,
-    staleTime: 600000, // Data is fresh for 10 minutes
-    cacheTime: 900000, // Data stays in the cache for 15 minutes
-    refetchOnWindowFocus: true, // Refetch data when the window gains focus
-    retry: 3, // Retry failed queries 3 times before throwing an error
     onError: (err) => {
       console.error("Error fetching majors:", err);
     },

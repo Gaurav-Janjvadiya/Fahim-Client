@@ -17,14 +17,14 @@ function SearchBar() {
           borderColor: "#F1F1F1", // Border color
         },
         "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-          borderColor: "#0A74DA", // Border color on hover
+          borderColor: "#39FF14", // Border color on hover
         },
         "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
           {
-            borderColor: "#0A74DA", // Border color on focus
+            borderColor: "#39FF14", // Border color on focus
           },
         "& .MuiInputLabel-root.Mui-focused": {
-          color: "#0A74DA", // Label color on focus
+          color: "#39FF14", // Label color on focus
         },
       }}
     />

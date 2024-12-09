@@ -1,6 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { getCourseById } from "../api/courseApi";
+import { getCourseReviewById } from "../api/courseReviewApi";
 import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
@@ -12,16 +12,16 @@ import {
 } from "../components";
 
 function Course() {
-  const { courseId } = useParams();
+  const { courseReviewId } = useParams();
 
   const {
-    data: course = {},
+    data: courseReview = {},
     isError,
     isLoading,
     errors,
   } = useQuery({
-    queryKey: ["course"],
-    queryFn: () => getCourseById({ id: courseId }),
+    queryKey: ["courseReview"],
+    queryFn: () => getCourseReviewById({ id: courseReviewId }),
     staleTime: 60 * 1000 * 5,
     cacheTime: 60 * 1000 * 5,
   });
@@ -46,21 +46,18 @@ function Course() {
               <CircularProgress />
             ) : (
               <div className="flex flex-col items-start space-y-1">
-                <h3 className="text-[#0A74DA] text-xl sm:text-2xl font-semibold">
-                  {course.name}
+                <h3 className="text-[#39FF14] text-xl sm:text-2xl font-semibold">
+                  {courseReview.course.name}
                 </h3>
-                {course.major.map((mjr) => (
-                  <p key={mjr._id} className="text-gray-400 text-sm">
-                    {mjr.name}
-                  </p>
-                ))}
+                <p>
+                  <span>By </span>
+                  {courseReview.professor.name}
+                </p>
               </div>
             )}
             <div>
-              <CourseComments courseId={courseId} />
-              <CourseCommentBox />
-              <AllReview />
-              <ReviewBox />
+              <CourseComments courseReviewId={courseReviewId} />
+              <CourseCommentBox courseReviewId={courseReviewId} />
             </div>
           </div>
         </div>

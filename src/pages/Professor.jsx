@@ -5,7 +5,6 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { Box } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
-import { Button as MyButton } from "../components";
 import { CommentBox, AllComments, RateProfessor } from "../components";
 
 function Professor() {
@@ -50,7 +49,7 @@ function Professor() {
           <div className="px-4 sm:px-6 py-8 sm:py-12 rounded-lg flex flex-col space-y-6 text-[#eee]">
             {/* Professor Info */}
             <div className="flex flex-col items-start space-y-1">
-              <h3 className="text-[#0A74DA] text-xl sm:text-2xl font-semibold">
+              <h3 className="text-[#39FF14] text-xl sm:text-2xl font-semibold">
                 <span className="mr-2">{professor.title}</span>
                 {professor.name}
               </h3>
@@ -59,13 +58,12 @@ function Professor() {
               </p>
             </div>
 
+            {/* Rating Box */}
+            <RateProfessor professorId={professor._id} />
             {/* Comments Section */}
             <AllComments professorId={professor._id} />
             {/* Comment Box */}
             <CommentBox professorId={professor._id} />
-
-            {/* Rating Box */}
-            <RateProfessor professorId={professor._id} />
           </div>
         </div>
       </div>

@@ -51,15 +51,11 @@ function Professors() {
       }
       return getAllProfessors();
     },
-    staleTime: 60000, // Data stays fresh for 1 minute
-    cacheTime: 300000, // Cached for 5 minutes
-    refetchOnWindowFocus: false, // Disable refetch on window focus
   });
-  console.log("Fetched Professors", professors);
 
   return (
     <div className="min-h-screen">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2 sm:p-8 p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:p-8 p-4">
         <SearchBar />
         <SortBy sortOption={sortOption} setSortOption={setSortOption} />
         <FilterBy
