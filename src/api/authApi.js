@@ -3,7 +3,13 @@ import { login as userLogin } from "../redux/store";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
 
-export const signUp = async (userData, navigate, dispatch, setServerError) => {
+export const signUp = async (
+  userData,
+  navigate,
+  dispatch,
+  setServerError,
+  setIsSignUpLoading
+) => {
   try {
     const response = await instance.post("/api/users/signup", userData);
     const { token } = response.data;
@@ -14,13 +20,20 @@ export const signUp = async (userData, navigate, dispatch, setServerError) => {
       navigate("/home");
     }
   } catch (e) {
+    setIsSignUpLoading(false);
     setServerError(
       e.response?.data?.message || e.message || "An error occurred"
     );
   }
 };
 
-export const login = async (userData, navigate, dispatch, setServerError) => {
+export const login = async (
+  userData,
+  navigate,
+  dispatch,
+  setServerError,
+  setIsLoading
+) => {
   try {
     const { data } = await instance.post("/api/users/signin", userData);
     if (data.token) {
@@ -32,6 +45,7 @@ export const login = async (userData, navigate, dispatch, setServerError) => {
     }
   } catch (e) {
     console.log(e);
+    setIsLoading(false);
     setServerError(
       e.response?.data?.message || e.message || "An unknown error occurred"
     );

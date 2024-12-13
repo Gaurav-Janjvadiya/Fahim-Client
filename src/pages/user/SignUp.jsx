@@ -11,6 +11,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 function SignUp() {
   const [serverError, setServerError] = useState(null);
+  const [isSignUpLoading, setIsSignUpLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -44,7 +45,8 @@ function SignUp() {
   });
 
   const onSubmit = (data) => {
-    userSignUp(data, navigate, dispatch, setServerError);
+    setIsSignUpLoading(true);
+    userSignUp(data, navigate, dispatch, setServerError, setIsSignUpLoading);
   };
 
   if (error) {
@@ -206,7 +208,11 @@ function SignUp() {
 
               <div>
                 <Button type="submit" style={"w-full"}>
-                  Sign Up
+                  {isSignUpLoading ? (
+                    <CircularProgress sx={{ color: "#E8F5E9" }} size={18} />
+                  ) : (
+                    "Sign Up"
+                  )}
                 </Button>
               </div>
             </form>

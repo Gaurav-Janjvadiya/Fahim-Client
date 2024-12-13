@@ -1,19 +1,18 @@
-import axios from "axios";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import Cookies from "js-cookie";
 import { useDispatch } from "react-redux";
-import { login } from "../../redux/store";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components";
 import gif from "../../assets/gifs/login.gif";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 import { login as userLogin } from "../../api/authApi";
 
 function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [serverError, setServerError] = useState(""); // State to store server error message
+  const [serverError, setServerError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const {
     handleSubmit,
@@ -27,7 +26,8 @@ function Login() {
   });
 
   const onSubmit = (data) => {
-    userLogin(data, navigate, dispatch, setServerError);
+    setIsLoading(true);
+    userLogin(data, navigate, dispatch, setServerError, setIsLoading);
   };
 
   return (
@@ -84,7 +84,11 @@ function Login() {
 
               <div>
                 <Button type="submit" style={"w-full"}>
-                  Login
+                  {isLoading ? (
+                    <CircularProgress className="text-white" size={16} />
+                  ) : (
+                    "Login"
+                  )}
                 </Button>
               </div>
             </form>

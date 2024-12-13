@@ -1,24 +1,24 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { rateProfessor } from "../../api/professorApi";
+import { rateCourseReview } from "../../api/courseReviewApi";
 import { Rating, Typography, CircularProgress } from "@mui/material";
 
-const RateProfessor = ({ professorId }) => {
+const RateCourse = ({ courseReviewId }) => {
   const queryClient = useQueryClient();
 
   const { mutate, isLoading, isSuccess, isError, error } = useMutation({
-    mutationFn: rateProfessor,
+    mutationFn: rateCourseReview,
     onSuccess: () => {
-      queryClient.invalidateQueries(["professors"]);
-      console.log("Professor rated successfully!");
+      queryClient.invalidateQueries(["courses"]);
+      console.log("Course rated successfully!");
     },
     onError: (error) => {
-      console.error("Failed to rate professor:", error.message);
+      console.error("Failed to rate course:", error.message);
     },
   });
 
   const handleRateChange = (event, value) => {
     if (value) {
-      mutate({ professorId, rating: value });
+      mutate({ courseReviewId, rating: value });
     }
   };
 
@@ -27,7 +27,7 @@ const RateProfessor = ({ professorId }) => {
       <h4 className="font-medium mb-2">Rate</h4>
       <div className="flex items-center">
         <Rating
-          name="professor-rating"
+          name="course-rating"
           size="large"
           defaultValue={5}
           onChange={handleRateChange}
@@ -60,4 +60,4 @@ const RateProfessor = ({ professorId }) => {
   );
 };
 
-export default RateProfessor;
+export default RateCourse;

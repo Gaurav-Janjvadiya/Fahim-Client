@@ -72,12 +72,13 @@ export const rateCourseReview = async ({ courseReviewId, rating }) => {
   try {
     const token = Cookies.get("jwt");
     const { data } = await instance.post(
-      `/api/courseReview/${courseReviewId}`,
+      `/api/courseReview/${courseReviewId}/rate`,
       { rating },
       { headers: { Authorization: `Bearer ${token}` } }
     );
     return data;
   } catch (e) {
+    console.log(e.response?.data);
     console.error(`Error rating course review ${e.message} `);
   }
 };

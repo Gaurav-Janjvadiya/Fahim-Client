@@ -20,6 +20,7 @@ import CourseComments from "./coursePage/AllComments.jsx";
 import CourseCommentBox from "./coursePage/CommentBox.jsx";
 import AllReview from "./coursePage/AllReview.jsx";
 import ReviewBox from "./coursePage/ReviewBox.jsx";
+import RateCourse from "./coursePage/RateCourse.jsx";
 
 export {
   Logout,
@@ -44,4 +45,5 @@ export {
   AllReview,
   CourseCommentBox,
   ReviewBox,
+  RateCourse
 };

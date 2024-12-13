@@ -4,12 +4,7 @@ import { getCourseReviewById } from "../api/courseReviewApi";
 import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
-import {
-  CourseCommentBox,
-  CourseComments,
-  AllReview,
-  ReviewBox,
-} from "../components";
+import { CourseCommentBox, CourseComments, RateCourse } from "../components";
 
 function Course() {
   const { courseReviewId } = useParams();
@@ -55,10 +50,9 @@ function Course() {
                 </p>
               </div>
             )}
-            <div>
-              <CourseComments courseReviewId={courseReviewId} />
-              <CourseCommentBox courseReviewId={courseReviewId} />
-            </div>
+            <RateCourse courseReviewId={courseReviewId} />
+            <CourseComments courseReviewId={courseReviewId} />
+            <CourseCommentBox courseReviewId={courseReviewId} />
           </div>
         </div>
       </div>

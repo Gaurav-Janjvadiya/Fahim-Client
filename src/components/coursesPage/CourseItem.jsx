@@ -8,7 +8,10 @@ function CourseItem({ courseReview }) {
         <p className="text-lg font-semibold text-[#39FF14]">
           {courseReview.course.name}
         </p>
-        <p><span>By </span>{courseReview.professor.name}</p>
+        <p>
+          <span>By </span>
+          {courseReview.professor.name}
+        </p>
         <div className="flex justify-start items-center">
           <Rating
             name="half-rating-read"
