@@ -56,6 +56,9 @@ function Professor() {
               <p className="text-gray-400 text-sm">
                 {professor.department.name}
               </p>
+              {/* <p className="text-gray-400 text-sm">
+                {professor.courses[0]?._id}
+              </p> */}
             </div>
 
             {/* Rating Box */}

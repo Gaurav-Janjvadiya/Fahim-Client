@@ -46,7 +46,12 @@ function Course() {
                 </h3>
                 <p>
                   <span>By </span>
-                  {courseReview.professor.name}
+                  <Link
+                    className="hover:underline"
+                    to={`/professors/${courseReview.professor._id}`}
+                  >
+                    {courseReview.professor.name}
+                  </Link>
                 </p>
               </div>
             )}

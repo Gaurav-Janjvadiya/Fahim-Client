@@ -18,8 +18,6 @@ import FilterByTitle from "./professorsPage/FilterByTitle.jsx";
 import CourseList from "./coursesPage/CourseList.jsx";
 import CourseComments from "./coursePage/AllComments.jsx";
 import CourseCommentBox from "./coursePage/CommentBox.jsx";
-import AllReview from "./coursePage/AllReview.jsx";
-import ReviewBox from "./coursePage/ReviewBox.jsx";
 import RateCourse from "./coursePage/RateCourse.jsx";
 
 export {
@@ -42,8 +40,6 @@ export {
   FilterByDepartment,
   CourseList,
   CourseComments,
-  AllReview,
   CourseCommentBox,
-  ReviewBox,
   RateCourse
 };

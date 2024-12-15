@@ -10,7 +10,7 @@ function CourseItem({ courseReview }) {
         </p>
         <p>
           <span>By </span>
-          {courseReview.professor.name}
+            {courseReview.professor.name}
         </p>
         <div className="flex justify-start items-center">
           <Rating

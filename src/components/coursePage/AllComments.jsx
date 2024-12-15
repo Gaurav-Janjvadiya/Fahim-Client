@@ -15,6 +15,10 @@ import getUserIdFromToken from "../../utils/getUserIdFromToken";
 function AllComments({ courseReviewId }) {
   const [reply, setReply] = useState("");
   const [activeReplyId, setActiveReplyId] = useState(null);
+  const initialVisibleComments = 2;
+  const [visibleComments, setVisibleComments] = useState(
+    initialVisibleComments
+  );
   const queryClient = useQueryClient();
 
   const {
@@ -59,9 +63,12 @@ function AllComments({ courseReviewId }) {
     }
   };
 
+  const showMoreComments = () => {
+    setVisibleComments((prevVisible) => prevVisible + initialVisibleComments);
+  };
+
   const renderReplies = (replies) => {
     if (!Array.isArray(replies) || replies.length === 0) return null;
-
     return replies.map((reply) => (
       <div
         className="pl-4 border-l-2 border-gray-200 space-y-2"
@@ -90,13 +97,9 @@ function AllComments({ courseReviewId }) {
                 color="secondary"
                 size="small"
                 onClick={() => handleDelete(reply._id)}
-                disabled={deleteMutation.isLoading} // Disable while loading
+                disabled={deleteMutation.isLoading}
               >
-                {deleteMutation.isLoading ? (
-                  <CircularProgress size={20} />
-                ) : (
-                  <DeleteIcon />
-                )}
+                <DeleteIcon />
               </IconButton>
             )}
           </div>
@@ -127,7 +130,7 @@ function AllComments({ courseReviewId }) {
         ) : !comments || comments.length === 0 ? (
           <p>No comments available.</p>
         ) : (
-          comments.map((comment) => (
+          comments.slice(0, visibleComments).map((comment) => (
             <div
               className="text-sm space-y-2 border-b pb-2 mb-2"
               key={comment._id}
@@ -142,7 +145,7 @@ function AllComments({ courseReviewId }) {
                     color="primary"
                     size="small"
                     onClick={() => setActiveReplyId(comment._id)}
-                    disabled={replyMutation.isLoading} 
+                    disabled={replyMutation.isLoading}
                   >
                     {replyMutation.isLoading ? (
                       <CircularProgress size={20} />
@@ -150,7 +153,7 @@ function AllComments({ courseReviewId }) {
                       <ReplyIcon />
                     )}
                   </IconButton>
-                  {getUserIdFromToken() === reply?.user?._id && (
+                  {getUserIdFromToken() === comment?.user?._id && (
                     <IconButton
                       color="secondary"
                       size="small"
@@ -200,6 +203,16 @@ function AllComments({ courseReviewId }) {
           ))
         )}
       </div>
+      {visibleComments < comments.length && (
+        <div className="flex justify-center mt-4">
+          <button
+            className="bg-blue-500 text-white py-1 px-4 rounded"
+            onClick={showMoreComments}
+          >
+            Show More
+          </button>
+        </div>
+      )}
     </div>
   );
 }

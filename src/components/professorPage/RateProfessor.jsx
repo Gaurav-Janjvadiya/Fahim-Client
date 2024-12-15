@@ -29,7 +29,7 @@ const RateProfessor = ({ professorId }) => {
         <Rating
           name="professor-rating"
           size="large"
-          defaultValue={5}
+          defaultValue={0}
           onChange={handleRateChange}
           sx={{
             "& .MuiRating-iconEmpty": { color: "#555" },

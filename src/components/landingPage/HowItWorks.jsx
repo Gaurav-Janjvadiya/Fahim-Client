@@ -19,7 +19,7 @@ function HowItWorks() {
     <>
       {/* How its works section   */}
       <Element className="how-it-works">
-        <div className="w-full min-h-screen flex flex-col justify-center items-center px-4 sm:px-12">
+        <div className="w-full space-y-4 flex flex-col justify-center items-center px-4 sm:px-12">
           <h1 className="text-6xl font-extrabold text-[#F1F1F1] mb-12 text-start sm:text-center">
             How Fahim Works?
           </h1>
@@ -95,7 +95,7 @@ function HowItWorks() {
               </TimelineContent>
             </TimelineItem>
           </Timeline>
-          <Button style={"mt-4"}>
+          <Button>
             <Link to="/signup">Join Fahim Now</Link>
           </Button>
         </div>
