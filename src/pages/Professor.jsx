@@ -56,9 +56,15 @@ function Professor() {
               <p className="text-gray-400 text-sm">
                 {professor.department.name}
               </p>
-              {/* <p className="text-gray-400 text-sm">
-                {professor.courses[0]?._id}
-              </p> */}
+            </div>
+            <div className="">
+              <h4 className="font-medium mb-2">Courses</h4>
+              {!professor.courses.length > 0 && (
+                <p className="text-gray-600 text-sm">Courses Not Availble</p>
+              )}
+              {professor.courses.map((course) => (
+                <p className="text-sm">{course.name}</p>
+              ))}
             </div>
 
             {/* Rating Box */}
