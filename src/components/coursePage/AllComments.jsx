@@ -19,6 +19,7 @@ function AllComments({ courseReviewId }) {
   const [visibleComments, setVisibleComments] = useState(
     initialVisibleComments
   );
+  const [visibleReplies, setVisibleReplies] = useState({});  // Track visibility of replies
   const queryClient = useQueryClient();
 
   const {
@@ -26,7 +27,7 @@ function AllComments({ courseReviewId }) {
     isLoading,
     isError,
     error,
-    isFetching, // Adding isFetching for background refetching states
+    isFetching,
   } = useQuery({
     queryKey: ["comments", courseReviewId],
     queryFn: () => getCourseComments({ id: courseReviewId }),
@@ -67,6 +68,14 @@ function AllComments({ courseReviewId }) {
     setVisibleComments((prevVisible) => prevVisible + initialVisibleComments);
   };
 
+  // Toggle visibility of replies for a specific comment
+  const toggleRepliesVisibility = (commentId) => {
+    setVisibleReplies((prev) => ({
+      ...prev,
+      [commentId]: !prev[commentId], // Toggle the visibility
+    }));
+  };
+
   const renderReplies = (replies) => {
     if (!Array.isArray(replies) || replies.length === 0) return null;
     return replies.map((reply) => (
@@ -75,8 +84,8 @@ function AllComments({ courseReviewId }) {
         key={reply._id}
       >
         <div className="flex justify-between items-center">
-          <div>
-            <p className="font-medium text-gray-600">{reply.user.username}</p>
+          <div className="flex space-x-2">
+            <p className="font-medium text-gray-600">@{reply.user.username}</p>
             <p>{reply.content}</p>
           </div>
           <div className="flex items-center space-x-1">
@@ -84,7 +93,7 @@ function AllComments({ courseReviewId }) {
               color="primary"
               size="small"
               onClick={() => setActiveReplyId(reply._id)}
-              disabled={replyMutation.isLoading} // Disable while loading
+              disabled={replyMutation.isLoading}
             >
               {replyMutation.isLoading ? (
                 <CircularProgress size={20} />
@@ -121,7 +130,7 @@ function AllComments({ courseReviewId }) {
 
   return (
     <div className="w-full">
-      <h4 className="font-medium mb-2">Comments</h4>
+      <h4 className="font-bold mb-2">Comments</h4>
       <div className="space-y-2">
         {isLoading || isFetching ? (
           <div className="flex justify-center items-center">
@@ -136,8 +145,8 @@ function AllComments({ courseReviewId }) {
               key={comment._id}
             >
               <div className="flex justify-between items-center">
-                <div>
-                  <p className="font-medium">{comment.user.username}</p>
+                <div className="flex space-x-2">
+                  <p className="font-medium">@{comment.user.username}</p>
                   <p>{comment.content}</p>
                 </div>
                 <div className="flex items-center space-x-1">
@@ -158,7 +167,7 @@ function AllComments({ courseReviewId }) {
                       color="secondary"
                       size="small"
                       onClick={() => handleDelete(comment._id)}
-                      disabled={deleteMutation.isLoading} // Disable while loading
+                      disabled={deleteMutation.isLoading}
                     >
                       {deleteMutation.isLoading ? (
                         <CircularProgress size={20} />
@@ -169,7 +178,22 @@ function AllComments({ courseReviewId }) {
                   )}
                 </div>
               </div>
-              {renderReplies(comment.replies)}
+
+              {/* Show/Hide Replies Button */}
+              {comment.replies && comment.replies.length > 0 && (
+                <button
+                  className="ml-1 flex items-center space-x-2 hover:text-gray-500 w-[85%] active:text-gray-400 text-gray-400 text-left p-0 bg-transparent cursor-pointer"
+                  onClick={() => toggleRepliesVisibility(comment._id)}
+                >
+                  {visibleReplies[comment._id]
+                    ? "Hide replies"
+                    : "View replies"}
+                </button>
+              )}
+
+              {/* Render replies if visible */}
+              {visibleReplies[comment._id] && renderReplies(comment.replies)}
+
               {activeReplyId === comment._id && (
                 <div className="reply-input-container">
                   <textarea
@@ -181,8 +205,8 @@ function AllComments({ courseReviewId }) {
                   <div className="reply-actions space-y-2 space-x-2">
                     <button
                       className="border px-4 py-2 rounded-md hover:bg-[#292929]"
-                      onClick={() => handleReply(comment._id)} // Pass comment ID
-                      disabled={replyMutation.isLoading} // Disable while loading
+                      onClick={() => handleReply(comment._id)}
+                      disabled={replyMutation.isLoading}
                     >
                       {replyMutation.isLoading ? (
                         <CircularProgress size={20} />

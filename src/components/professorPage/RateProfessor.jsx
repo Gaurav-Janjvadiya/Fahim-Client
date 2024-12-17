@@ -1,61 +1,161 @@
+import { useState, useEffect } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { rateProfessor } from "../../api/professorApi";
-import { Rating, Typography, CircularProgress } from "@mui/material";
+import {
+  Rating,
+  Typography,
+  CircularProgress,
+  Snackbar,
+  Alert,
+} from "@mui/material";
+import { Button } from "../";
 
 const RateProfessor = ({ professorId }) => {
   const queryClient = useQueryClient();
+  const [rating, setRating] = useState({
+    teachingQuality: 0,
+    flexibility: 0,
+    examsHomework: 0,
+    classEnjoyment: 0,
+    recommendation: 0,
+  });
+
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
+  const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
   const { mutate, isLoading, isSuccess, isError, error } = useMutation({
     mutationFn: rateProfessor,
     onSuccess: () => {
       queryClient.invalidateQueries(["professors"]);
-      console.log("Professor rated successfully!");
+      setSnackbarMessage("Professor rated successfully!");
+      setSnackbarSeverity("success");
+      setOpenSnackbar(true);
     },
     onError: (error) => {
       console.error("Failed to rate professor:", error.message);
+      setSnackbarMessage("Failed to rate professor. Please try again.");
+      setSnackbarSeverity("error");
+      setOpenSnackbar(true);
     },
   });
 
-  const handleRateChange = (event, value) => {
-    if (value) {
-      mutate({ professorId, rating: value });
-    }
+  const handleRateChange = (event) => {
+    setRating((prev) => ({ ...prev, [event.target.name]: event.target.value }));
+  };
+
+  const handleSubmit = () => {
+    mutate({ professorId, rating });
+    setRating({
+      teachingQuality: 0,
+      flexibility: 0,
+      examsHomework: 0,
+      classEnjoyment: 0,
+      recommendation: 0,
+    });
+  };
+
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);
   };
 
   return (
-    <div className="w-full">
-      <h4 className="font-medium mb-2">Rate</h4>
-      <div className="flex items-center">
-        <Rating
-          name="professor-rating"
-          size="large"
-          defaultValue={0}
-          onChange={handleRateChange}
-          sx={{
-            "& .MuiRating-iconEmpty": { color: "#555" },
-            "& .MuiRating-iconFilled": { color: "gold" },
-            "& .MuiRating-iconHover": { color: "orange" },
-          }}
-        />
-      </div>
-      {isLoading && (
-        <div className="flex items-center mt-2">
-          <CircularProgress size={24} />
-          <Typography variant="body2" className="ml-2">
-            Submitting your rating...
-          </Typography>
+    <div className="w-full space-y-3">
+      <h4 className="font-bold mb-2">Rate & Review</h4>
+      <div className="space-y-2">
+        <div className="grid grid-cols-1 sm:grid-cols-2 w-fit sm:space-y-0 space-y-1">
+          <p className="">Teaching Quality</p>
+          <Rating
+            name="teachingQuality"
+            size="large"
+            defaultValue={0}
+            onChange={handleRateChange}
+            sx={{
+              "& .MuiRating-iconEmpty": { color: "#555" },
+              "& .MuiRating-iconFilled": { color: "gold" },
+              "& .MuiRating-iconHover": { color: "orange" },
+            }}
+          />
         </div>
-      )}
-      {isSuccess && (
-        <Typography variant="body2" color="success.main" className="mt-2">
-          Thank you for your rating!
-        </Typography>
-      )}
-      {isError && (
-        <Typography variant="body2" color="error.main" className="mt-2">
-          Error: {error?.message || "Something went wrong."}
-        </Typography>
-      )}
+        <div className="grid grid-cols-1 sm:grid-cols-2 w-fit sm:space-y-0 space-y-1">
+          <p className="">Flexibility</p>
+          <Rating
+            name="flexibility"
+            size="large"
+            defaultValue={0}
+            onChange={handleRateChange}
+            sx={{
+              "& .MuiRating-iconEmpty": { color: "#555" },
+              "& .MuiRating-iconFilled": { color: "gold" },
+              "& .MuiRating-iconHover": { color: "orange" },
+            }}
+          />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 w-fit sm:space-y-0 space-y-1">
+          <p className="">Exams Homework</p>
+          <Rating
+            name="examsHomework"
+            size="large"
+            defaultValue={0}
+            onChange={handleRateChange}
+            sx={{
+              "& .MuiRating-iconEmpty": { color: "#555" },
+              "& .MuiRating-iconFilled": { color: "gold" },
+              "& .MuiRating-iconHover": { color: "orange" },
+            }}
+          />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 w-fit sm:space-y-0 space-y-1">
+          <p className="">Class Enjoyment</p>
+          <Rating
+            name="classEnjoyment"
+            size="large"
+            defaultValue={0}
+            onChange={handleRateChange}
+            sx={{
+              "& .MuiRating-iconEmpty": { color: "#555" },
+              "& .MuiRating-iconFilled": { color: "gold" },
+              "& .MuiRating-iconHover": { color: "orange" },
+            }}
+          />
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 w-fit sm:space-y-0 space-y-1">
+          <p className="">Recommendation</p>
+          <Rating
+            name="recommendation"
+            size="large"
+            defaultValue={0}
+            onChange={handleRateChange}
+            sx={{
+              "& .MuiRating-iconEmpty": { color: "#555" },
+              "& .MuiRating-iconFilled": { color: "gold" },
+              "& .MuiRating-iconHover": { color: "orange" },
+            }}
+          />
+        </div>
+      </div>
+      <button
+        className="mt-3 bg-[#39FF14] py-2 px-4 rounded-md font-medium hover:bg-[#0bda0a] transition duration-200 ease-in-out"
+        style={{ textShadow: "2px 2px 5px gray" }}
+        onClick={handleSubmit}
+      >
+        Submit
+      </button>
+
+      {/* Snackbar for success/error messages */}
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={4000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity={snackbarSeverity}
+          sx={{ width: "100%" }}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

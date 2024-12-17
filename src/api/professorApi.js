@@ -67,7 +67,7 @@ export const rateProfessor = async ({ professorId, rating }) => {
   try {
     const { data } = await instance.post(
       `/api/professors/${professorId}/rate`,
-      { rating },
+      rating,
       { headers: { Authorization: `Bearer ${token}` } }
     );
     return data;

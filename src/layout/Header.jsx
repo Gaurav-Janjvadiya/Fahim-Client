@@ -87,7 +87,7 @@ function Header() {
                   <span
                     className={`${
                       isActive
-                        ? "font-bold hover:no-underline"
+                        ? "font-medium rounded-xl px-3 py-2 hover:no-underline"
                         : "font-normal hover:underline"
                     }`}
                   >

@@ -46,6 +46,7 @@ function CommentBox({ professorId }) {
       <button
         type="submit"
         className="mt-3 bg-[#39FF14] py-2 px-4 rounded-md font-medium hover:bg-[#0bda0a] transition duration-200 ease-in-out"
+        style={{ textShadow: "2px 2px 5px gray" }}
         onClick={handleSubmit}
         disabled={isLoading}
       >

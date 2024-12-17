@@ -17,6 +17,7 @@ function AllComments({ professorId }) {
   const [activeReplyId, setActiveReplyId] = useState(null);
   const queryClient = useQueryClient();
   const initialVisibleComments = 2;
+  const [showRepliesArray, setShowRepliesArray] = useState([]);
   const [visibleComments, setVisibleComments] = useState(
     initialVisibleComments
   );
@@ -65,70 +66,83 @@ function AllComments({ professorId }) {
     setReplyMap((prev) => ({ ...prev, [commentId]: value }));
   };
 
-  const renderReplies = (replies) => {
+  const toggleShowReplies = (index) => {
+    if (showRepliesArray.includes(index)) {
+      // If the section is already open, close it
+      setShowRepliesArray(showRepliesArray.filter((item) => item !== index));
+    } else {
+      // Otherwise, add it to the list of open sections
+      setShowRepliesArray([...showRepliesArray, index]);
+    }
+  };
+
+  const renderReplies = (replies, i) => {
     if (!Array.isArray(replies) || replies.length === 0) return null;
 
-    return replies.map((reply) => (
-      <div
-        className="pl-4 border-l-2 border-gray-200 space-y-2"
-        key={reply?._id}
-      >
-        <div className="flex justify-between items-center">
-          <div>
-            <p className="font-medium text-gray-600">
-              {reply?.user?.username || "Unknown User"}
-            </p>
-            <p>{reply?.content || "No content provided"}</p>
-          </div>
-          <div className="flex items-center space-x-1">
-            <IconButton
-              color="primary"
-              size="small"
-              onClick={() => setActiveReplyId(reply?._id)}
-              disabled={replyMutation.isLoading || isFetching} // Disable if fetching or mutation loading
-            >
-              <ReplyIcon />
-            </IconButton>
-            {getUserIdFromToken() === reply?.user?._id && (
-              <IconButton
-                color="secondary"
-                size="small"
-                onClick={() => handleDelete(reply?._id)}
-                disabled={deleteMutation.isLoading || isFetching} // Disable if fetching or mutation loading
-              >
-                <DeleteIcon />
-              </IconButton>
-            )}
-          </div>
-        </div>
-        {/* Render nested replies */}
-        {activeReplyId === reply._id && (
-          <div className="reply-input-container">
-            <textarea
-              className="w-full bg-[#1e1e1e] text-[#eee] border border-[#444] p-3 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-[#39FF14]"
-              placeholder="Write your reply here..."
-              value={replyMap[reply._id] || ""}
-              onChange={(e) => handleReplyChange(reply._id, e.target.value)}
-            />
-            <div className="reply-actions space-y-2 space-x-2">
-              <button
-                className="border px-4 py-2 rounded-md hover:bg-[#292929]"
-                onClick={() => handleReply(reply._id)} // Pass nested reply ID
-              >
-                Send
-              </button>
-              <button
-                className="border px-4 py-2 rounded-md hover:bg-[#292929]"
-                onClick={() => setActiveReplyId(null)}
-              >
-                Cancel
-              </button>
+    return replies.map(
+      (reply) =>
+        showRepliesArray.includes(i) && (
+          <div
+            className="pl-4 border-l-2 border-gray-200 space-y-2"
+            key={reply?._id}
+          >
+            <div className="flex justify-between items-center">
+              <div>
+                <p className="font-medium text-gray-600">
+                  @{reply?.user?.username || "Unknown User"}
+                </p>
+                <p>{reply?.content || "No content provided"}</p>
+              </div>
+              <div className="flex items-center space-x-1">
+                <IconButton
+                  color="primary"
+                  size="small"
+                  onClick={() => setActiveReplyId(reply?._id)}
+                  disabled={replyMutation.isLoading || isFetching} // Disable if fetching or mutation loading
+                >
+                  <ReplyIcon />
+                </IconButton>
+                {getUserIdFromToken() === reply?.user?._id && (
+                  <IconButton
+                    color="secondary"
+                    size="small"
+                    onClick={() => handleDelete(reply?._id)}
+                    disabled={deleteMutation.isLoading || isFetching} // Disable if fetching or mutation loading
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                )}
+              </div>
             </div>
+            {/* Render nested replies */}
+            {activeReplyId === reply._id && (
+              <div className="reply-input-container">
+                <textarea
+                  className="w-full bg-[#1e1e1e] text-[#eee] border border-[#444] p-3 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-[#39FF14]"
+                  placeholder="Write your reply here..."
+                  value={replyMap[reply._id] || ""}
+                  onChange={(e) => handleReplyChange(reply._id, e.target.value)}
+                />
+                <div className="reply-actions space-y-2 space-x-2">
+                  <button
+                    className="border px-4 py-2 rounded-md hover:bg-[#292929]"
+                    onClick={() => handleReply(reply._id)} // Pass nested reply ID
+                  >
+                    Send
+                  </button>
+                  <button
+                    className="border px-4 py-2 rounded-md hover:bg-[#292929]"
+                    onClick={() => setActiveReplyId(null)}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            )}
+            {reply?.replies?.length > 0 && renderReplies(reply.replies)}
           </div>
-        )}
-        {reply?.replies?.length > 0 && renderReplies(reply.replies)}
-      </div>
-    ));
+        )
+    );
   };
 
   const showMoreComments = () => {
@@ -147,7 +161,7 @@ function AllComments({ professorId }) {
 
   return (
     <div className="w-full">
-      <h4 className="font-medium mb-2">Comments</h4>
+      <h4 className="font-bold mb-2">Comments</h4>
       <div className="space-y-2">
         {isLoading || isFetching ? (
           <div className="flex justify-center items-center">
@@ -156,15 +170,15 @@ function AllComments({ professorId }) {
         ) : !comments || comments.length === 0 ? (
           <p>No comments available.</p>
         ) : (
-          comments.slice(0, visibleComments).map((comment) => (
+          comments.slice(0, visibleComments).map((comment, i) => (
             <div
-              className="text-sm space-y-2 border-b pb-2 mb-2"
+              className="text-sm space-y-1 border-b pb-2 mb-2"
               key={comment?._id}
             >
               <div className="flex justify-between items-center">
-                <div>
+                <div className="flex space-x-2">
                   <p className="font-medium">
-                    {comment?.user?.username || "Unknown User"}
+                    @{comment?.user?.username || "Unknown User"}
                   </p>
                   <p>{comment?.content || "No content provided"}</p>
                 </div>
@@ -189,7 +203,22 @@ function AllComments({ professorId }) {
                   )}
                 </div>
               </div>
-              {comment?.replies?.length > 0 && renderReplies(comment.replies)}
+              <div>
+                {comment?.replies?.length > 0 && (
+                  <>
+                    <button
+                      className="ml-1 flex items-center space-x-2 hover:text-gray-500 w-[85%] active:text-gray-400 text-gray-400 text-left p-0 bg-transparent cursor-pointer"
+                      onClick={() => toggleShowReplies(i)}
+                    >
+                      {showRepliesArray.includes(i)
+                        ? "Hide replies"
+                        : "View replies"}
+                    </button>
+                  </>
+                )}
+              </div>
+              {comment?.replies?.length > 0 &&
+                renderReplies(comment.replies, i)}
               {activeReplyId === comment._id && (
                 <div className="reply-input-container">
                   <textarea
