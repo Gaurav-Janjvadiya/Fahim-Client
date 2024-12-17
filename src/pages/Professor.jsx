@@ -21,7 +21,6 @@ function Professor() {
     cacheTime: 300000,
     refetchOnWindowFocus: false,
   });
-
   if (isLoading)
     return (
       <div className="h-screen w-full flex justify-center items-center">
@@ -68,7 +67,10 @@ function Professor() {
             </div>
 
             {/* Rating Box */}
-            <RateProfessor professorId={professor._id} />
+            <RateProfessor
+              professorId={professor._id}
+              ratings={professor.ratings}
+            />
             {/* Comments Section */}
             <AllComments professorId={professor._id} />
             {/* Comment Box */}

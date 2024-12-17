@@ -55,7 +55,10 @@ function Course() {
                 </p>
               </div>
             )}
-            <RateCourse courseReviewId={courseReviewId} />
+            <RateCourse
+              courseReviewId={courseReviewId}
+              ratings={courseReview.ratings}
+            />
             <CourseComments courseReviewId={courseReviewId} />
             <CourseCommentBox courseReviewId={courseReviewId} />
           </div>
