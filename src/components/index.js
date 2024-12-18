@@ -19,6 +19,7 @@ import CourseList from "./coursesPage/CourseList.jsx";
 import CourseComments from "./coursePage/AllComments.jsx";
 import CourseCommentBox from "./coursePage/CommentBox.jsx";
 import RateCourse from "./coursePage/RateCourse.jsx";
+import Input from "./Input.jsx"
 
 export {
   Logout,
@@ -41,5 +42,6 @@ export {
   CourseList,
   CourseComments,
   CourseCommentBox,
-  RateCourse
+  RateCourse,
+  Input
 };

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { rateCourseReview } from "../../api/courseReviewApi";
 import {
@@ -28,7 +28,6 @@ const RateCourse = ({ courseReviewId, avgRatings }) => {
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [snackbarSeverity, setSnackbarSeverity] = useState("success");
 
-  // Check if user has already rated
   const userId = getUserIdFromToken();
   const { mutate, isLoading } = useMutation({
     mutationFn: rateCourseReview,
@@ -77,14 +76,14 @@ const RateCourse = ({ courseReviewId, avgRatings }) => {
   const combinedRatings = ratingCategories.map((category, index) => ({
     label: category.label,
     name: category.name,
-    rating: avgRatings[index],
+    rating: avgRatings[index] || 0, // Ensure avgRatings[index] is never undefined
   }));
 
   return (
     <div className="w-full space-y-4">
       <h4 className="font-bold mb-2 text-white">Rate & Review</h4>
       <div className="space-y-2">
-        {combinedRatings.map(({ label, name, rating }, i) => (
+        {combinedRatings.map(({ label, name, rating }) => (
           <div
             key={name}
             className="grid grid-cols-1 sm:grid-cols-2 w-fit sm:space-y-0 space-y-1"
@@ -93,7 +92,7 @@ const RateCourse = ({ courseReviewId, avgRatings }) => {
             <Rating
               name="read-only"
               size="large"
-              value={rating}
+              value={rating} // Always use a defined value
               readOnly
               sx={{
                 "& .MuiRating-iconEmpty": { color: "#555" },
@@ -105,11 +104,7 @@ const RateCourse = ({ courseReviewId, avgRatings }) => {
         ))}
       </div>
 
-      <Button
-        className="mt-3 bg-[#39FF14] py-2 px-4 rounded-md font-medium hover:bg-[#0bda0a] transition duration-200 ease-in-out"
-        style={{ textShadow: "2px 2px 5px gray" }}
-        onClick={handleOpenDialog}
-      >
+      <Button style="rounded-xl" onClick={handleOpenDialog}>
         Rate Course
       </Button>
 
@@ -137,7 +132,7 @@ const RateCourse = ({ courseReviewId, avgRatings }) => {
                 <Rating
                   name={name}
                   size="large"
-                  value={rating[name]}
+                  value={rating[name] || 0} // Ensure rating[name] is never undefined
                   onChange={handleRateChange}
                   sx={{
                     "& .MuiRating-iconEmpty": { color: "#555" },
@@ -176,7 +171,6 @@ const RateCourse = ({ courseReviewId, avgRatings }) => {
         </DialogActions>
       </Dialog>
 
-      {/* Snackbar for success/error messages */}
       <Snackbar
         open={openSnackbar}
         autoHideDuration={4000}

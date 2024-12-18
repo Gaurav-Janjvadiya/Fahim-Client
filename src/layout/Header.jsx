@@ -59,7 +59,7 @@ function Header() {
     },
     {
       to: "/join-us",
-      text: "Join us",
+      text: "Join Us",
       type: NavLink,
     },
     {

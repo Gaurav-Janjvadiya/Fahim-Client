@@ -33,7 +33,7 @@ function CommentBox({ courseReviewId }) {
       />
       <Button
         onClick={() => mutation.mutate({ courseReviewId, comment: comment.comment })}
-        style={"rounded-lg"}
+        style={"rounded-xl"}
       >
         Post
       </Button>

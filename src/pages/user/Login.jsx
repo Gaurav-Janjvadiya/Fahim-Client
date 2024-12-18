@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,7 @@ import gif from "../../assets/gifs/login.gif";
 import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import { login as userLogin } from "../../api/authApi";
+import { Input } from "../../components";
 
 function Login() {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ function Login() {
     handleSubmit,
     register,
     formState: { errors },
+    watch,
   } = useForm({
     defaultValues: {
       email: "",
@@ -42,8 +44,9 @@ function Login() {
           <div className="backdrop-blur bg-[#1010108d] absolute sm:w-full max-w-md sm:p-10 p-5 border rounded-lg shadow-lg">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-1">Email</label>
-                <input
+                <Input
+                  label="Email"
+                  name="email"
                   {...register("email", {
                     required: "Email is required",
                     pattern: {
@@ -51,7 +54,7 @@ function Login() {
                       message: "Invalid email address",
                     },
                   })}
-                  className="w-full p-2 border bg-transparent text-[#F1F1F1] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  value={watch("email")} // Watch the value
                 />
                 {errors.email && (
                   <p className="text-red-500 text-sm mt-1">
@@ -61,11 +64,12 @@ function Login() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">
-                  Password
-                </label>
-                <input
+                <Input
+                  id="password"
+                  label="Password"
+                  name="password"
                   type="password"
+                  value={watch("password")}
                   {...register("password", {
                     required: "Password is required",
                     minLength: {
@@ -73,7 +77,6 @@ function Login() {
                       message: "Password must be at least 6 characters",
                     },
                   })}
-                  className="w-full p-2 border bg-transparent text-[#F1F1F1] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 {errors.password && (
                   <p className="text-red-500 text-sm mt-1">

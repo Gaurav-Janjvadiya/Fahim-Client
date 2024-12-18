@@ -6,12 +6,12 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  TextField,
   Button as MUIButton,
   Box,
   DialogContentText,
 } from "@mui/material";
 import { useState, useEffect } from "react";
+import { Input } from "../components";
 
 function Settings() {
   const [open, setOpen] = useState(false);
@@ -116,72 +116,22 @@ function Settings() {
           </DialogContentText>
 
           <Box>
-            <TextField
-              fullWidth
+            <Input
               id="outlined-username"
               label="Username"
               name="username"
               value={user?.username}
               onChange={handleChange}
-              variant="outlined"
-              sx={{
-                backgroundColor: "#2A2A2A",
-                "& .MuiInputLabel-root": {
-                  color: "#F1F1F1",
-                  "&.Mui-focused": {
-                    color: "#39FF14", // Label color on focus
-                  },
-                },
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: "#F1F1F1",
-                  },
-                  "&:hover fieldset": {
-                    borderColor: "#39FF14",
-                  },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "#39FF14",
-                  },
-                },
-                "& .MuiInputBase-input": {
-                  color: "#F1F1F1",
-                },
-              }}
             />
           </Box>
 
           <Box>
-            <TextField
-              fullWidth
+            <Input
               id="outlined-email"
               label="Email"
               name="email"
               value={user?.email}
               onChange={handleChange}
-              variant="outlined"
-              sx={{
-                backgroundColor: "#2A2A2A",
-                "& .MuiInputLabel-root": {
-                  color: "#F1F1F1",
-                  "&.Mui-focused": {
-                    color: "#39FF14",
-                  },
-                },
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: "#F1F1F1",
-                  },
-                  "&:hover fieldset": {
-                    borderColor: "#39FF14",
-                  },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "#39FF14",
-                  },
-                },
-                "& .MuiInputBase-input": {
-                  color: "#F1F1F1",
-                },
-              }}
             />
           </Box>
         </DialogContent>

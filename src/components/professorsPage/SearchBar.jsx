@@ -1,6 +1,8 @@
-import { TextField, Button, Box } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 import Fuse from "fuse.js";
 import { useState } from "react";
+import { Input } from "../";
 
 function SearchBar({ professors, setFilteredProfessors }) {
   const [value, setValue] = useState("");
@@ -32,7 +34,7 @@ function SearchBar({ professors, setFilteredProfessors }) {
 
   const handleChange = (e) => {
     setValue(e.target.value);
-    if (e.target.value == "") {
+    if (e.target.value === "") {
       setFilteredProfessors([]);
     }
   };
@@ -50,43 +52,29 @@ function SearchBar({ professors, setFilteredProfessors }) {
       onSubmit={handleSubmit}
       sx={{
         display: "flex",
-        flexDirection: "column",
         alignItems: "center",
-        gap: 2,
+        gap: 1,
         width: "100%",
         maxWidth: "400px",
         margin: "0 auto",
       }}
     >
-      <TextField
-        id="outlined-basic"
-        label="Search"
-        variant="outlined"
+      <Input
+        label={"Search"}
+        id={"outlined-basic"}
         value={value}
         onChange={handleChange}
-        fullWidth
-        sx={{
-          input: {
-            color: "#F1F1F1",
-          },
-          label: {
-            color: "#F1F1F1",
-          },
-          fieldset: {
-            borderColor: "#F1F1F1",
-          },
-          "& .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#39FF14",
-          },
-          "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline":
-            {
-              borderColor: "#39FF14",
-            },
-          "& .MuiInputLabel-root.Mui-focused": {
-            color: "#39FF14",
-          },
-        }}
       />
+      <div className="hover:bg-[#39FF141A] bg-[#1A1A1A] rounded-sm flex justify-center items-center h-14 w-14">
+        <IconButton
+          type="submit"
+          sx={{
+            color: "#39FF14",
+          }}
+        >
+          <SearchIcon />
+        </IconButton>
+      </div>
     </Box>
   );
 }

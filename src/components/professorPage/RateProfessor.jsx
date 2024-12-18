@@ -65,7 +65,6 @@ const RateProfessor = ({ professorId, avgRatings }) => {
   const handleCloseSnackbar = () => {
     setOpenSnackbar(false);
   };
-
   const handleOpenDialog = () => {
     setOpenDialog(true);
   };
@@ -94,7 +93,7 @@ const RateProfessor = ({ professorId, avgRatings }) => {
 
       {/* Display readonly average ratings */}
       <div className="space-y-2">
-        {combinedRatings.map(({ label, name, rating }, i) => (
+        {combinedRatings.map(({ label, name, rating }) => (
           <div
             key={name}
             className="grid grid-cols-1 sm:grid-cols-2 w-fit sm:space-y-0 space-y-1"
@@ -116,8 +115,7 @@ const RateProfessor = ({ professorId, avgRatings }) => {
       </div>
 
       <Button
-        className="mt-3 bg-[#39FF14] py-2 px-4 rounded-md font-medium hover:bg-[#0bda0a] transition duration-200 ease-in-out"
-        style={{ textShadow: "2px 2px 5px gray" }}
+        style={"rounded-xl"}
         onClick={handleOpenDialog}
       >
         Rate Professor

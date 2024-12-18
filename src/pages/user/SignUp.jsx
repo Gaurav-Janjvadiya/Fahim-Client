@@ -7,7 +7,8 @@ import { Button } from "../../components";
 import gif from "../../assets/gifs/signup.gif";
 import { signUp as userSignUp } from "../../api/authApi";
 import { getAllMajors } from "../../api/majorApi"; // Import the query function
-import CircularProgress from "@mui/material/CircularProgress";
+import { Select, MenuItem, CircularProgress } from "@mui/material";
+import { Input } from "../../components"; // Import the custom Input component
 
 function SignUp() {
   const [serverError, setServerError] = useState(null);
@@ -65,14 +66,14 @@ function SignUp() {
           <div className="backdrop-blur-sm absolute sm:w-full p-6 border rounded-lg shadow-lg">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium mb-1">
-                  Username
-                </label>
-                <input
+                <Input
+                  id="username"
+                  label="Username"
+                  name="username"
+                  value={watch("password")}
                   {...register("username", {
                     required: "Username is required",
                   })}
-                  className="w-full p-2 border bg-transparent text-[#F1F1F1] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 {errors.username && (
                   <p className="text-red-500 text-sm mt-1">
@@ -82,8 +83,11 @@ function SignUp() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">Email</label>
-                <input
+                <Input
+                  id="email"
+                  label="Email"
+                  name="email"
+                  value={watch("email")}
                   {...register("email", {
                     required: "Email is required",
                     pattern: {
@@ -91,7 +95,6 @@ function SignUp() {
                       message: "Invalid email address",
                     },
                   })}
-                  className="w-full p-2 border bg-transparent text-[#F1F1F1] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 {errors.email && (
                   <p className="text-red-500 text-sm mt-1">
@@ -133,11 +136,12 @@ function SignUp() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">
-                  Password
-                </label>
-                <input
+                <Input
+                  id="password"
+                  label="Password"
                   type="password"
+                  name="password"
+                  value={watch("password")}
                   {...register("password", {
                     required: "Password is required",
                     minLength: {
@@ -145,7 +149,6 @@ function SignUp() {
                       message: "Password must be at least 6 characters",
                     },
                   })}
-                  className="w-full p-2 border bg-transparent text-[#F1F1F1] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 {errors.password && (
                   <p className="text-red-500 text-sm mt-1">
@@ -155,17 +158,17 @@ function SignUp() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">
-                  Confirm Password
-                </label>
-                <input
+                <Input
+                  id="confirmPassword"
+                  label="Confirm Password"
                   type="password"
+                  name="confirmPassword"
+                  value={watch("confirmPassword")}
                   {...register("confirmPassword", {
                     required: "Please confirm your password",
                     validate: (value) =>
                       value === watch("password") || "Passwords don't match",
                   })}
-                  className="w-full p-2 border bg-transparent text-[#F1F1F1] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
                 {errors.confirmPassword && (
                   <p className="text-red-500 text-sm mt-1">
@@ -187,10 +190,10 @@ function SignUp() {
                     {...register("terms", {
                       required: "You must accept the terms and conditions",
                     })}
-                    className="w-4 h-4 border bg-transparent rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-4 h-4 border bg-red bg-transparent rounded focus:outline-none focus:ring-none"
                   />
                   <span className="ml-2 text-sm">
-                    I agree to the{" "}
+                    I agree to the
                     <Link
                       className="text-blue-400 hover:text-blue-300 underline"
                       to="/terms"
