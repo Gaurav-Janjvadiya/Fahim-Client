@@ -69,7 +69,6 @@ function Professor() {
             {/* Rating Box */}
             <RateProfessor
               professorId={professor._id}
-              ratings={professor.ratings}
               avgRatings={[
                 professor.avgTeachingQuality,
                 professor.avgFlexibility,
@@ -78,10 +77,10 @@ function Professor() {
                 professor.avgRecommendation,
               ]}
             />
-            {/* Comments Section */}
-            <AllComments professorId={professor._id} />
             {/* Comment Box */}
             <CommentBox professorId={professor._id} />
+            {/* Comments Section */}
+            <AllComments professorId={professor._id} />
           </div>
         </div>
       </div>

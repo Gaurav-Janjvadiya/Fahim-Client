@@ -62,6 +62,11 @@ function Header() {
       text: "Join us",
       type: NavLink,
     },
+    {
+      to: "/settings",
+      text: "Settings",
+      type: NavLink,
+    },
   ];
 
   // Toggle sidebar visibility

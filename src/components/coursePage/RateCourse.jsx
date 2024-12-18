@@ -14,7 +14,7 @@ import {
 import { Button } from "../";
 import getUserIdFromToken from "../../utils/getUserIdFromToken";
 
-const RateCourse = ({ courseReviewId, ratings, avgRatings }) => {
+const RateCourse = ({ courseReviewId, avgRatings }) => {
   const queryClient = useQueryClient();
   const [rating, setRating] = useState({
     teachingQuality: 0,
@@ -30,10 +30,6 @@ const RateCourse = ({ courseReviewId, ratings, avgRatings }) => {
 
   // Check if user has already rated
   const userId = getUserIdFromToken();
-  const hasRated =
-    Array.isArray(ratings) &&
-    ratings.some((rating) => rating.user?._id === userId);
-
   const { mutate, isLoading } = useMutation({
     mutationFn: rateCourseReview,
     onSuccess: () => {
@@ -50,18 +46,6 @@ const RateCourse = ({ courseReviewId, ratings, avgRatings }) => {
       setOpenSnackbar(true);
     },
   });
-
-  useEffect(() => {
-    if (!hasRated) {
-      setRating({
-        teachingQuality: 0,
-        courseMaterial: 0,
-        classParticipation: 0,
-        examsHomework: 0,
-        overallSatisfaction: 0,
-      });
-    }
-  }, [hasRated]);
 
   const handleRateChange = (event, newValue) => {
     setRating((prev) => ({ ...prev, [event.target.name]: newValue }));
@@ -120,19 +104,14 @@ const RateCourse = ({ courseReviewId, ratings, avgRatings }) => {
           </div>
         ))}
       </div>
-      {hasRated ? (
-        <p className="text-gray-400 text-sm">
-          You have already rated this course.
-        </p>
-      ) : (
-        <Button
-          className="mt-3 bg-[#39FF14] py-2 px-4 rounded-md font-medium hover:bg-[#0bda0a] transition duration-200 ease-in-out"
-          style={{ textShadow: "2px 2px 5px gray" }}
-          onClick={handleOpenDialog}
-        >
-          Rate Course
-        </Button>
-      )}
+
+      <Button
+        className="mt-3 bg-[#39FF14] py-2 px-4 rounded-md font-medium hover:bg-[#0bda0a] transition duration-200 ease-in-out"
+        style={{ textShadow: "2px 2px 5px gray" }}
+        onClick={handleOpenDialog}
+      >
+        Rate Course
+      </Button>
 
       {/* Dialog for Rating */}
       <Dialog

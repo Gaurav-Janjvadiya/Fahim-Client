@@ -66,8 +66,8 @@ function Course() {
                 courseReview.avgRecommendation,
               ]}
             />
-            <CourseComments courseReviewId={courseReviewId} />
             <CourseCommentBox courseReviewId={courseReviewId} />
+            <CourseComments courseReviewId={courseReviewId} />
           </div>
         </div>
       </div>

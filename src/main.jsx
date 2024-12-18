@@ -15,7 +15,8 @@ import {
   Professors,
   TermsAndConditions,
   Professor,
-  Course
+  Course,
+  Settings
 } from "./pages";
 
 const router = createBrowserRouter([
@@ -74,6 +75,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Professor />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/settings",
+        element: (
+          <ProtectedRoute>
+            <Settings />
           </ProtectedRoute>
         ),
       },

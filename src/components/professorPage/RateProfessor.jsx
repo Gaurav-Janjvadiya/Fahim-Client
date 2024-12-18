@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import { Button } from "../";
 
-const RateProfessor = ({ professorId, ratings, avgRatings }) => {
+const RateProfessor = ({ professorId, avgRatings }) => {
   const queryClient = useQueryClient();
   const [rating, setRating] = useState({
     teachingQuality: 0,
@@ -29,8 +29,6 @@ const RateProfessor = ({ professorId, ratings, avgRatings }) => {
   const [openDialog, setOpenDialog] = useState(false);
 
   const userId = getUserIdFromToken();
-  const hasRated =
-    Array.isArray(ratings) && ratings.some((rating) => rating.user === userId);
 
   const { mutate, isLoading } = useMutation({
     mutationFn: rateProfessor,
@@ -117,20 +115,13 @@ const RateProfessor = ({ professorId, ratings, avgRatings }) => {
         ))}
       </div>
 
-      {/* Check if user has already rated */}
-      {hasRated ? (
-        <p className="text-gray-400 text-sm">
-          You have already rated this professor.
-        </p>
-      ) : (
-        <Button
-          className="mt-3 bg-[#39FF14] py-2 px-4 rounded-md font-medium hover:bg-[#0bda0a] transition duration-200 ease-in-out"
-          style={{ textShadow: "2px 2px 5px gray" }}
-          onClick={handleOpenDialog}
-        >
-          Rate Professor
-        </Button>
-      )}
+      <Button
+        className="mt-3 bg-[#39FF14] py-2 px-4 rounded-md font-medium hover:bg-[#0bda0a] transition duration-200 ease-in-out"
+        style={{ textShadow: "2px 2px 5px gray" }}
+        onClick={handleOpenDialog}
+      >
+        Rate Professor
+      </Button>
 
       {/* Dialog for Rating */}
       <Dialog

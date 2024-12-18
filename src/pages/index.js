@@ -7,7 +7,8 @@ import JoinUs from "./JoinUs";
 import Professors from "./Professors";
 import TermsAndConditions from "./TermsAndConditions";
 import Professor from "./Professor";
-import Course from "./Course"
+import Course from "./Course";
+import Settings from "./Settings"
 
 export {
   Home,
@@ -19,6 +20,6 @@ export {
   Professors,
   TermsAndConditions,
   Professor,
-  Course
-  
+  Course,
+  Settings
 };
