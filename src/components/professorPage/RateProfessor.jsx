@@ -181,10 +181,14 @@ const RateProfessor = ({ professorId, ratings, avgRatings }) => {
           <MUIButton
             onClick={handleSubmit}
             variant="contained"
-            style={{
+            sx={{
               backgroundColor: "#39FF14",
               color: "black",
               textShadow: "2px 2px 5px gray",
+              "&.Mui-disabled": {
+                backgroundColor: "#9E9E9E", // Gray color for disabled state
+                color: "#1A1A1A", // Light gray text color for disabled state
+              },
             }}
             disabled={isLoading}
           >

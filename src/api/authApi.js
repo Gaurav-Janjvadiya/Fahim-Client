@@ -67,31 +67,27 @@ export const getAllUsers = async () => {
   }
 };
 
-export const getCurrentUser = async (setUserData, setError) => {
+export const getCurrentUser = async () => {
   const token = Cookies.get("jwt");
   if (!token) {
-    setError("No authentication token found.");
-    return;
+    throw new Error("No authentication token found.");
   }
   try {
     const { data } = await instance.get("/api/users/me", {
       headers: { Authorization: `Bearer ${token}` },
     });
-    setUserData({
-      username: data.username,
-      email: data.email,
-      major: data.major,
-    });
+    return data;
   } catch (e) {
     // Check if the error has a response (server responded with an error)
     if (e.response) {
-      setError(`Error: ${e.response.data.message || e.response.statusText}`);
+      throw new Error(
+        `Error: ${e.response.data.message || e.response.statusText}`
+      );
     } else if (e.request) {
-      setError("Network error. Please try again later.");
+      throw new Error("Network error. Please try again later.");
     } else {
-      setError("An unexpected error occurred.");
+      throw new Error("An unexpected error occurred.");
     }
-    console.log(e); // For debugging purposes
   }
 };
 
@@ -112,14 +108,7 @@ export const getUserById = async () => {
   }
 };
 
-export const updateUser = async ({
-  username,
-  email,
-  password,
-  major,
-  file,
-  courseNumbers,
-}) => {
+export const updateUser = async (userData) => {
   const token = Cookies.get("jwt");
   if (!token) {
     console.log("No token found");
@@ -130,25 +119,12 @@ export const updateUser = async ({
   const userId = decoded.id; // Extract user id from the token
 
   try {
-    const { data } = await instance.put(
-      `/api/users/${userId}`,
-      {
-        username,
-        email,
-        password,
-        major,
-        profileImage: file,
-        courseNumbers, // Assuming `courseNumbers` is an array of strings
+    const { data } = await instance.put(`/api/users/${userId}`, userData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
-
-    const { updatedUser: user } = data;
-    console.log("User updated:", updatedUser);
+    });
+    return data;
   } catch (e) {
     console.log("Error updating user:", e);
   }
