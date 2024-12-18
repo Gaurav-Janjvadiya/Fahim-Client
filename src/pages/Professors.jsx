@@ -16,6 +16,7 @@ function Professors() {
   const [filterByDepartment, setFilterByDepartment] = useState({
     department: "",
   });
+  const [filteredProfessors, setFilteredProfessors] = useState([]);
   const [sortOption, setSortOption] = useState("");
 
   // Use React Query's useQuery to fetch the professors with the object syntax
@@ -56,7 +57,10 @@ function Professors() {
   return (
     <div className="min-h-screen">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:p-8 p-4">
-        <SearchBar />
+        <SearchBar
+          professors={professors}
+          setFilteredProfessors={setFilteredProfessors}
+        />
         <SortBy sortOption={sortOption} setSortOption={setSortOption} />
         <FilterBy
           filterByTitle={filterByTitle}
@@ -72,7 +76,9 @@ function Professors() {
             <CircularProgress />
           </div>
         ) : (
-          <AllProfessors professors={professors} />
+          <AllProfessors
+            professors={filteredProfessors.length > 0 ? filteredProfessors : professors}
+          />
         )}
       </div>
 

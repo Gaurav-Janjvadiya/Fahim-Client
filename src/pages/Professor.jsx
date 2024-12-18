@@ -70,6 +70,13 @@ function Professor() {
             <RateProfessor
               professorId={professor._id}
               ratings={professor.ratings}
+              avgRatings={[
+                professor.avgTeachingQuality,
+                professor.avgFlexibility,
+                professor.avgExamsHomework,
+                professor.avgClassEnjoyment,
+                professor.avgRecommendation,
+              ]}
             />
             {/* Comments Section */}
             <AllComments professorId={professor._id} />

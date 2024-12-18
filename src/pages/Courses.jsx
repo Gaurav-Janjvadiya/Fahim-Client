@@ -17,6 +17,7 @@ function Courses() {
   const [sortOption, setSortOption] = useState("");
   const [filterByCourse, setFilterByCourse] = useState({ course: "" });
   const [filterByProfessor, setFilterByProfessor] = useState({ professor: "" });
+  const [filteredCourse, setFilteredCourse] = useState([]);
   const { data: courseReviews = [], isLoading } = useQuery({
     queryKey: [
       "courseReviews",
@@ -46,7 +47,10 @@ function Courses() {
   return (
     <div className="min-h-screen">
       <div className="grid grid-cols-1 sm:p-8 p-4 sm:grid-cols-3 md:grid-cols-3 gap-4">
-        <SearchBar />
+        <SearchBar
+          courses={courseReviews}
+          setFilteredCourse={setFilteredCourse}
+        />
         <SortBy sortOption={sortOption} setSortOption={setSortOption} />
         <FilterBy
           courseReviews={courseReviews}
@@ -66,7 +70,11 @@ function Courses() {
             No courses available to display.
           </p>
         ) : (
-          <CourseList courseReviews={courseReviews} />
+          <CourseList
+            courseReviews={
+              filteredCourse.length > 0 ? filteredCourse : courseReviews
+            }
+          />
         )}
       </div>
     </div>

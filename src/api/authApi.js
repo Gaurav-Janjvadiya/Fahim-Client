@@ -16,7 +16,7 @@ export const signUp = async (
 
     if (token) {
       dispatch(userLogin());
-      Cookies.set("jwt", token, { secure: true, expires: 1 }); // Expires in 1 day
+      Cookies.set("jwt", token, { secure: true, expires: 1 / 24 }); // Expires in 1 day
       navigate("/home");
     }
   } catch (e) {
@@ -37,7 +37,7 @@ export const login = async (
   try {
     const { data } = await instance.post("/api/users/signin", userData);
     if (data.token) {
-      Cookies.set("jwt", data.token, { secure: true, expires: 1 }); // Expires in 1 day
+      Cookies.set("jwt", data.token, { secure: true, expires: 1 / 24 }); // Expires in 1 day
       dispatch(userLogin());
       navigate("/home");
     } else {

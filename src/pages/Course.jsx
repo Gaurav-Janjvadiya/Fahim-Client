@@ -58,6 +58,13 @@ function Course() {
             <RateCourse
               courseReviewId={courseReviewId}
               ratings={courseReview.ratings}
+              avgRatings={[
+                courseReview.avgTeachingQuality,
+                courseReview.avgFlexibility,
+                courseReview.avgExamsHomework,
+                courseReview.avgClassEnjoyment,
+                courseReview.avgRecommendation,
+              ]}
             />
             <CourseComments courseReviewId={courseReviewId} />
             <CourseCommentBox courseReviewId={courseReviewId} />
