@@ -1,8 +1,8 @@
 import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 
-const SortBy = ({ setSortOption, sortOption }) => {
+const Sort = ({ setState, state, options = [] }) => {
   const handleChange = (event) => {
-    setSortOption(event.target.value);
+    setState(event.target.value);
   };
 
   return (
@@ -18,8 +18,8 @@ const SortBy = ({ setSortOption, sortOption }) => {
         sx={{
           color: "#F1F1F1",
           "&.Mui-focused": {
-            color: "#39FF14", // Custom label color when focused (gold in this case)
-          }, // Light text color for dark background
+            color: "#39FF14",
+          },
         }}
       >
         Sort By
@@ -27,19 +27,19 @@ const SortBy = ({ setSortOption, sortOption }) => {
       <Select
         labelId="sort-by-label"
         id="sort-by-label"
-        value={sortOption}
+        value={state}
         onChange={handleChange}
         label="Sort By"
         MenuProps={{
           PaperProps: {
             sx: {
-              backgroundColor: "#1A1A1A", // Dropdown menu background
-              color: "#F1F1F1", // Dropdown text color
+              backgroundColor: "#1A1A1A",
+              color: "#F1F1F1",
             },
           },
         }}
         sx={{
-          color: "#F1F1F1", // Text color
+          color: "#F1F1F1",
           "& .MuiOutlinedInput-notchedOutline": {
             borderColor: "#F1F1F1",
           },
@@ -47,18 +47,21 @@ const SortBy = ({ setSortOption, sortOption }) => {
             borderColor: "#39FF14",
           },
           "& .MuiSelect-icon": {
-            color: "#F1F1F1", // Change the color of the dropdown arrow icon
+            color: "#F1F1F1",
           },
           "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: "#39FF14", // Custom border color when focused (gold in this case)
+            borderColor: "#39FF14",
           },
         }}
       >
-        <MenuItem value="topCourses">Top Courses</MenuItem>
-        <MenuItem value="lowestRated">Lowest Rated Courses</MenuItem>
+        {options.map((option, i) => (
+          <MenuItem key={i} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
       </Select>
     </FormControl>
   );
 };
 
-export default SortBy;
+export default Sort;

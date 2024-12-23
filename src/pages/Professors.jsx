@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { SearchBar, AllProfessors, SortBy, FilterBy } from "../components"; // Adjust the path accordingly
+import {
+  SearchBar,
+  Sort,
+  FilterBy,
+  DataList,
+  ProfessorItem,
+} from "../components"; // Adjust the path accordingly
 import { useQuery } from "@tanstack/react-query";
 import {
   fetchLowestRatedProfessors,
@@ -7,7 +13,7 @@ import {
   fetchProfessorsByDepartment,
   fetchProfessorsByTitle,
 } from "../api/filterProffessors";
-import { getAllProfessors } from "../api/professorApi"; // Ensure this function returns a promise
+import { getAllProfessors } from "../api/professorApi";
 import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
 
@@ -19,7 +25,6 @@ function Professors() {
   const [filteredProfessors, setFilteredProfessors] = useState([]);
   const [sortOption, setSortOption] = useState("");
 
-  // Use React Query's useQuery to fetch the professors with the object syntax
   const {
     data: professors,
     isLoading,
@@ -54,14 +59,37 @@ function Professors() {
     },
   });
 
+  const sortOptions = [
+    { value: "topProfessors", label: "Top Professors" },
+    { value: "lowestRated", label: "Lowest Rated Professors" },
+  ];
+
   return (
     <div className="min-h-screen">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:p-8 p-4">
         <SearchBar
-          professors={professors}
-          setFilteredProfessors={setFilteredProfessors}
+          dataList={professors}
+          setFilteredDataList={setFilteredProfessors}
+          searchOptionKeys={[
+            {
+              name: "name",
+              weight: 0.7,
+            },
+            {
+              name: "title",
+              weight: 0.2,
+            },
+            {
+              name: "department.name",
+              weight: 0.1,
+            },
+          ]}
         />
-        <SortBy sortOption={sortOption} setSortOption={setSortOption} />
+        <Sort
+          statte={sortOption}
+          setState={setSortOption}
+          options={sortOptions}
+        />
         <FilterBy
           filterByTitle={filterByTitle}
           setFilterByTitle={setFilterByTitle}
@@ -76,8 +104,11 @@ function Professors() {
             <CircularProgress />
           </div>
         ) : (
-          <AllProfessors
-            professors={filteredProfessors.length > 0 ? filteredProfessors : professors}
+          <DataList
+            dataList={
+              filteredProfessors.length > 0 ? filteredProfessors : professors
+            }
+            Child={ProfessorItem}
           />
         )}
       </div>

@@ -62,7 +62,7 @@ export const deleteProfessor = async (professorId) => {
   }
 };
 
-export const rateProfessor = async ({ professorId, rating }) => {
+export const rateProfessor = async ({ id: professorId, rating }) => {
   const token = Cookies.get("jwt");
   try {
     const { data } = await instance.post(

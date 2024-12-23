@@ -14,7 +14,7 @@ import {
 
 function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const isAuth = useSelector((state) => state.isAuth);
+  const isAuth = useSelector((state) => state.auth.isAuth);
 
   // Links for unauthenticated users
   const unauthLinks = [
@@ -58,13 +58,13 @@ function Header() {
       type: NavLink,
     },
     {
-      to: "/join-us",
-      text: "Join Us",
+      to: "/settings",
+      text: "Settings",
       type: NavLink,
     },
     {
-      to: "/settings",
-      text: "Settings",
+      to: "/join-us",
+      text: "Join Us",
       type: NavLink,
     },
   ];

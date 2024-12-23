@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 const isAuth = () => {
-  return useSelector((state) => state.isAuth);
+  return useSelector((state) => state.auth.isAuth);
 };
 
 export default isAuth ;

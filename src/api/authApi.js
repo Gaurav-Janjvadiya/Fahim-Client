@@ -129,3 +129,82 @@ export const updateUser = async (userData) => {
     console.log("Error updating user:", e);
   }
 };
+
+export const addCourses = async (courseIds) => {
+  console.log(courseIds);
+  const token = Cookies.get("jwt");
+  if (!token) {
+    throw new Error("No authentication token found.");
+  }
+  try {
+    const { data } = await instance.post(
+      "/api/users/addcourses",
+      { courseIds },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    return data;
+  } catch (error) {
+    console.error("Error adding courses: ", error?.message, error);
+  }
+};
+
+export const removeCourses = async (courseIds) => {
+  console.log(courseIds);
+  const token = Cookies.get("jwt");
+  if (!token) {
+    throw new Error("No authentication token found.");
+  }
+  try {
+    const { data } = await instance.post(
+      "/api/users/removecourses",
+      { courseIds },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
+    return data;
+  } catch (error) {
+    console.error(
+      "Error removing courses: ",
+      error?.message || "An error occurred"
+    );
+  }
+};
+
+export const getEligibleCourses = async () => {
+  const token = Cookies.get("jwt");
+  if (!token) {
+    throw new Error("No authentication token found.");
+  }
+  try {
+    const { data } = await instance.get("/api/users/eligible/courses", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return data;
+  } catch (error) {
+    console.error(
+      "Error getting eligible courses: ",
+      error?.message || "An error occurred"
+    );
+  }
+};
+
+export const recommendTopCombinations = async () => {
+  const token = Cookies.get("jwt");
+  if (!token) {
+    throw new Error("No authentication token found.");
+  }
+  try {
+    const { data } = await instance.get("/api/users/recommendation/courses", {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    return data;
+  } catch (error) {
+    console.error(
+      "Error getting recommended courses: ",
+      error?.message || "An error occurred"
+    );
+  }
+};

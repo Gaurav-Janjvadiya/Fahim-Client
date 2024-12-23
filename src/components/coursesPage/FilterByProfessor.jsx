@@ -22,10 +22,9 @@ const FilterByProfessor = ({
   } = useQuery({
     queryKey: ["professors", filterByProfessor.professor],
     queryFn: getAllProfessors,
-    staleTime: 600000, // Data is fresh for 10 minutes
-    cacheTime: 900000, // Data stays in the cache for 15 minutes
-    refetchOnWindowFocus: true, // Refetch data when the window gains focus
-    retry: 3, // Retry failed queries 3 times before throwing an error
+    staleTime: 600000,
+    cacheTime: 900000,
+    refetchOnWindowFocus: true,
     onError: (err) => {
       console.error("Error fetching Professors:", err);
     },

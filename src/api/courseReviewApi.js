@@ -68,7 +68,7 @@ export const deleteCourseReview = async ({ id }) => {
   }
 };
 
-export const rateCourseReview = async ({ courseReviewId, rating }) => {
+export const rateCourseReview = async ({ id:courseReviewId, rating }) => {
   try {
     const token = Cookies.get("jwt");
     const { data } = await instance.post(

@@ -16,7 +16,8 @@ import {
   TermsAndConditions,
   Professor,
   Course,
-  Settings
+  Settings,
+  ManageCourses,
 } from "./pages";
 
 const router = createBrowserRouter([
@@ -35,6 +36,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Home />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/home/edit",
+        element: (
+          <ProtectedRoute>
+            <ManageCourses />
           </ProtectedRoute>
         ),
       },

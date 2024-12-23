@@ -1,10 +1,14 @@
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { getCourseReviewById } from "../api/courseReviewApi";
+import { getCourseReviewById, rateCourseReview } from "../api/courseReviewApi";
+import {
+  createCourseComment,
+  getCourseComments,
+} from "../api/courseCommentsApi";
 import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
-import { CourseCommentBox, CourseComments, RateCourse } from "../components";
+import { CommentBox, CommentList, RateComponent } from "../components";
 
 function Course() {
   const { courseReviewId } = useParams();
@@ -55,9 +59,8 @@ function Course() {
                 </p>
               </div>
             )}
-            <RateCourse
-              courseReviewId={courseReviewId}
-              ratings={courseReview.ratings}
+            <RateComponent
+              id={courseReviewId}
               avgRatings={[
                 courseReview.avgTeachingQuality,
                 courseReview.avgFlexibility,
@@ -65,9 +68,17 @@ function Course() {
                 courseReview.avgClassEnjoyment,
                 courseReview.avgRecommendation,
               ]}
+              ratingFunc={rateCourseReview}
+              text="Course"
             />
-            <CourseCommentBox courseReviewId={courseReviewId} />
-            <CourseComments courseReviewId={courseReviewId} />
+            <CommentBox
+              id={courseReviewId}
+              createCommentFunc={createCourseComment}
+            />
+            <CommentList
+              id={courseReviewId}
+              getCommentFunc={getCourseComments}
+            />
           </div>
         </div>
       </div>

@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../../components";
-import gif from "../../assets/gifs/login.gif";
+import { Button } from "../components";
+import gif from "../assets/gifs/login.gif";
 import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
-import { login as userLogin } from "../../api/authApi";
-import { Input } from "../../components";
+import { login as userLogin } from "../api/authApi";
+import { Input } from "../components";
 
 function Login() {
   const dispatch = useDispatch();

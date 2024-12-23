@@ -2,11 +2,11 @@ import instance from "./";
 import Cookies from "js-cookie";
 
 // Create a comment for a professor
-export const createProfessorComment = async ({ professorId, comment }) => {
+export const createProfessorComment = async ({ id: professorId, comment }) => {
   const token = Cookies.get("jwt");
   try {
     const { data } = await instance.post(
-      `/api/comments/professor/${professorId}`, // Route with "type" and "id"
+      `/api/comments/professor/${professorId}`,
       { content: comment }, // Request body with comment content
       {
         headers: {
@@ -25,7 +25,7 @@ export const createProfessorComment = async ({ professorId, comment }) => {
 };
 
 // Get comments for a specific professor
-export const getProfessorComments = async (professorId) => {
+export const getProfessorComments = async ({ id: professorId }) => {
   try {
     const { data } = await instance.get(
       `/api/comments/professor/${professorId}`

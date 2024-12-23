@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { rateCourseReview } from "../../api/courseReviewApi";
 import {
   Rating,
   Snackbar,
@@ -11,10 +10,10 @@ import {
   DialogActions,
   Button as MUIButton,
 } from "@mui/material";
-import { Button } from "../";
-import getUserIdFromToken from "../../utils/getUserIdFromToken";
+import { Button } from "../components";
+import getUserIdFromToken from "../utils/getUserIdFromToken";
 
-const RateCourse = ({ courseReviewId, avgRatings }) => {
+const RateCourse = ({ id, avgRatings, ratingFunc, text = "" }) => {
   const queryClient = useQueryClient();
   const [rating, setRating] = useState({
     teachingQuality: 0,
@@ -30,17 +29,22 @@ const RateCourse = ({ courseReviewId, avgRatings }) => {
 
   const userId = getUserIdFromToken();
   const { mutate, isLoading } = useMutation({
-    mutationFn: rateCourseReview,
+    mutationFn: ratingFunc,
     onSuccess: () => {
-      queryClient.invalidateQueries(["courses"]);
-      setSnackbarMessage("Course rated successfully!");
+      // Conditional query invalidation based on text (Course or Professor)
+      if (text === "Course") {
+        queryClient.invalidateQueries(["courses"]);
+      } else if (text === "Professor") {
+        queryClient.invalidateQueries(["professors"]);
+      }
+      setSnackbarMessage("Rated successfully!");
       setSnackbarSeverity("success");
       setOpenSnackbar(true);
       setOpenDialog(false);
     },
     onError: (error) => {
-      console.error("Failed to rate course:", error.message);
-      setSnackbarMessage("Failed to rate course. Please try again.");
+      console.error("Failed to rate:", error.message);
+      setSnackbarMessage("Failed to rate. Please try again.");
       setSnackbarSeverity("error");
       setOpenSnackbar(true);
     },
@@ -51,7 +55,14 @@ const RateCourse = ({ courseReviewId, avgRatings }) => {
   };
 
   const handleSubmit = () => {
-    mutate({ courseReviewId, rating });
+    mutate({ id, rating });
+    setRating({
+      teachingQuality: 0,
+      courseMaterial: 0,
+      classParticipation: 0,
+      examsHomework: 0,
+      overallSatisfaction: 0,
+    });
   };
 
   const handleCloseSnackbar = () => {
@@ -76,7 +87,7 @@ const RateCourse = ({ courseReviewId, avgRatings }) => {
   const combinedRatings = ratingCategories.map((category, index) => ({
     label: category.label,
     name: category.name,
-    rating: avgRatings[index] || 0, // Ensure avgRatings[index] is never undefined
+    rating: avgRatings[index] || 0,
   }));
 
   return (
@@ -105,7 +116,7 @@ const RateCourse = ({ courseReviewId, avgRatings }) => {
       </div>
 
       <Button style="rounded-xl" onClick={handleOpenDialog}>
-        Rate Course
+        Rate {text}
       </Button>
 
       {/* Dialog for Rating */}
@@ -120,7 +131,7 @@ const RateCourse = ({ courseReviewId, avgRatings }) => {
           },
         }}
       >
-        <DialogTitle style={{ color: "white" }}>Rate This Course</DialogTitle>
+        <DialogTitle style={{ color: "white" }}>Rate This {text}</DialogTitle>
         <DialogContent>
           <div className="space-y-2">
             {ratingCategories.map(({ label, name }) => (

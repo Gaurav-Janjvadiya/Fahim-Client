@@ -5,21 +5,22 @@ import Faq from "./landingPage/Faq.jsx";
 import Features from "./landingPage/Features.jsx";
 import HowItWorks from "./landingPage/HowItWorks.jsx";
 import Button from "./Button.jsx";
-import SearchBar from "./professorsPage/SearchBar.jsx";
-import ProfessorInfo from "./professorsPage/ProfessorInfo.jsx";
-import AllProfessors from "./professorsPage/AllProfessors.jsx";
-import SortBy from "./professorsPage/SortBy.jsx";
-import AllComments from "./professorPage/AllComments.jsx";
-import CommentBox from "./professorPage/CommentBox.jsx";
-import RateProfessor from "./professorPage/RateProfessor.jsx";
+import ProfessorItem from "./ProfessorItem.jsx";
 import FilterByDepartment from "./professorsPage/FilterByDepartment.jsx";
 import FilterBy from "./professorsPage/FilterBy.jsx";
 import FilterByTitle from "./professorsPage/FilterByTitle.jsx";
-import CourseList from "./coursesPage/CourseList.jsx";
-import CourseComments from "./coursePage/AllComments.jsx";
-import CourseCommentBox from "./coursePage/CommentBox.jsx";
-import RateCourse from "./coursePage/RateCourse.jsx";
-import Input from "./Input.jsx"
+import Input from "./Input.jsx";
+import DropdownSelect from "./DropdownSelect.jsx";
+import Card from "./Card.jsx";
+import CommentBox from "./CommentBox.jsx";
+import CommentList from "./CommentList.jsx";
+import RateComponent from "./RateComponent.jsx";
+import DataList from "./DataList.jsx";
+import CourseItem from "./CourseItem.jsx";
+import SearchBar from "./SearchBar.jsx";
+import Sort from "./Sort.jsx";
+import CustomNode from "./CustomNode.jsx";
+import CourseFlow from "./CourseFlow.jsx";
 
 export {
   Logout,
@@ -29,19 +30,20 @@ export {
   Features,
   HowItWorks,
   Button,
-  SearchBar,
-  ProfessorInfo,
-  AllProfessors,
-  SortBy,
-  AllComments,
-  RateProfessor,
-  CommentBox,
+  ProfessorItem,
   FilterBy,
   FilterByTitle,
   FilterByDepartment,
-  CourseList,
-  CourseComments,
-  CourseCommentBox,
-  RateCourse,
-  Input
+  CommentList,
+  Input,
+  DropdownSelect,
+  Card,
+  CommentBox,
+  RateComponent,
+  DataList,
+  CourseItem,
+  SearchBar,
+  Sort,
+  CustomNode,
+  CourseFlow,
 };

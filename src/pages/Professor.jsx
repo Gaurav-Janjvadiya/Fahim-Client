@@ -1,11 +1,15 @@
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { getProfessorById } from "../api/professorApi";
+import { getProfessorById, rateProfessor } from "../api/professorApi";
+import {
+  createProfessorComment,
+  getProfessorComments,
+} from "../api/proffessorComments";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Box } from "@mui/material";
 import Alert from "@mui/material/Alert";
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
-import { CommentBox, AllComments, RateProfessor } from "../components";
+import { CommentBox, CommentList, RateComponent } from "../components";
 
 function Professor() {
   const { professorId } = useParams();
@@ -67,8 +71,8 @@ function Professor() {
             </div>
 
             {/* Rating Box */}
-            <RateProfessor
-              professorId={professor._id}
+            <RateComponent
+              id={professor._id}
               avgRatings={[
                 professor.avgTeachingQuality,
                 professor.avgFlexibility,
@@ -76,11 +80,19 @@ function Professor() {
                 professor.avgClassEnjoyment,
                 professor.avgRecommendation,
               ]}
+              ratingFunc={rateProfessor}
+              text="Professor"
             />
             {/* Comment Box */}
-            <CommentBox professorId={professor._id} />
+            <CommentBox
+              id={professor._id}
+              createCommentFunc={createProfessorComment}
+            />
             {/* Comments Section */}
-            <AllComments professorId={professor._id} />
+            <CommentList
+              id={professorId}
+              getCommentFunc={getProfessorComments}
+            />
           </div>
         </div>
       </div>

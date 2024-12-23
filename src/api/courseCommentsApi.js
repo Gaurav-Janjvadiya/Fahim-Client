@@ -1,7 +1,7 @@
 import instance from "./";
 import Cookies from "js-cookie";
 
-export const createCourseComment = async ({ courseReviewId: id, comment }) => {
+export const createCourseComment = async ({ id, comment }) => {
   const token = Cookies.get("jwt");
   try {
     const { data } = await instance.post(
@@ -34,7 +34,7 @@ export const getCourseComments = async ({ id }) => {
   }
 };
 
-export const deleteCourseComment = async (commentId ) => {
+export const deleteCourseComment = async (commentId) => {
   const token = Cookies.get("jwt");
   try {
     const { data } = await instance.delete(`/api/comments/${commentId}`, {

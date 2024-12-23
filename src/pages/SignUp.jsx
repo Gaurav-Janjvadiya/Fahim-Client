@@ -3,12 +3,18 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { Button } from "../../components";
-import gif from "../../assets/gifs/signup.gif";
-import { signUp as userSignUp } from "../../api/authApi";
-import { getAllMajors } from "../../api/majorApi"; // Import the query function
-import { Select, MenuItem, CircularProgress } from "@mui/material";
-import { Input } from "../../components"; // Import the custom Input component
+import { Button } from "../components";
+import gif from "../assets/gifs/signup.gif";
+import { signUp as userSignUp } from "../api/authApi";
+import { getAllMajors } from "../api/majorApi";
+import {
+  Select,
+  MenuItem,
+  CircularProgress,
+  FormControl,
+  InputLabel,
+} from "@mui/material";
+import { Input, DropdownSelect } from "../components";
 
 function SignUp() {
   const [serverError, setServerError] = useState(null);
@@ -51,7 +57,7 @@ function SignUp() {
   };
 
   if (error) {
-    return <div>Error fetching majors. Please try again later.</div>; // Show error message if fetching fails
+    return <div>Error fetching majors. Please try again later.</div>;
   }
 
   return (
@@ -70,7 +76,7 @@ function SignUp() {
                   id="username"
                   label="Username"
                   name="username"
-                  value={watch("password")}
+                  value={watch("username")}
                   {...register("username", {
                     required: "Username is required",
                   })}
@@ -104,35 +110,79 @@ function SignUp() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">Major</label>
-                <select
-                  {...register("major", { required: "Please select a major" })}
-                  className="w-full p-2 border bg-transparent text-[#F1F1F1] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                <FormControl
+                  fullWidth
+                  error={Boolean(errors.major)}
+                  sx={{ bgcolor: "transparent" }}
                 >
-                  <option className="bg-[#1a1a1a] text-[#F1F1F1]" value="">
-                    Select your major
-                  </option>
-                  {isLoading ? (
-                    <div>
-                      <CircularProgress />
-                    </div>
-                  ) : (
-                    majors.map((major) => (
-                      <option
-                        className="bg-[#1A1A1A] text-[#F1F1F1]"
-                        key={major.id}
-                        value={major.name}
-                      >
-                        {major.name}
-                      </option>
-                    ))
+                  <InputLabel
+                    id="major-label"
+                    sx={{
+                      color: "#F1F1F1",
+                      "&.Mui-focused": {
+                        color: "#39FF14",
+                      },
+                    }}
+                  >
+                    Major
+                  </InputLabel>
+                  <Select
+                    {...register("major", {
+                      required: "Please select a major",
+                    })}
+                    labelId="major-label"
+                    label="Major"
+                    defaultValue=""
+                    MenuProps={{
+                      PaperProps: {
+                        sx: {
+                          backgroundColor: "#1A1A1A",
+                          color: "#F1F1F1",
+                        },
+                      },
+                    }}
+                    sx={{
+                      color: "#F1F1F1",
+                      "& .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#F1F1F1",
+                      },
+                      "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#39FF14",
+                      },
+                      "& .MuiSelect-icon": {
+                        color: "#F1F1F1",
+                      },
+                      "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#39FF14",
+                      },
+                    }}
+                  >
+                    {isLoading ? (
+                      <MenuItem disabled>
+                        <CircularProgress size={24} sx={{ color: "#F1F1F1" }} />
+                      </MenuItem>
+                    ) : (
+                      majors.map((major, index) => (
+                        <MenuItem
+                          sx={{
+                            backgroundColor: "#1A1A1A",
+                            color: "#F1F1F1",
+                          }}
+                          key={major.id || index}
+                          value={major.name}
+                        >
+                          {major.name}
+                        </MenuItem>
+                      ))
+                    )}
+                  </Select>
+
+                  {errors.major && (
+                    <FormHelperText sx={{ color: "red", fontSize: "0.875rem" }}>
+                      {errors.major.message}
+                    </FormHelperText>
                   )}
-                </select>
-                {errors.major && (
-                  <p className="text-red-500 text-sm mt-1">
-                    {errors.major.message}
-                  </p>
-                )}
+                </FormControl>
               </div>
 
               <div>
@@ -195,7 +245,7 @@ function SignUp() {
                   <span className="ml-2 text-sm">
                     I agree to the
                     <Link
-                      className="text-blue-400 hover:text-blue-300 underline"
+                      className="text-blue-400 ml-1 hover:text-blue-300 underline"
                       to="/terms"
                     >
                       Terms and Conditions

@@ -1,25 +1,24 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import {
-  getCourseComments,
   replyToCourseComment,
   deleteCourseComment,
-} from "../../api/courseCommentsApi";
+} from "../api/courseCommentsApi";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Alert } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import ReplyIcon from "@mui/icons-material/Reply";
 import DeleteIcon from "@mui/icons-material/Delete";
-import getUserIdFromToken from "../../utils/getUserIdFromToken";
+import getUserIdFromToken from "../utils/getUserIdFromToken";
 
-function AllComments({ courseReviewId }) {
+function AllComments({ id, getCommentFunc = () => {} }) {
   const [reply, setReply] = useState("");
   const [activeReplyId, setActiveReplyId] = useState(null);
   const initialVisibleComments = 2;
   const [visibleComments, setVisibleComments] = useState(
     initialVisibleComments
   );
-  const [visibleReplies, setVisibleReplies] = useState({});  // Track visibility of replies
+  const [visibleReplies, setVisibleReplies] = useState({}); // Track visibility of replies
   const queryClient = useQueryClient();
 
   const {
@@ -29,8 +28,8 @@ function AllComments({ courseReviewId }) {
     error,
     isFetching,
   } = useQuery({
-    queryKey: ["comments", courseReviewId],
-    queryFn: () => getCourseComments({ id: courseReviewId }),
+    queryKey: ["comments", id],
+    queryFn: () => getCommentFunc({ id }),
     staleTime: 60000,
     cacheTime: 300000,
     refetchOnWindowFocus: false,
@@ -39,14 +38,14 @@ function AllComments({ courseReviewId }) {
   const replyMutation = useMutation({
     mutationFn: replyToCourseComment,
     onSuccess: () => {
-      queryClient.invalidateQueries(["comments", courseReviewId]);
+      queryClient.invalidateQueries(["comments", id]);
     },
   });
 
   const deleteMutation = useMutation({
     mutationFn: deleteCourseComment,
     onSuccess: () => {
-      queryClient.invalidateQueries(["comments", courseReviewId]);
+      queryClient.invalidateQueries(["comments", id]);
     },
   });
 
@@ -75,7 +74,9 @@ function AllComments({ courseReviewId }) {
       [commentId]: !prev[commentId], // Toggle the visibility
     }));
   };
-
+  if (error) {
+    console.error(error);
+  }
   const renderReplies = (replies) => {
     if (!Array.isArray(replies) || replies.length === 0) return null;
     return replies.map((reply) => (
