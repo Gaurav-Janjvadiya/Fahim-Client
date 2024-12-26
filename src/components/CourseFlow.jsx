@@ -8,20 +8,28 @@ const nodeTypes = {
 };
 
 const CourseFlow = () => {
-  const firstNodePosition = nodes[0]?.position || [0, 0];
+  const firstNodePosition = nodes[0]?.position || { x: 0, y: 0 };
 
   return (
-    <>
+    <div className="relative w-full h-screen sm:h-[calc(100vh-4rem)] overflow-hidden">
       <ReactFlowProvider>
         <ReactFlow
           nodeTypes={nodeTypes}
           nodes={nodes}
           edges={initialEdges}
-          defaultposition={[firstNodePosition.x, firstNodePosition.y]}
-          className="rounded-lg h-full w-full"
+          defaultViewport={{
+            x: firstNodePosition.x,
+            y: firstNodePosition.y,
+            zoom: 1,
+          }}
+          fitView
+          fitViewOptions={{
+            padding: 0.2,
+          }}
+          className="rounded-lg w-full h-full"
         />
       </ReactFlowProvider>
-    </>
+    </div>
   );
 };
 

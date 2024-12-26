@@ -191,20 +191,21 @@ export const getEligibleCourses = async () => {
   }
 };
 
-export const recommendTopCombinations = async () => {
+export const recommendTopCombinations = async (creditLimit) => {
+  console.log("CreditLimit", creditLimit);
   const token = Cookies.get("jwt");
   if (!token) {
     throw new Error("No authentication token found.");
   }
   try {
-    const { data } = await instance.get("/api/users/recommendation/courses", {
-      headers: { Authorization: `Bearer ${token}` },
-    });
+    const { data } = await instance.get(
+      `/api/users/recommendation/courses/${creditLimit}`,
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    );
     return data;
   } catch (error) {
-    console.error(
-      "Error getting recommended courses: ",
-      error?.message || "An error occurred"
-    );
+    console.error("Error getting recommended courses: ", error?.response?.data);
   }
 };

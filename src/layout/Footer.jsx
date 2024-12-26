@@ -33,14 +33,14 @@ function Footer() {
               <FaDiscord size={24} />
             </a>
             <a
-              href="https://www.linkedin.com"
+              href="https://www.instagram.com/fahim_officia1/"
               target="_blank"
               rel="noopener noreferrer"
             >
               <FaInstagram size={24} />
             </a>
             <a
-              href="https://www.instagram.com/fahim_officia1/"
+              href="https://www.linkedin.com/in/gaurav-j-985294271/"
               target="_blank"
               rel="noopener noreferrer"
             >

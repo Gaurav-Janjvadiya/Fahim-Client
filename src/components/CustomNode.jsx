@@ -40,6 +40,7 @@ const CustomNode = ({ data }) => {
         border: "1px solid #333",
         borderRadius: "8px",
         cursor: "pointer",
+        backgroundColor: "#121212", // Consistent background
       }}
     >
       <Handle

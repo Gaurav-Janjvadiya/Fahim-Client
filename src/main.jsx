@@ -18,6 +18,7 @@ import {
   Course,
   Settings,
   ManageCourses,
+  MoreCourses
 } from "./pages";
 
 const router = createBrowserRouter([
@@ -44,6 +45,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <ManageCourses />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/home/moreCourses",
+        element: (
+          <ProtectedRoute>
+            <MoreCourses />
           </ProtectedRoute>
         ),
       },

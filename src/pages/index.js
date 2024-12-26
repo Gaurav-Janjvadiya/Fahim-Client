@@ -10,6 +10,7 @@ import Professor from "./Professor";
 import Course from "./Course";
 import Settings from "./Settings";
 import ManageCourses from "./ManageCourses";
+import MoreCourses from "./MoreCourses"
 
 export {
   Home,
@@ -23,5 +24,6 @@ export {
   Professor,
   Course,
   Settings,
-  ManageCourses
+  ManageCourses,
+  MoreCourses
 };
