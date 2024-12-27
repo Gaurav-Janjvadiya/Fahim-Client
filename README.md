@@ -83,7 +83,7 @@ The backend for the Fahim project can be found in this repository:
 ## Website
 
 You can visit the Fahim website here:
-[Fahim Website](https://gaurav-and-hala-s-fahim.netlify.app/)
+[Fahim Website](https://fahim-edu.netlify.app/)
 
 ## Contributing
 We welcome contributions! Feel free to fork the repository and submit pull requests. For major changes, please open an issue first to discuss what you would like to change.
