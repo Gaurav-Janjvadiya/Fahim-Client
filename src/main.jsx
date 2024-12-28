@@ -1,9 +1,9 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./index.css";
-import App from "./App.jsx";
-import ProtectedRoute from "./utils/ProtectedRoute.jsx";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
+import App from './App.jsx';
+import ProtectedRoute from './utils/ProtectedRoute.jsx';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import {
   Home,
@@ -18,22 +18,22 @@ import {
   Course,
   Settings,
   ManageCourses,
-  MoreCourses
-} from "./pages";
+  MoreCourses,
+} from './pages';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <App />,
     children: [
-      { path: "/", element: <LandingPage /> },
-      { path: "/signup", element: <SignUp /> },
-      { path: "/login", element: <Login /> },
-      { path: "/terms", element: <TermsAndConditions /> },
+      { path: '/', element: <LandingPage /> },
+      { path: '/signup', element: <SignUp /> },
+      { path: '/login', element: <Login /> },
+      { path: '/terms', element: <TermsAndConditions /> },
 
       // Protecting all routes
       {
-        path: "/home",
+        path: '/home',
         element: (
           <ProtectedRoute>
             <Home />
@@ -41,7 +41,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/home/edit",
+        path: '/home/edit',
         element: (
           <ProtectedRoute>
             <ManageCourses />
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/home/moreCourses",
+        path: '/home/moreCourses',
         element: (
           <ProtectedRoute>
             <MoreCourses />
@@ -57,7 +57,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/courses",
+        path: '/courses',
         element: (
           <ProtectedRoute>
             <Courses />
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/courses/:courseReviewId",
+        path: '/courses/:courseReviewId',
         element: (
           <ProtectedRoute>
             <Course />
@@ -73,7 +73,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/join-us",
+        path: '/join-us',
         element: (
           <ProtectedRoute>
             <JoinUs />
@@ -81,7 +81,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/professors",
+        path: '/professors',
         element: (
           <ProtectedRoute>
             <Professors />
@@ -89,7 +89,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/professors/:professorId",
+        path: '/professors/:professorId',
         element: (
           <ProtectedRoute>
             <Professor />
@@ -97,7 +97,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/settings",
+        path: '/settings',
         element: (
           <ProtectedRoute>
             <Settings />
@@ -106,15 +106,15 @@ const router = createBrowserRouter([
       },
     ],
     errorElement: (
-      <h1 className="text-4xl flex justify-center items-center font-bold text-center text-red-600">
+      <h1 className='text-4xl flex justify-center items-center font-bold text-center text-red-600'>
         404 Not Found
       </h1>
     ),
   },
 ]);
 
-createRoot(document.getElementById("root")).render(
+createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
-  </StrictMode>
+  </StrictMode>,
 );

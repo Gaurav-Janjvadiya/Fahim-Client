@@ -1,4 +1,5 @@
-import { Card } from ".";
+import { Card } from '.';
+import PropTypes from 'prop-types';
 
 function CourseItem({ dataItem }) {
   return (
@@ -10,5 +11,9 @@ function CourseItem({ dataItem }) {
     />
   );
 }
+
+CourseItem.propTypes = {
+  dataItem: PropTypes.object,
+};
 
 export default CourseItem;

@@ -1,11 +1,11 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
-import Cookies from "js-cookie";
+import { configureStore, createSlice } from '@reduxjs/toolkit';
+import Cookies from 'js-cookie';
 
 // Create a slice for authentication
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState: {
-    isAuth: Boolean(Cookies.get("jwt")),
+    isAuth: Boolean(Cookies.get('jwt')),
   },
   reducers: {
     login: (state) => {
@@ -13,13 +13,13 @@ const authSlice = createSlice({
     },
     logout: (state) => {
       state.isAuth = false;
-      Cookies.remove("jwt");
+      Cookies.remove('jwt');
     },
   },
 });
 
 const courseSlice = createSlice({
-  name: "courses",
+  name: 'courses',
   initialState: {
     courses: [],
   },
@@ -29,7 +29,7 @@ const courseSlice = createSlice({
     },
     removeCourse: (state, action) => {
       state.courses = state.courses.filter(
-        (course) => course !== action.payload
+        (course) => course !== action.payload,
       );
     },
   },

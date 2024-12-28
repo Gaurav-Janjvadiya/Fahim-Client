@@ -4,12 +4,13 @@ import {
   Radio,
   RadioGroup,
   Typography,
-} from "@mui/material";
+} from '@mui/material';
+import PropTypes from "prop-types"
 
 const FilterByCourse = ({
   courseReviews,
   filterByCourse,
-  setFilterByCourse = () => {},
+  setFilterByCourse,
 }) => {
   const handleFilterChange = (event, filterType) => {
     setFilterByCourse((prev) => ({
@@ -20,29 +21,29 @@ const FilterByCourse = ({
   return (
     <div>
       <FormControl
-        component="fieldset"
+        component='fieldset'
         sx={{
-          position: "relative",
+          position: 'relative',
           zIndex: 1,
-          marginTop: "1px",
-          width: "100%",
-          backgroundColor: "#1A1A1A",
+          marginTop: '1px',
+          width: '100%',
+          backgroundColor: '#1A1A1A',
         }}
       >
         <Typography
-          variant="subtitle1"
+          variant='subtitle1'
           gutterBottom
-          sx={{ color: "#fff", marginBottom: "1px" }}
+          sx={{ color: '#fff', marginBottom: '1px' }}
         >
           Course
         </Typography>
         <RadioGroup
-          value={filterByCourse?.course || ""}
-          onChange={(e) => handleFilterChange(e, "course")}
+          value={filterByCourse?.course || ''}
+          onChange={(e) => handleFilterChange(e, 'course')}
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            "& .MuiFormControlLabel-label": { color: "#fff" },
+            display: 'flex',
+            flexDirection: 'column',
+            '& .MuiFormControlLabel-label': { color: '#fff' },
           }}
         >
           {courseReviews.map((courseReview) => (
@@ -52,8 +53,8 @@ const FilterByCourse = ({
               control={
                 <Radio
                   sx={{
-                    color: "#39FF14",
-                    "&.Mui-checked": { color: "#39FF14" },
+                    color: '#39FF14',
+                    '&.Mui-checked': { color: '#39FF14' },
                   }}
                 />
               }
@@ -61,7 +62,7 @@ const FilterByCourse = ({
                 courseReview.course.name.charAt(0).toUpperCase() +
                 courseReview.course.name.slice(1)
               }
-              sx={{ "& .MuiFormControlLabel-label": { whiteSpace: "nowrap" } }}
+              sx={{ '& .MuiFormControlLabel-label': { whiteSpace: 'nowrap' } }}
             />
           ))}
         </RadioGroup>
@@ -69,5 +70,11 @@ const FilterByCourse = ({
     </div>
   );
 };
+
+FilterByCourse.propTypes = {
+  courseReviews: PropTypes.array,
+  filterByCourse: PropTypes.object,
+  setFilterByCourse: PropTypes.func,
+}
 
 export default FilterByCourse;

@@ -1,4 +1,5 @@
 # Fahim Client
+
 A frontend interface for the Fahim course and professor recommendation website at Kuwait University's College of Engineering and Petroleum. Built using the MERN stack (MongoDB, Express, React, Node.js) for a seamless user experience.
 
 ## Table of Contents
@@ -12,7 +13,8 @@ A frontend interface for the Fahim course and professor recommendation website a
 7. [Backend Repository](#backend-repository)
 8. [Website](#Website)
 9. [Contributing](#Contributing)
-## Introduction 
+
+## Introduction
 
 Fahim is a recommendation system designed to help students at Kuwait University's College of Engineering and Petroleum. The frontend provides an intuitive user interface for students to sign up, log in, explore courses and professors, view reviews, manage their profiles, and track their academic progress.
 
@@ -31,17 +33,20 @@ Fahim is a recommendation system designed to help students at Kuwait University'
 To set up the frontend on your local machine, follow these steps:
 
 1. **Clone the Repository**:
+
    ```bash
    git clone https://github.com/Gaurav-Janjvadiya/Fahim-Client.git
    cd Fahim-Client
    ```
 
 2. **Install Dependencies**:
+
    ```bash
    npm install
    ```
 
 3. **Run the Development Server**:
+
    ```bash
    npm run dev
    ```
@@ -61,11 +66,13 @@ To set up the frontend on your local machine, follow these steps:
 ## Additional Setup
 
 For production builds, you can build the app using:
+
 ```bash
 npm run build
 ```
 
 To preview the production build locally:
+
 ```bash
 npm run preview
 ```
@@ -86,4 +93,5 @@ You can visit the Fahim website here:
 [Fahim Website](https://fahim-edu.netlify.app/)
 
 ## Contributing
+
 We welcome contributions! Feel free to fork the repository and submit pull requests. For major changes, please open an issue first to discuss what you would like to change.

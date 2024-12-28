@@ -1,14 +1,14 @@
-import React, { useState } from "react";
-import { Element } from "react-scroll";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { Element } from 'react-scroll';
+import { Link } from 'react-router-dom';
 import {
   Accordion,
   AccordionSummary,
   AccordionDetails,
   Typography,
-} from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Button } from "../";
+} from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { Button } from '../';
 
 function Faq() {
   const [expanded, setExpanded] = useState(false);
@@ -19,29 +19,29 @@ function Faq() {
   return (
     <>
       {/* Q&A */}
-      <Element className="faq">
-        <div className="w-full flex flex-col sm:flex-row sm:space-y-0 space-y-8 px-4 sm:px-12">
-          <div className="sm:w-1/2 flex justify-start items-start space-y-8 flex-col">
-            <h4 className="font-semibold text-[#39FF14]">FAQs</h4>
-            <h1 className="font-semibold text-wrap text-4xl">
+      <Element className='faq'>
+        <div className='w-full flex flex-col sm:flex-row sm:space-y-0 space-y-8 px-4 sm:px-12'>
+          <div className='sm:w-1/2 flex justify-start items-start space-y-8 flex-col'>
+            <h4 className='font-semibold text-[#39FF14]'>FAQs</h4>
+            <h1 className='font-semibold text-wrap text-4xl'>
               Got Questions? We Have Answers!
             </h1>
-            <Button>
-              <Link to="/signup">Get Started</Link>
+            <Button type='' onClick={() => {}}>
+              <Link to='/signup'>Get Started</Link>
             </Button>
           </div>
-          <div className="sm:w-1/2 w-full">
-            <div className="overflow-hidden rounded-lg">
+          <div className='sm:w-1/2 w-full'>
+            <div className='overflow-hidden rounded-lg'>
               <Accordion
                 sx={{
-                  backgroundColor: "#1A1A1A",
-                  color: "#F1F1F1",
+                  backgroundColor: '#1A1A1A',
+                  color: '#F1F1F1',
                 }}
-                expanded={expanded === "panel1"}
-                onChange={handleChange("panel1")}
+                expanded={expanded === 'panel1'}
+                onChange={handleChange('panel1')}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon sx={{ color: "#F1F1F1" }} />}
+                  expandIcon={<ExpandMoreIcon sx={{ color: '#F1F1F1' }} />}
                 >
                   <Typography>What is Fahim?</Typography>
                 </AccordionSummary>
@@ -54,12 +54,12 @@ function Faq() {
                 </AccordionDetails>
               </Accordion>
               <Accordion
-                sx={{ backgroundColor: "#1A1A1A", color: "#F1F1F1" }}
-                expanded={expanded === "panel2"}
-                onChange={handleChange("panel2")}
+                sx={{ backgroundColor: '#1A1A1A', color: '#F1F1F1' }}
+                expanded={expanded === 'panel2'}
+                onChange={handleChange('panel2')}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon sx={{ color: "#F1F1F1" }} />}
+                  expandIcon={<ExpandMoreIcon sx={{ color: '#F1F1F1' }} />}
                 >
                   <Typography>
                     Is Fahim available for all universities?
@@ -76,12 +76,12 @@ function Faq() {
                 </AccordionDetails>
               </Accordion>
               <Accordion
-                sx={{ backgroundColor: "#1A1A1A", color: "#F1F1F1" }}
-                expanded={expanded === "panel3"}
-                onChange={handleChange("panel3")}
+                sx={{ backgroundColor: '#1A1A1A', color: '#F1F1F1' }}
+                expanded={expanded === 'panel3'}
+                onChange={handleChange('panel3')}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon sx={{ color: "#F1F1F1" }} />}
+                  expandIcon={<ExpandMoreIcon sx={{ color: '#F1F1F1' }} />}
                 >
                   <Typography>
                     Is Fahim only for students, or can educators use it too?
@@ -95,12 +95,12 @@ function Faq() {
                 </AccordionDetails>
               </Accordion>
               <Accordion
-                sx={{ backgroundColor: "#1A1A1A", color: "#F1F1F1" }}
-                expanded={expanded === "panel4"}
-                onChange={handleChange("panel4")}
+                sx={{ backgroundColor: '#1A1A1A', color: '#F1F1F1' }}
+                expanded={expanded === 'panel4'}
+                onChange={handleChange('panel4')}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon sx={{ color: "#F1F1F1" }} />}
+                  expandIcon={<ExpandMoreIcon sx={{ color: '#F1F1F1' }} />}
                 >
                   <Typography>
                     Can Fahim help students who are unsure what to take next
@@ -116,19 +116,19 @@ function Faq() {
                 </AccordionDetails>
               </Accordion>
               <Accordion
-                sx={{ backgroundColor: "#1A1A1A", color: "#F1F1F1" }}
-                expanded={expanded === "panel5"}
-                onChange={handleChange("panel5")}
+                sx={{ backgroundColor: '#1A1A1A', color: '#F1F1F1' }}
+                expanded={expanded === 'panel5'}
+                onChange={handleChange('panel5')}
               >
                 <AccordionSummary
-                  expandIcon={<ExpandMoreIcon sx={{ color: "#F1F1F1" }} />}
+                  expandIcon={<ExpandMoreIcon sx={{ color: '#F1F1F1' }} />}
                 >
                   <Typography>How can I join the Fahim team?</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                   <Typography>
-                    Anyone can join the Fahim team! We're always looking for
-                    passionate individuals who want to make a difference in
+                    Anyone can join the Fahim team! We&rsquo;re always looking
+                    for passionate individuals who want to make a difference in
                     education. For more information, contact us.
                   </Typography>
                 </AccordionDetails>

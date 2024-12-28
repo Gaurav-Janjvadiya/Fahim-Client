@@ -1,9 +1,9 @@
-import instance from "./";
-import Cookies from "js-cookie";
+import instance from './';
+import Cookies from 'js-cookie';
 
 // Create a comment for a professor
 export const createProfessorComment = async ({ id: professorId, comment }) => {
-  const token = Cookies.get("jwt");
+  const token = Cookies.get('jwt');
   try {
     const { data } = await instance.post(
       `/api/comments/professor/${professorId}`,
@@ -12,13 +12,13 @@ export const createProfessorComment = async ({ id: professorId, comment }) => {
         headers: {
           Authorization: `Bearer ${token}`, // Authentication token
         },
-      }
+      },
     );
     return data;
   } catch (error) {
     console.error(
-      "Error creating professor comment:",
-      error.response?.data || error
+      'Error creating professor comment:',
+      error.response?.data || error,
     );
     throw error;
   }
@@ -28,13 +28,13 @@ export const createProfessorComment = async ({ id: professorId, comment }) => {
 export const getProfessorComments = async ({ id: professorId }) => {
   try {
     const { data } = await instance.get(
-      `/api/comments/professor/${professorId}`
+      `/api/comments/professor/${professorId}`,
     );
     return data;
   } catch (error) {
     console.error(
-      "Error geting professor comments:",
-      error.response?.data || error
+      'Error geting professor comments:',
+      error.response?.data || error,
     );
     throw error;
   }
@@ -47,8 +47,8 @@ export const deleteProfessorComment = async (commentId) => {
     return data;
   } catch (error) {
     console.error(
-      "Error deleting professor comment:",
-      error.response?.data || error
+      'Error deleting professor comment:',
+      error.response?.data || error,
     );
     throw error;
   }
@@ -63,8 +63,8 @@ export const replyToProfessorComment = async ({ commentId, reply }) => {
     return data;
   } catch (error) {
     console.error(
-      "Error replying professor comment:",
-      error.response?.data || error
+      'Error replying professor comment:',
+      error.response?.data || error,
     );
     throw error;
   }

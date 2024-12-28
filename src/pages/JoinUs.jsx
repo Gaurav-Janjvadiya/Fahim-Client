@@ -1,9 +1,6 @@
-import React from 'react'
 
 function JoinUs() {
-  return (
-    <div>JoinUs</div>
-  )
+  return <div>JoinUs</div>;
 }
 
-export default JoinUs
+export default JoinUs;

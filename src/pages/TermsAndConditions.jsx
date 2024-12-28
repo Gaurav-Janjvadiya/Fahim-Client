@@ -1,23 +1,22 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { Button } from "../components";
+import { useNavigate } from 'react-router-dom';
+import { Button } from '../components';
 
 const TermsAndConditions = () => {
   const navigate = useNavigate();
 
   const handleBackToSignUp = () => {
-    navigate("/signup");
+    navigate('/signup');
   };
 
   return (
     <div
       style={{
-        padding: "20px",
-        fontFamily: "Arial, sans-serif",
-        lineHeight: "1.6",
+        padding: '20px',
+        fontFamily: 'Arial, sans-serif',
+        lineHeight: '1.6',
       }}
     >
-      <Button onClick={handleBackToSignUp} style={"mb-2"}>
+      <Button onClick={handleBackToSignUp} style={'mb-2'}>
         Go Back to Sign Up
       </Button>
       <h1>Terms and Conditions</h1>
@@ -151,7 +150,7 @@ const TermsAndConditions = () => {
         <p>
           For any questions or feedback regarding these terms, please contact us
           at:
-          <a href="mailto:support@fahim.com">support@fahim.com</a>
+          <a href='mailto:support@fahim.com'>support@fahim.com</a>
         </p>
       </section>
     </div>

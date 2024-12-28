@@ -5,31 +5,31 @@ import {
   RadioGroup,
   Typography,
   CircularProgress,
-} from "@mui/material";
-import { useQuery } from "@tanstack/react-query";
-import { getAllProfessors } from "../../api/professorApi";
+} from '@mui/material';
+import { useQuery } from '@tanstack/react-query';
+import { getAllProfessors } from '../../api/professorApi';
+import PropTypes from "prop-types"
 
 const FilterByProfessor = ({
   filterByDepartment,
-  setFilterByDepartment = () => {},
   filterByProfessor,
-  setFilterByProfessor = () => {},
+  setFilterByProfessor,
 }) => {
   const {
     data: professors = [],
     error,
     isLoading,
   } = useQuery({
-    queryKey: ["professors", filterByProfessor.professor],
+    queryKey: ['professors', filterByProfessor.professor],
     queryFn: getAllProfessors,
     staleTime: 600000,
     cacheTime: 900000,
     refetchOnWindowFocus: true,
     onError: (err) => {
-      console.error("Error fetching Professors:", err);
+      console.error('Error fetching Professors:', err);
     },
     onSuccess: (data) => {
-      console.log("Professors fetched successfully:", data);
+      console.log('Professors fetched successfully:', data);
     },
   });
 
@@ -42,35 +42,35 @@ const FilterByProfessor = ({
 
   return (
     <FormControl
-      component="fieldset"
+      component='fieldset'
       sx={{
-        position: "relative",
+        position: 'relative',
         zIndex: 1,
-        marginTop: "1px",
-        width: "100%",
-        backgroundColor: "#1A1A1A",
+        marginTop: '1px',
+        width: '100%',
+        backgroundColor: '#1A1A1A',
       }}
     >
       <Typography
-        variant="subtitle1"
+        variant='subtitle1'
         gutterBottom
-        sx={{ color: "#fff", marginBottom: "1px" }}
+        sx={{ color: '#fff', marginBottom: '1px' }}
       >
         Professors
       </Typography>
       <RadioGroup
-        value={filterByDepartment?.department || ""}
-        onChange={(e) => handleFilterChange(e, "professor")}
+        value={filterByDepartment?.department || ''}
+        onChange={(e) => handleFilterChange(e, 'professor')}
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          "& .MuiFormControlLabel-label": { color: "#fff" },
+          display: 'flex',
+          flexDirection: 'column',
+          '& .MuiFormControlLabel-label': { color: '#fff' },
         }}
       >
         {isLoading ? (
           <CircularProgress size={20} />
         ) : error ? (
-          <Typography color="error">Error loading majors</Typography>
+          <Typography color='error'>Error loading majors</Typography>
         ) : (
           professors.map((professor) => (
             <FormControlLabel
@@ -79,13 +79,13 @@ const FilterByProfessor = ({
               control={
                 <Radio
                   sx={{
-                    color: "#39FF14",
-                    "&.Mui-checked": { color: "#39FF14" },
+                    color: '#39FF14',
+                    '&.Mui-checked': { color: '#39FF14' },
                   }}
                 />
               }
               label={professor.name}
-              sx={{ "& .MuiFormControlLabel-label": { whiteSpace: "nowrap" } }}
+              sx={{ '& .MuiFormControlLabel-label': { whiteSpace: 'nowrap' } }}
             />
           ))
         )}
@@ -93,5 +93,12 @@ const FilterByProfessor = ({
     </FormControl>
   );
 };
+
+FilterByProfessor.propTypes = {
+  filterByDepartment: PropTypes.object,
+  setFilterByDepartment: PropTypes.func,
+  filterByProfessor: PropTypes.object,
+  setFilterByProfessor: PropTypes.func,
+}
 
 export default FilterByProfessor;

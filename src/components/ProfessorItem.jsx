@@ -1,7 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Rating from "@mui/material/Rating";
-import { Card } from ".";
+import { Card } from '.';
+import PropTypes from 'prop-types';
 
 function ProfessorItem({ dataItem = {} }) {
   return (
@@ -13,5 +11,9 @@ function ProfessorItem({ dataItem = {} }) {
     />
   );
 }
+
+ProfessorItem.propTypes = {
+  dataItem: PropTypes.object,
+};
 
 export default ProfessorItem;
