@@ -5,7 +5,7 @@ import {
   RadioGroup,
   Typography,
 } from '@mui/material';
-import PropTypes from "prop-types"
+import PropTypes from 'prop-types';
 
 const FilterByCourse = ({
   courseReviews,
@@ -75,6 +75,6 @@ FilterByCourse.propTypes = {
   courseReviews: PropTypes.array,
   filterByCourse: PropTypes.object,
   setFilterByCourse: PropTypes.func,
-}
+};
 
 export default FilterByCourse;

@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 function DataList({ dataList, Child }) {
   return (
@@ -12,7 +12,7 @@ function DataList({ dataList, Child }) {
 
 DataList.propTypes = {
   dataList: PropTypes.array,
-  Child: PropTypes.node.isRequired,
-}
+  Child: PropTypes.object,
+};
 
 export default DataList;

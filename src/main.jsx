@@ -1,107 +1,154 @@
-import { StrictMode } from 'react';
+import { StrictMode, lazy, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
-import './index.css';
 import App from './App.jsx';
 import ProtectedRoute from './utils/ProtectedRoute.jsx';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { CircularProgress } from '@mui/material';
+import './index.css';
 
-import {
-  Home,
-  SignUp,
-  Login,
-  LandingPage,
-  Courses,
-  JoinUs,
-  Professors,
-  TermsAndConditions,
-  Professor,
-  Course,
-  Settings,
-  ManageCourses,
-  MoreCourses,
-} from './pages';
+// Lazy load pages
+const Home = lazy(() => import('./pages/Home.jsx'));
+const SignUp = lazy(() => import('./pages/SignUp.jsx'));
+const Login = lazy(() => import('./pages/Login.jsx'));
+const LandingPage = lazy(() => import('./pages/LandingPage.jsx'));
+const JoinUs = lazy(() => import('./pages/JoinUs.jsx'));
+const TermsAndConditions = lazy(() => import('./pages/TermsAndConditions.jsx'));
+const Professor = lazy(() => import('./pages/Professor.jsx'));
+const Course = lazy(() => import('./pages/Course.jsx'));
+const Settings = lazy(() => import('./pages/Settings.jsx'));
+const ManageCourses = lazy(() => import('./pages/ManageCourses.jsx'));
+const MoreCourses = lazy(() => import('./pages/MoreCourses.jsx'));
+const Professors = lazy(() => import('./pages/Professors.jsx'));
+const Courses = lazy(() => import('./pages/Courses.jsx'));
 
+// Router setup with lazy-loaded pages
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     children: [
-      { path: '/', element: <LandingPage /> },
-      { path: '/signup', element: <SignUp /> },
-      { path: '/login', element: <Login /> },
-      { path: '/terms', element: <TermsAndConditions /> },
+      {
+        path: '/',
+        element: (
+          <Suspense fallback={<CircularProgress />}>
+            <LandingPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/signup',
+        element: (
+          <Suspense fallback={<CircularProgress />}>
+            <SignUp />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/login',
+        element: (
+          <Suspense fallback={<CircularProgress />}>
+            <Login />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/terms',
+        element: (
+          <Suspense fallback={<CircularProgress />}>
+            <TermsAndConditions />
+          </Suspense>
+        ),
+      },
 
       // Protecting all routes
       {
         path: '/home',
         element: (
-          <ProtectedRoute>
-            <Home />
-          </ProtectedRoute>
+          <Suspense fallback={<CircularProgress />}>
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          </Suspense>
         ),
       },
       {
         path: '/home/edit',
         element: (
-          <ProtectedRoute>
-            <ManageCourses />
-          </ProtectedRoute>
+          <Suspense fallback={<CircularProgress />}>
+            <ProtectedRoute>
+              <ManageCourses />
+            </ProtectedRoute>
+          </Suspense>
         ),
       },
       {
         path: '/home/moreCourses',
         element: (
-          <ProtectedRoute>
-            <MoreCourses />
-          </ProtectedRoute>
+          <Suspense fallback={<CircularProgress />}>
+            <ProtectedRoute>
+              <MoreCourses />
+            </ProtectedRoute>
+          </Suspense>
         ),
       },
       {
         path: '/courses',
         element: (
-          <ProtectedRoute>
-            <Courses />
-          </ProtectedRoute>
+          <Suspense fallback={<CircularProgress />}>
+            <ProtectedRoute>
+              <Courses />
+            </ProtectedRoute>
+          </Suspense>
         ),
       },
       {
         path: '/courses/:courseReviewId',
         element: (
-          <ProtectedRoute>
-            <Course />
-          </ProtectedRoute>
+          <Suspense fallback={<CircularProgress />}>
+            <ProtectedRoute>
+              <Course />
+            </ProtectedRoute>
+          </Suspense>
         ),
       },
       {
         path: '/join-us',
         element: (
-          <ProtectedRoute>
-            <JoinUs />
-          </ProtectedRoute>
+          <Suspense fallback={<CircularProgress />}>
+            <ProtectedRoute>
+              <JoinUs />
+            </ProtectedRoute>
+          </Suspense>
         ),
       },
       {
         path: '/professors',
         element: (
-          <ProtectedRoute>
-            <Professors />
-          </ProtectedRoute>
+          <Suspense fallback={<CircularProgress size='8rem' />}>
+            <ProtectedRoute>
+              <Professors />
+            </ProtectedRoute>
+          </Suspense>
         ),
       },
       {
         path: '/professors/:professorId',
         element: (
-          <ProtectedRoute>
-            <Professor />
-          </ProtectedRoute>
+          <Suspense fallback={<CircularProgress />}>
+            <ProtectedRoute>
+              <Professor />
+            </ProtectedRoute>
+          </Suspense>
         ),
       },
       {
         path: '/settings',
         element: (
-          <ProtectedRoute>
-            <Settings />
-          </ProtectedRoute>
+          <Suspense fallback={<CircularProgress />}>
+            <ProtectedRoute>
+              <Settings />
+            </ProtectedRoute>
+          </Suspense>
         ),
       },
     ],

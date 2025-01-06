@@ -65,7 +65,7 @@ const Sort = memo(({ setState, state, options }) => {
     </FormControl>
   );
 });
-Sort.displayName = "Sort";
+Sort.displayName = 'Sort';
 Sort.propTypes = {
   setState: PropTypes.func,
   state: PropTypes.string,

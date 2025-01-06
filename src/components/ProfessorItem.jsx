@@ -1,7 +1,8 @@
 import { Card } from '.';
 import PropTypes from 'prop-types';
+import { memo } from 'react';
 
-function ProfessorItem({ dataItem = {} }) {
+const ProfessorItem = memo(({ dataItem = {} }) => {
   return (
     <Card
       linkTo={`/professors/${dataItem._id}`}
@@ -10,7 +11,9 @@ function ProfessorItem({ dataItem = {} }) {
       rating={dataItem.avgRating}
     />
   );
-}
+});
+
+ProfessorItem.displayName = 'ProfessorItem';
 
 ProfessorItem.propTypes = {
   dataItem: PropTypes.object,

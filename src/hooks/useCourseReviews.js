@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
   fetchTopCourseReviews,
   fetchLowestRatedCourseReviews,
@@ -8,19 +9,24 @@ import { getAllCourseReviews } from '../api/courseReviewApi';
 import { useQuery } from '@tanstack/react-query';
 
 const useCourseReviews = (sortOption, filterByCourse, filterByProfessor) => {
-  const { data: courseReviews = [], isLoading } = useQuery({
-    queryKey: [
+  const queryKey = useMemo(
+    () => [
       'courseReviews',
       sortOption,
       filterByCourse.course,
       filterByProfessor.professor,
     ],
+    [sortOption, filterByCourse.course, filterByProfessor.professor],
+  );
+
+  const { data: courseReviews = [], isLoading } = useQuery({
+    queryKey,
     queryFn: () => {
-      if (filterByCourse.course != '')
+      if (filterByCourse.course !== '')
         return fetchCourseReviewsByCourseId({
           courseId: filterByCourse.course,
         });
-      if (filterByProfessor.professor != '')
+      if (filterByProfessor.professor !== '')
         return fetchCourseReviewsByProfessorId({
           professorId: filterByProfessor.professor,
         });
@@ -31,6 +37,7 @@ const useCourseReviews = (sortOption, filterByCourse, filterByProfessor) => {
     staleTime: 5 * 60 * 1000,
     cacheTime: 10 * 60 * 1000,
   });
+
   return { isLoading, courseReviews };
 };
 

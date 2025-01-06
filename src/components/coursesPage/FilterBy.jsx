@@ -5,7 +5,7 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FilterByCourse from './FilterByCourse';
 import FilterByProfessor from './FilterByProfessor';
-import PropTypes from "prop-types"
+import PropTypes from 'prop-types';
 
 const FilterBy = ({
   courseReviews,
@@ -94,6 +94,6 @@ FilterBy.propTypes = {
   setFilterByCourse: PropTypes.func.isRequired,
   filterByProfessor: PropTypes.func.isRequired,
   setFilterByProfessor: PropTypes.func.isRequired,
-}
+};
 
 export default FilterBy;

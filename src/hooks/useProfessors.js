@@ -6,20 +6,26 @@ import {
   fetchProfessorsByTitle,
 } from '../api/filterProffessors';
 import { getAllProfessors } from '../api/professorApi';
+import { useMemo } from 'react';
 
 const useProfessors = (filterByTitle, filterByDepartment, sortOption) => {
+  const queryKey = useMemo(
+    () => [
+      'professors',
+      filterByTitle.title,
+      filterByDepartment.department,
+      sortOption,
+    ],
+    [filterByTitle.title, filterByDepartment.department, sortOption],
+  );
+
   const {
     data: professors,
     isLoading,
     isError,
     error,
   } = useQuery({
-    queryKey: [
-      'professors',
-      filterByTitle.title,
-      filterByDepartment.department,
-      sortOption,
-    ],
+    queryKey,
     queryFn: () => {
       switch (filterByTitle.title) {
         case 'doctor':

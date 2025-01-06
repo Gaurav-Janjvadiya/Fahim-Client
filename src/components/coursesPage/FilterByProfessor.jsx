@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { getAllProfessors } from '../../api/professorApi';
-import PropTypes from "prop-types"
+import PropTypes from 'prop-types';
 
 const FilterByProfessor = ({
   filterByDepartment,
@@ -99,6 +99,6 @@ FilterByProfessor.propTypes = {
   setFilterByDepartment: PropTypes.func,
   filterByProfessor: PropTypes.object,
   setFilterByProfessor: PropTypes.func,
-}
+};
 
 export default FilterByProfessor;

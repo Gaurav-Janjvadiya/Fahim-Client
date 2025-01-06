@@ -25,7 +25,8 @@ export const getAllMajors = async () => {
 export const getMajorById = async (majorId) => {
   try {
     const { data } = await instance.get(`/api/majors/${majorId}`);
-return data;  } catch (e) {
+    return data;
+  } catch (e) {
     console.log(e);
   }
 };

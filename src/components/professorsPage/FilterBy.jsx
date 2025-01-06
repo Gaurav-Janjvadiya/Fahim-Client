@@ -85,9 +85,9 @@ const FilterBy = ({
 };
 
 FilterBy.propTypes = {
-  filterByTitle: PropTypes.func.isRequired,
+  filterByTitle: PropTypes.object.isRequired,
   setFilterByTitle: PropTypes.func.isRequired,
-  filterByDepartment: PropTypes.func.isRequired,
+  filterByDepartment: PropTypes.object.isRequired,
   setFilterByDepartment: PropTypes.func.isRequired,
 };
 

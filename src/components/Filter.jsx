@@ -5,7 +5,7 @@ import FilterByDepartment from './FilterByDepartment';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import PropTypes from "prop-types"
+import PropTypes from 'prop-types';
 
 const FilterBy = ({
   filterByTitle,
@@ -90,6 +90,6 @@ FilterBy.propTypes = {
   filterByTitle: PropTypes.string.isRequired,
   setFilterByDepartment: PropTypes.func.isRequired,
   filterByDepartment: PropTypes.string.isRequired,
-}
+};
 
 export default FilterBy;

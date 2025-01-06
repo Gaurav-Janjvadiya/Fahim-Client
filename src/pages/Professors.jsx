@@ -76,7 +76,7 @@ function Professors() {
         ) : (
           <DataList
             dataList={
-              filteredProfessors.length > 0 ? filteredProfessors : professors
+              (filteredProfessors.length > 0 ? filteredProfessors : professors)
             }
             Child={ProfessorItem}
           />

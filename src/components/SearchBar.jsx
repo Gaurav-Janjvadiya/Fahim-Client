@@ -70,7 +70,7 @@ const SearchBar = memo(
 );
 SearchBar.displayName = 'SearchBar';
 SearchBar.propTypes = {
-  dataList: PropTypes.array.isRequired,
+  dataList: PropTypes.array,
   setFilteredDataList: PropTypes.func.isRequired,
   searchOptionKeys: PropTypes.array.isRequired,
 };

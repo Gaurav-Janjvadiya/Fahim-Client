@@ -21,12 +21,10 @@ const CustomNode = ({ data }) => {
     const node = nodes.find((node) => node.data.label === data.label);
     node.data.checked = !node.data.checked;
     setIsSelected(node.data.checked);
-
-    // Dispatch addCourse or removeCourse based on the new checked state
     if (node.data.checked) {
-      dispatch(addCourse(node.id)); // Add course to state
+      dispatch(addCourse(node.id));
     } else {
-      dispatch(removeCourse(node.id)); // Remove course from state
+      dispatch(removeCourse(node.id));
     }
   };
 

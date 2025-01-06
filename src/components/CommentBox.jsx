@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { TextField } from '@mui/material'; // Importing MUI components
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Button } from '../components';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 function CommentBox({ id, createCommentFunc }) {
   const queryClient = useQueryClient();

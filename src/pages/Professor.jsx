@@ -66,7 +66,9 @@ function Professor() {
                 <p className='text-gray-400 text-sm'>Courses Not Availble</p>
               )}
               {professor.courses.map((course) => (
-                <p key={course._id} className='text-sm'>{course.name}</p>
+                <p key={course._id} className='text-sm'>
+                  {course.name}
+                </p>
               ))}
             </div>
 
