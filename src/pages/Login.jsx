@@ -20,6 +20,7 @@ function Login() {
     register,
     formState: { errors },
     watch,
+    setValue,
   } = useForm({
     defaultValues: {
       email: '',
@@ -30,6 +31,11 @@ function Login() {
   const onSubmit = (data) => {
     setIsLoading(true);
     userLogin(data, navigate, dispatch, setServerError, setIsLoading);
+  };
+
+  const handleAddCredential = () => {
+    setValue("email", "TEST@gmail.com");
+    setValue("password", "password123");
   };
 
   return (
@@ -96,6 +102,11 @@ function Login() {
                 </Button>
               </div>
             </form>
+            <div>
+              <Button onClick={handleAddCredential} style={'w-full bg-orange-500 mt-2 hover:bg-orange-600'}>
+                Add Credentials
+              </Button>
+            </div>
 
             {serverError && (
               <p className='text-red-500 text-sm text-center mt-4'>

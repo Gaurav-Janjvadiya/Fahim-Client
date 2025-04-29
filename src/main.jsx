@@ -20,6 +20,9 @@ const ManageCourses = lazy(() => import('./pages/ManageCourses.jsx'));
 const MoreCourses = lazy(() => import('./pages/MoreCourses.jsx'));
 const Professors = lazy(() => import('./pages/Professors.jsx'));
 const Courses = lazy(() => import('./pages/Courses.jsx'));
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import store from './redux/store';
+import { Provider } from 'react-redux';
 
 // Router setup with lazy-loaded pages
 const router = createBrowserRouter([
@@ -32,22 +35,6 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={<CircularProgress />}>
             <LandingPage />
-          </Suspense>
-        ),
-      },
-      {
-        path: '/signup',
-        element: (
-          <Suspense fallback={<CircularProgress />}>
-            <SignUp />
-          </Suspense>
-        ),
-      },
-      {
-        path: '/login',
-        element: (
-          <Suspense fallback={<CircularProgress />}>
-            <Login />
           </Suspense>
         ),
       },
@@ -152,16 +139,38 @@ const router = createBrowserRouter([
         ),
       },
     ],
+
     errorElement: (
       <h1 className='text-4xl flex justify-center items-center font-bold text-center text-red-600'>
         404 Not Found
       </h1>
     ),
   },
+  {
+    path: '/signup',
+    element: (
+      <Suspense fallback={<CircularProgress />}>
+        <SignUp />
+      </Suspense>
+    ),
+  },
+  {
+    path: '/login',
+    element: (
+      <Suspense fallback={<CircularProgress />}>
+        <Login />
+      </Suspense>
+    ),
+  },
 ]);
+const client = new QueryClient();
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <QueryClientProvider client={client}>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </QueryClientProvider>
   </StrictMode>,
 );
