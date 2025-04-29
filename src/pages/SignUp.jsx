@@ -58,10 +58,6 @@ function SignUp() {
     userSignUp(data, navigate, dispatch, setServerError, setIsSignUpLoading);
   };
 
-  if (error) {
-    return <div>Error fetching majors. Please try again later.</div>;
-  }
-
   return (
     <div className='bg-black py-3 min-h-screen flex items-center justify-center text-[#F1F1F1]'>
       <div className='relative w-full max-w-md'>
